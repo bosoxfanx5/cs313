@@ -1,12 +1,33 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta content="text/html; charset=utf-8" />
-    <title>Week 01 : Hello World</title>
-   </head>
-
+<head>
+   <meta content="text/html; charset=utf-8" />
+   <title>Week 01 : Hello World</title>
+   <style>
+   div {
+      width: 100px;
+      height: 100px;
+      background-color: red;
+      position: relative;
+      animation-name: example;
+      animation-duration: 4s;
+      color: white;
+      font-size: 150%;
+      text-align: center;
+   }
+   @keyframes example {
+      0%   {background-color:red; left:0px; top:0px;}
+      25%  {background-color:black; left:700px; top:0px;}
+      50%  {background-color:blue; left:300px; top:50px;}
+      75%  {background-color:green; left:800px; top:650px;}
+      100% {background-color:red; left:0px; top:0px;}
+   }
+   </style>
+</head>
 <body>
-	<h1>Hello World</h1>
-
+   <div>
+      <p>Hello World</p>
+   </div>
 </body>
+
 </html>
