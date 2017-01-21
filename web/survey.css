@@ -1,0 +1,10 @@
+body {
+	background-image: url('gamesurvey.jpg');
+}
+
+.mycontain {
+	position: relative;
+	padding: 100px;
+	width: 1000px;
+	margin-left: 300px;
+}
