@@ -219,14 +219,15 @@ $total += $count["F"];
 			<?php else: ?>
 				<div class="row">
 					<div class="col-md-7 col-xs-offset-0 col-sm-offset-0 col-md-offset-6 col-lg-offset-0">
-						<div class="panel panel-danger" style="border-width: 2px;">
+						<div class="panel panel-danger">
 							<div class="panel-heading">
-								<h3 class="panel-title" style="font-weight: bolder;">
+								<h3 class="panel-title">
 									Results
 								</h3>
 							</div>
 							<div class="panel-body">
-								<div class="col-md-7 result">
+								<div class="col-md-9 result">
+									<div class="myres">
 									<p>Genders:</p>
 									<?php foreach($genders as $code => $long): echo $long?>:
 										<?php if($count[$code] != null):?>
@@ -235,9 +236,11 @@ $total += $count["F"];
 										<?php endif?>
 									<?php endforeach?>
 								</div>
+								</div>
 							</div>
 							<div class="panel-body">
 								<div class="col-md-7 result">
+									<div class="myres">
 									<p>Hours:</p>
 									<?php foreach($hours as $code => $time): echo $time?>:
 										<?php if($count[$code] != null):?>
@@ -246,9 +249,11 @@ $total += $count["F"];
 										<?php endif?>
 									<?php endforeach?>
 								</div>
+								</div>
 							</div>
 							<div class="panel-body">
 								<div class="col-md-7 result">
+									<div class="myres">
 									<p>Consoles:</p>
 									<?php foreach($consoles as $code => $machine): echo $machine?>:
 										<?php if($count[$code] != null):?>
@@ -257,9 +262,11 @@ $total += $count["F"];
 										<?php endif?>
 									<?php endforeach?>
 								</div>
+								</div>
 							</div>
 							<div class="panel-body">
-								<div class="col-md-7 result">
+								<div class="col-md-9 result">
+									<div class="myres">
 									<p>Modes:</p>
 									<?php foreach($modes as $code => $style): echo $style?>:
 										<?php if($count[$code] != null):?>
@@ -267,6 +274,7 @@ $total += $count["F"];
 										<?php else: echo "0";?><br>
 										<?php endif?>
 									<?php endforeach?>
+								</div>
 								</div>
 							</div>
 						</div>
