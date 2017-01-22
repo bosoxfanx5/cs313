@@ -76,14 +76,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 	if(isset($_POST["results"])) {
 		$showForm = false;
+		echo "<h1> It worked</h1>";
 	} else {
 
 		$_SESSION["visited"] = true;
-		$name = ($_POST["Name"]);
-		$hour = ($_POST["Hour"]);
-		$gender = ($_POST["Gender"]);
-		$console = ($_POST["Console"]);
-		$mode = ($_POST["Mode"]);
+		$name = sanitize($_POST["Name"]);
+		$hour = sanitize($_POST["Hour"]);
+		$gender = sanitize($_POST["Gender"]);
+		$console = sanitize($_POST["Console"]);
+		$mode = sanitize($_POST["Mode"]);
 
 		$results[] = $gender;
 		$results[] = $hour;
@@ -130,7 +131,6 @@ $total += $count["F"];
 							<div class="panel-body">
 								<div class="col-md-10">
 									<form action="" method="POST">
-										<?php // use isset() here to populate the fields with previous values ?>
 										<div class="form-group">
 											<label class="control-label" for="Name">Name *</label>
 											<input class="form-control"
@@ -138,12 +138,11 @@ $total += $count["F"];
 											name="Name"
 											id="Name"
 											placeholder="Name">
-											<!-- <span class="error"><?php echo $nameErr; ?></span> -->
 										</div>
 
 										<label class="control-label" for="Gender">Male or Female?</label>
 										<br>
-										<?php // Build list of majors - radios ?>
+										<?php // Build list of genders - radios ?>
 										<?php foreach ($genders as $code => $long): ?>
 											<div class="radio">
 												<input  type="radio"
@@ -158,7 +157,7 @@ $total += $count["F"];
 
 										<label class="control-label" for="Hour">How many hours on average do you play video games per week?</label>
 										<br>
-										<?php // Build list of majors - radios ?>
+										<?php // Build list of hours - radios ?>
 										<?php foreach ($hours as $code => $time): ?>
 											<div class="radio">
 												<input  type="radio"
@@ -173,7 +172,7 @@ $total += $count["F"];
 
 										<label class="control-label" for="Console">What console do you play on the most?</label>
 										<br>
-										<?php // Build list of majors - radios ?>
+										<?php // Build list of consoles - radios ?>
 										<?php foreach ($consoles as $code => $machine): ?>
 											<div class="radio">
 												<input  type="radio"
@@ -188,7 +187,7 @@ $total += $count["F"];
 
 										<label class="control-label" for="Mode">What mode do you play games in the most?</label>
 										<br>
-										<?php // Build list of majors - radios ?>
+										<?php // Build list of modes - radios ?>
 										<?php foreach ($modes as $code => $style): ?>
 											<div class="radio">
 												<input  type="radio"
@@ -200,9 +199,7 @@ $total += $count["F"];
 											</div>
 										<?php endforeach ?>
 										<br>
-
 										<input class="btn btn-primary" type="submit" name="Submit" value="Submit">
-
 									</div>
 								</div>
 								<div class="panel-footer">
@@ -234,7 +231,7 @@ $total += $count["F"];
 									<?php foreach($genders as $code => $long): echo $long?>:
 										<?php if($count[$code] != null):?>
 											<?php echo round(($count[$code] / $total), 2) * 100;?>%<br>
-										<?php else: echo "0" ?>
+										<?php else: echo "0" ?><br>
 										<?php endif?>
 									<?php endforeach?>
 								</div>
@@ -245,7 +242,7 @@ $total += $count["F"];
 									<?php foreach($hours as $code => $time): echo $time?>:
 										<?php if($count[$code] != null):?>
 											<?php echo round(($count[$code] / $total), 2) * 100;?>%<br>
-										<?php else: echo "0" ?>
+										<?php else: echo "0" ?><br>
 										<?php endif?>
 									<?php endforeach?>
 								</div>
@@ -256,7 +253,7 @@ $total += $count["F"];
 									<?php foreach($consoles as $code => $machine): echo $machine?>:
 										<?php if($count[$code] != null):?>
 											<?php echo round(($count[$code] / $total), 2) * 100;?>%<br>
-										<?php else: echo "0" ?>
+										<?php else: echo "0" ?><br>
 										<?php endif?>
 									<?php endforeach?>
 								</div>
@@ -267,7 +264,7 @@ $total += $count["F"];
 									<?php foreach($modes as $code => $style): echo $style?>:
 										<?php if($count[$code] != null):?>
 											<?php echo round(($count[$code] / $total), 2) * 100;?>%<br>
-										<?php else: echo "0";?>
+										<?php else: echo "0";?><br>
 										<?php endif?>
 									<?php endforeach?>
 								</div>
