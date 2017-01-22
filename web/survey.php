@@ -5,34 +5,10 @@ session_start();
 error_reporting(E_ALL);
 ini_set("display_errors", 0);
 
-function write($array) {
-	$file = fopen("results.txt", "w") or die("Unable to open file");
-	fwrite($file, json_encode($array));
-	fclose($file);
-}
 
-function read() {
-	$file = fopen("results.txt", "r") or die("Unable to open file");
-	$contents = fread($file, filesize("results.txt"));
-	fclose($file);
-	return json_decode($contents);
-}
-
-// https://xkcd.com/327/
-function sanitize($data) {
-	$data = trim($data);
-	$data = stripslashes($data);
-	$data = htmlspecialchars($data);
-	return $data;
-}
-
-if($_SESSION["visited"] == true) {
-	$showForm = false;
-} else {
-	$showForm = true;
-}
-
-
+$results = array();
+$results = read();
+$showForm = true;
 
 // radio button question : gender array
 $genders = array(
@@ -64,31 +40,58 @@ $modes = array(
 	"OS" => "Offline Solo"
 );
 
+function write($array) {
+	$file = fopen("results.txt", "w") or die("Unable to open file");
+	fwrite($file, json_encode($array));
+	fclose($file);
+}
 
-$results = array();
-$results = read();
+function read() {
+	$file = fopen("results.txt", "r") or die("Unable to open file");
+	$contents = fread($file, filesize("results.txt"));
+	fclose($file);
+	return json_decode($contents);
+}
+
+// https://xkcd.com/327/
+function sanitize($data) {
+	$data = trim($data);
+	$data = stripslashes($data);
+	$data = htmlspecialchars($data);
+	return $data;
+}
+
+if($_SESSION["visited"] == true) {
+	$showForm = false;
+} else {
+	$showForm = true;
+}
+
 
 // If the form was posted with a Name variable...
 // another option... if ($_SERVER["REQUEST_METHOD"] == "POST")
 // then, sanitize and validate using emtpty()
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
-	$_SESSION["visited"] = true;
-	$name = sanitize($_POST["Name"]);
-	$hour = sanitize($_POST["Hour"]);
-	$gender = sanitize($_POST["Gender"]);
-	$console = sanitize($_POST["Console"]);
-	$mode = $_POST["Mode"];
+	if(isset($_POST["results"])) {
+		$showForm = false;
+	} else {
 
-	$gender = $_POST["Gender"];
-	$hour = $_POST["Hour"];
-	$console = $_POST["Console"];
-	$mode = $_POST["Mode"];
+		$_SESSION["visited"] = true;
+		$name = sanitize($_POST["Name"]);
+		$hour = sanitize($_POST["Hour"]);
+		$gender = sanitize($_POST["Gender"]);
+		$console = sanitize($_POST["Console"]);
+		$mode = sanitize($_POST["Mode"]);
 
-	$results[] = $gender;
-	$results[] = $hour;
-	$results[] = $console;
-	$results[] = $mode;
+		$results[] = $gender;
+		$results[] = $hour;
+		$results[] = $console;
+		$results[] = $mode;
+		write($results);
+		$showForm = false;
+	}
 
 }
 
@@ -96,7 +99,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 $count = array_count_values($results);
 $total = $count["M"];
 $total += $count["F"];
-write($results);
+
 
 ?>
 
@@ -199,7 +202,6 @@ write($results);
 										<br>
 
 										<input class="btn btn-primary" type="submit" name="Submit" value="Submit">
-										<input class="btn btn-primary" type="submit" name="Results" value="Results">
 
 									</div>
 								</div>
@@ -211,6 +213,10 @@ write($results);
 							</div>
 						</div>
 					</div>
+				</form>
+				<form action="" method="POST">
+					<input type="hidden" name="results" value="View Results">
+					<input type="submit" id="results" value="View Results">
 				</form>
 				<?php // DISPLAYING RESULTS ?>
 			<?php else: ?>
