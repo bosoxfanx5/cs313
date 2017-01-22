@@ -76,7 +76,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 	if(isset($_POST["results"])) {
 		$showForm = false;
-		echo "<h1> It worked</h1>";
 	} else {
 
 		$_SESSION["visited"] = true;
