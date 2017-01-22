@@ -79,11 +79,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	} else {
 
 		$_SESSION["visited"] = true;
-		$name = sanitize($_POST["Name"]);
-		$hour = sanitize($_POST["Hour"]);
-		$gender = sanitize($_POST["Gender"]);
-		$console = sanitize($_POST["Console"]);
-		$mode = sanitize($_POST["Mode"]);
+		$name = ($_POST["Name"]);
+		$hour = ($_POST["Hour"]);
+		$gender = ($_POST["Gender"]);
+		$console = ($_POST["Console"]);
+		$mode = ($_POST["Mode"]);
 
 		$results[] = $gender;
 		$results[] = $hour;
