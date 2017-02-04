@@ -99,7 +99,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 						<li><a href="#">Item #3</a></li>
 						<li><a href="#">Item #4</a></li> -->
 						<?php
-						if (!$isContent) {
 							if (!empty($result0)) {
 							foreach($result0 as $row) {
 								echo '<li><a href="mobile.php?id='
@@ -108,7 +107,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 								'</a></li>';
 							}
 						}
-					}
 							?>
 					</ul>
 				</li>
