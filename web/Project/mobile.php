@@ -162,6 +162,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
                              . $result["description"] . ":"
                              . $result["title"]       . "</strong> - "
                              . $result['title']);
+			echo "This section is active";
         }
       ?>
 </div>
