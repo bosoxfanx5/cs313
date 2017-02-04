@@ -138,7 +138,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 			<!-- Left Side -->
 			<div class="btn-group">
 				<ul class="nav navbar-nav navbar-left">
-					<li><a href="#">Product View</a></li>
+					<li><a href="mobile.php">Product View</a></li>
 				</ul>
 			</div>
 		</div>
@@ -211,7 +211,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 				<h1><?php echo $result["title"] ?></h1>
 				<br><br>
 			</div>
-			<div class="pull-right">
+			<div class="description">
 				<p><?php echo $result["description"] ?></p>
 			</div>
 		<?php endif ?>
