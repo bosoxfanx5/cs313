@@ -224,6 +224,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 				<?php endforeach ?>
 			<?php endif ?>
 		<?php else : ?>
+			<div>
+				<h1><?php echo $result["title"] ?>
+			</div>
 		<?php endif ?>
 </div>
 
