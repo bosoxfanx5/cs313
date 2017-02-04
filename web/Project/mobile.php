@@ -33,14 +33,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 			$sql->execute(array(":id" => $_GET['id']));
 			$result = $sql->fetch(PDO::FETCH_ASSOC);
 		}
-	$person_uuid = uniqid();
-	$sql1 = $db->prepare("INSERT INTO s_person (id) VALUES ('$person_uuid')");
+
+	$sql1 = $db->prepare("INSERT INTO s_person (fname) VALUES ('Visitor')");
 	$sql1->execute();
 
 	// 	//retrieve new person id
-	$_SESSION["id"] = $person_uuid;
+	$_SESSION["id"] = $db->lastInsertId();
 	echo $_SESSION["id"];
-	echo $person_uuid;
+	echo $db->lastInsertId();
 	}
 
 
@@ -193,25 +193,38 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 			associated with that product and update information in the database about you, the user.</p>
 	</div>
 	<p></p>
-	<?php
-      if (!$isContent) {
-          if (!empty($result)) {
-            foreach($result as $row) {
-              print_r('<strong><a href="mobile.php?id='
-                        . $row["id"]          . '">'
-                        . $row["title"]       . " "
-                        . $row["description"] . ":"
-                        . $row["title"]       .
-                      '</a></strong><br><br>');
-            }
-          }
-        } else {
-          print_r('<strong>' . $result["title"]       . " "
-                             . $result["description"] . ":"
-                             . $result["title"]       . "</strong> - "
-                             . $result['title']);
-        }
-      ?>
+	<!-- <?php
+      // if (!$isContent) {
+      //     if (!empty($result)) {
+      //       foreach($result as $row) {
+      //         print_r('<strong><a href="mobile.php?id='
+      //                   . $row["id"]          . '">'
+      //                   . $row["title"]       . " "
+      //                   . $row["description"] . ":"
+      //                   . $row["title"]       .
+      //                 '</a></strong><br><br>');
+      //       }
+      //     }
+      //   } else {
+      //     print_r('<strong>' . $result["title"]       . " "
+      //                        . $result["description"] . ":"
+      //                        . $result["title"]       . "</strong> - "
+      //                        . $result['title']);
+      //   }
+      ?> -->
+		<?php if(!$isContent) : ?>
+			<?php if (!empty($result)) : ?>
+				<?php foreach($result as $row) : ?>
+					<?php print_r('<strong><a href="mobile.php?id='
+			                        . $row["id"]          . '">'
+			                        . $row["title"]       . " "
+			                        . $row["description"] . ":"
+			                        . $row["title"]       .
+			                      '</a></strong><br><br>'); ?>
+				<?php endforeach ?>
+			<?php endif ?>
+		<?php else : ?>
+		<?php endif ?>
 </div>
 
 <!--
