@@ -225,7 +225,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 			<?php endif ?>
 		<?php else : ?>
 			<div>
-				<h1><?php echo $result["title"] ?>
+				<h1><?php echo $result["title"] ?></h1>
+				<br><br>
+				<div class="description">
+					<p><?php echo $result["description"] ?></p>
+				</div>
 			</div>
 		<?php endif ?>
 </div>
@@ -266,6 +270,7 @@ _/          _/_/      _/_/        _/      _/_/_/_/  _/    _/
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<link rel="stylesheet" href="mobile.css">
 <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
 <!-- <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script> -->
 </body>
