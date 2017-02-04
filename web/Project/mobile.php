@@ -19,8 +19,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 	$db = $database;
 	$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-	$sql = $db->prepare("SELECT id, title FROM s_item");
-	$sql->execute();
+	$sql0 = $db->prepare("SELECT id, title FROM s_item");
+	$sql0->execute();
 	$result0 = $sql->fetchAll(PDO::FETCH_ASSOC);
 
 	if (!empty($_GET['id'])) {
