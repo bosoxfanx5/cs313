@@ -39,7 +39,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
 	// 	//retrieve new person id
 	$_SESSION["id"] = $db->lastInsertId();
-	print_r($_SESSION["id"]);
+	echo $_SESSION["id"];
+	echo $db->lastInsert();
 	}
 
 
