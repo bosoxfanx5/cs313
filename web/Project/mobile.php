@@ -10,7 +10,7 @@ Heroku CLI: heroku pg:psql postgresql-cubic-94519 --app rocky-everglades-86262
 
 <?php
 session_start();
-
+$welcome = true;
 error_reporting(E_ALL);
 ini_set("display_errors", 1);
 $isContent = false;
@@ -28,6 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
 	if (!empty($_GET['id'])) {
 		$isContent = true;
+		$welcome = false;
 		$sql = $db->prepare("SELECT * FROM s_item
 			WHERE id = :id");
 			$sql->execute(array(":id" => $_GET['id']));
@@ -184,6 +185,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 	_/_/_/      _/_/    _/_/_/        _/
 -->
 <!-- Begin page content -->
+<?php if ($welcome) : ?>
 <div class="container">
 	<div class="page-header">
 		<h1>Welcome!</h1>
@@ -192,26 +194,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 			a product key, we supplied you a dropdown menu to choose a product. This will return the data
 			associated with that product and update information in the database about you, the user.</p>
 	</div>
-	<p></p>
-	<!-- <?php
-      // if (!$isContent) {
-      //     if (!empty($result)) {
-      //       foreach($result as $row) {
-      //         print_r('<strong><a href="mobile.php?id='
-      //                   . $row["id"]          . '">'
-      //                   . $row["title"]       . " "
-      //                   . $row["description"] . ":"
-      //                   . $row["title"]       .
-      //                 '</a></strong><br><br>');
-      //       }
-      //     }
-      //   } else {
-      //     print_r('<strong>' . $result["title"]       . " "
-      //                        . $result["description"] . ":"
-      //                        . $result["title"]       . "</strong> - "
-      //                        . $result['title']);
-      //   }
-      ?> -->
+<?php else : ?>
 		<?php if(!$isContent) : ?>
 			<?php if (!empty($result)) : ?>
 				<?php foreach($result as $row) : ?>
@@ -232,6 +215,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 				<p><?php echo $result["description"] ?></p>
 			</div>
 		<?php endif ?>
+<?php endif ?>
 </div>
 
 <!--
