@@ -192,6 +192,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 			a product key, we supplied you a dropdown menu to choose a product. This will return the data
 			associated with that product and update information in the database about you, the user.</p>
 	</div>
+</div>
 	<p></p>
 	<!-- <?php
       // if (!$isContent) {
@@ -216,11 +217,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 			<?php if (!empty($result)) : ?>
 				<?php foreach($result as $row) : ?>
 					<?php print_r('<strong><a href="mobile.php?id='
-											. $row["id"]          . '">'
-											. $row["title"]       . " "
-											. $row["description"] . ":"
-											. $row["title"]       .
-										 '</a></strong><br><br>'); ?>
+					. $row["id"]          . '">'
+					. $row["title"]       . " "
+					. $row["description"] . ":"
+					. $row["title"]       .
+					'</a></strong><br><br>'); ?>
 				<?php endforeach ?>
 			<?php endif ?>
 		<?php else : ?>
@@ -228,11 +229,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 				<h1><?php echo $result["title"] ?></h1>
 				<br><br>
 			</div>
-			<div class="description">
+			<div class="pull-right">
 				<p><?php echo $result["description"] ?></p>
 			</div>
 		<?php endif ?>
-</div>
 
 <!--
 _/_/_/_/    _/_/      _/_/    _/_/_/_/_/  _/_/_/_/  _/_/_/
