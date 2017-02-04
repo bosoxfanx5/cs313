@@ -33,7 +33,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 			$sql->execute(array(":id" => $_GET['id']));
 			$result = $sql->fetch(PDO::FETCH_ASSOC);
 		}
-	$person_uuid = uuid_generate_v4();
+	$person_uuid = uniqid();
 	$sql1 = $db->prepare("INSERT INTO s_person (id) VALUES ('$person_uuid')");
 	$sql1->execute();
 
