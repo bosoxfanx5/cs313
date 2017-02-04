@@ -12,6 +12,7 @@ Heroku CLI: heroku pg:psql postgresql-cubic-94519 --app rocky-everglades-86262
 error_reporting(E_ALL);
 ini_set("display_errors", 1);
 $isContent = false;
+$item = "";
 if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 	$url = parse_url("postgres://kjufgxkwzbdxoe:7df3e724097d356a12363ec6ff37de41a1dce21c3c4767b88d5d7de61086d5df@ec2-54-163-246-165.compute-1.amazonaws.com:5432/de0qfpfe2sp27l");
 	$dbopts = $url;
@@ -25,16 +26,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 			WHERE id = :id");
 			$sql->execute(array(":id" => $_GET['id']));
 			$result = $sql->fetch(PDO::FETCH_ASSOC);
-		} else if (!empty($_GET['query'])) {
-			$sql = $db->prepare("SELECT * FROM s_item
-				WHERE LOWER(title) LIKE '%" . strtolower($_GET['query']) . "%' OR "
-				." LOWER(description) LIKE '%" . strtolower($_GET['query']) . "%'"
-			);
-			$sql->execute();
-
-			$result = $sql->fetchAll();
 		} else {
-			$scripture = "Search for stuff!";
+			echo "query is empty<br>";
+			$sql = $db->prepare("SELECT * FROM s_item");
+			$sql->execute();
+			$result = $sql->fetchAll(PDO::FETCH_ASSOC);
+			print_r("Result<br><pre>".var_dump($result)."</pre>");
 		}
 	}
 	$database = null;
@@ -96,18 +93,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 				<div class="form-group">
 				</div>
 			</form>
+			<select name="Products">
 			<ul class="nav navbar-nav navbar-right">
 				<li class="dropdown">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown">Select Item<b class="caret"></b></a>
+					<!-- <a href="#" class="dropdown-toggle" data-toggle="dropdown">Select Item<b class="caret"></b></a> -->
 					<ul class="dropdown-menu">
-						<li><a href="#">Item #1</a></li>
+						<li><option value=<?php echo "Item #1" ?></li>
 						<li><a href="#">Item #2</a></li>
 						<li><a href="#">Item #3</a></li>
 						<li><a href="#">Item #4</a></li>
 					</ul>
 				</li>
 			</ul>
-		</div><!-- /.navbar-collapse -->
+		</div>
 	</nav>
 
 	<!--
