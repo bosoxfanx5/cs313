@@ -9,6 +9,7 @@ Heroku CLI: heroku pg:psql postgresql-cubic-94519 --app rocky-everglades-86262
 -->
 
 <?php
+session_start();
 error_reporting(E_ALL);
 ini_set("display_errors", 1);
 $isContent = false;
@@ -31,6 +32,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 			$result = $sql->fetch(PDO::FETCH_ASSOC);
 		}
 	}
+
+	//check session for visitor id
+	//if empty
+		//insert new visitor id into people table
+		//insert into visited item table the visitor id and item id
+	//else retrieve visitor id
+		//insert into visited item table the visitor id and item id
+
+
+
+
+
+
 	$database = null;
 	?>
 
@@ -107,7 +121,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 								'</a></li>';
 							}
 						}
-							?>
+						?>
 					</ul>
 				</li>
 			</ul>
@@ -131,27 +145,34 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 			associated with that product and update information in the database about you, the user.</p>
 	</div>
 	<p></p>
+	<!-- . $row["id"]          . '">'
+	. $row["title"]       . " "
+	. $row["description"] . ":"
+	. $row["title"]   -->
 	<?php
-      if (!$isContent) {
-          if (!empty($result)) {
-            foreach($result as $row) {
-              print_r('<strong><a href="mobile.php?id='
-                        . $row["id"]          . '">'
-                        . $row["title"]       . " "
-                        . $row["description"] . ":"
-                        . $row["title"]       .
-                      '</a></strong><br><br>');
-            }
-          } else {
-            echo 'Search for things!';
-          }
-        } else {
-          print_r('<strong>' . $result["title"]       . " "
-                             . $result["description"] . ":"
-                             . $result["title"]       . "</strong> - "
-                             . $result['title']);
-        }
-      ?>
+	if (!$isContent) {
+		if (!empty($result)) {
+			foreach($result as $row) {
+				print_r('<strong><a href="mobile.php?id='
+				. $row["id"]          . '">'
+				. $row["title"]       . " "
+				. $row["description"] . ":"
+				. $row["title"]       .
+				'</a></strong><br><br>');
+			}
+		} else {
+			print_r('<strong>' . $result["title"]       . " "
+			. $result["description"] . ":"
+			. $result["title"]       . "</strong> - "
+			. $result['title']);
+		}
+	} else {
+		print_r('<strong>' . $result["title"]       . " "
+		. $result["description"] . ":"
+		. $result["title"]       . "</strong> - "
+		. $result['title']);
+	}
+	?>
 </div>
 
 <!--
