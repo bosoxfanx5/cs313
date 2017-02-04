@@ -160,17 +160,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 				. $row["title"]       .
 				'</a></strong><br><br>');
 			}
-		} else {
-			print_r('<strong>' . $result["title"]       . " "
-			. $result["description"] . ":"
-			. $result["title"]       . "</strong> - "
-			. $result['title']);
 		}
-	} else {
-		print_r('<strong>' . $result["title"]       . " "
-		. $result["description"] . ":"
-		. $result["title"]       . "</strong> - "
-		. $result['title']);
 	}
 	?>
 </div>
