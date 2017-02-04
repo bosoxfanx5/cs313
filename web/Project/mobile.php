@@ -145,10 +145,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 			associated with that product and update information in the database about you, the user.</p>
 	</div>
 	<p></p>
-	<!-- . $row["id"]          . '">'
-	. $row["title"]       . " "
-	. $row["description"] . ":"
-	. $row["title"]   -->
 	<?php
       if (!$isContent) {
           if (!empty($result)) {
@@ -160,7 +156,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
                         . $row["title"]       .
                       '</a></strong><br><br>');
             }
-          } 
+          }
         } else {
           print_r('<strong>' . $result["title"]       . " "
                              . $result["description"] . ":"
