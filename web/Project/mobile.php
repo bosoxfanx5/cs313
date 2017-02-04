@@ -11,7 +11,6 @@ Heroku CLI: heroku pg:psql postgresql-cubic-94519 --app rocky-everglades-86262
 <?php
 session_start();
 
-$_SESSION["id"] = "";
 error_reporting(E_ALL);
 ini_set("display_errors", 1);
 $isContent = false;
@@ -34,14 +33,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 			$sql->execute(array(":id" => $_GET['id']));
 			$result = $sql->fetch(PDO::FETCH_ASSOC);
 		}
-
-	$sql1 = $db->prepare("INSERT INTO s_person (fname) VALUES ('Visitor')");
+	$person_uuid = uuid_generate_v4();
+	$sql1 = $db->prepare("INSERT INTO s_person (id) VALUES ('$person_uuid')");
 	$sql1->execute();
 
 	// 	//retrieve new person id
-	$_SESSION["id"] = $db->lastInsertId();
+	$_SESSION["id"] = $person_uuid;
 	echo $_SESSION["id"];
-	echo $db->lastInsertId();
+	echo $person_uuid;
 	}
 
 
