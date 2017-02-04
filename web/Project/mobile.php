@@ -150,19 +150,24 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 	. $row["description"] . ":"
 	. $row["title"]   -->
 	<?php
-	if (!$isContent) {
-		if (!empty($result)) {
-			foreach($result as $row) {
-				print_r('<strong><a href="mobile.php?id='
-				. $row["id"]          . '">'
-				. $row["title"]       . " "
-				. $row["description"] . ":"
-				. $row["title"]       .
-				'</a></strong><br><br>');
-			}
-		}
-	}
-	?>
+      if (!$isContent) {
+          if (!empty($result)) {
+            foreach($result as $row) {
+              print_r('<strong><a href="mobile.php?id='
+                        . $row["id"]          . '">'
+                        . $row["title"]       . " "
+                        . $row["description"] . ":"
+                        . $row["title"]       .
+                      '</a></strong><br><br>');
+            }
+          } 
+        } else {
+          print_r('<strong>' . $result["title"]       . " "
+                             . $result["description"] . ":"
+                             . $result["title"]       . "</strong> - "
+                             . $result['title']);
+        }
+      ?>
 </div>
 
 <!--
