@@ -40,6 +40,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 	$sql1 = $db->prepare("SELECT id FROM s_person");
 	$sql1->execute();
 	$personID = $sql1->fetchAll(PDO::FETCH_ASSOC);
+	print_r($personID);
 	}
 
 
