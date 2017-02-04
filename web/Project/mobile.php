@@ -33,12 +33,56 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 		}
 	}
 
+	$sql1 = $dp->prepare("INSERT INTO s_person (fname) VALUES ('Visitor')");
+	$sql1->execute();
+	print_r($sql1);
+
 	//check session for visitor id
+
 	//if empty
-		//insert new visitor id into people table
-		//insert into visited item table the visitor id and item id
-	//else retrieve visitor id
-		//insert into visited item table the visitor id and item id
+	// if (empty($_SESSION["id"])) {
+	// 	//insert new person id into people table
+	// 	$sql1 = $dp->prepare("INSERT INTO s_person (fname) VALUES ('Visitor')");
+	// 	$sql1->execute();
+	//
+	// 	//retrieve new person id
+	// 	$sql1 = $db->prepare("SELECT id FROM s_person");
+	// 	$sql1->execute();
+	// 	$personID = $sql1->fetchAll(PDO::FETCH_ASSOC);
+	//
+	// 	//retrieve item id
+	// 	if (!empty($_GET['id'])) {
+	// 		$isContent = true;
+	// 		$sql = $db->prepare("SELECT * FROM s_item
+	// 			WHERE id = :id");
+	// 			$sql->execute(array(":id" => $_GET['id']));
+	// 			$itemID = $sql->fetch(PDO::FETCH_ASSOC);
+	// 		}
+	//
+	// 	//insert into visited item table the visitor id and item id
+	// 	$sql1 = $dp->prepare("INSERT INTO s_visited_items (visitor_id, item_id) VALUES ($personID, $itemID)");
+	//
+	// 	//set session variable to person id
+	// 	$_SESSION["id"] = $personID;
+	// } else {
+	// 	//else retrieve person id
+	// 	$sql1 = $db->prepare("SELECT id FROM s_person");
+	// 	$sql1->execute();
+	// 	$personID = $sql1->fetchAll(PDO::FETCH_ASSOC);
+	//
+	// 	//retrieve item id
+	// 	if (!empty($_GET['id'])) {
+	// 		$isContent = true;
+	// 		$sql = $db->prepare("SELECT * FROM s_item
+	// 			WHERE id = :id");
+	// 			$sql->execute(array(":id" => $_GET['id']));
+	// 			$itemID = $sql->fetch(PDO::FETCH_ASSOC);
+	// 		}
+	//
+	// 	//insert into visited item table the visitor id and item id
+	// 	$sql1 = $dp->prepare("INSERT INTO s_visited_items (visitor_id, item_id) VALUES ($personID, $itemID)");
+	// 	$_SESSION["id"] = $personID;
+	// }
 
 
 
@@ -155,7 +199,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
                         . $row["description"] . ":"
                         . $row["title"]       .
                       '</a></strong><br><br>');
-					echo "This section is active";
             }
           }
         } else {
