@@ -40,7 +40,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 	// 	//retrieve new person id
 	$_SESSION["id"] = $db->lastInsertId();
 	echo $_SESSION["id"];
-	echo $db->lastInsert();
+	echo $db->lastInsertId();
 	}
 
 
@@ -53,10 +53,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 	// 	$sql1 = $dp->prepare("INSERT INTO s_person (fname) VALUES ('Visitor')");
 	// 	$sql1->execute();
 	//
-	// 	//retrieve new person id
-	// 	$sql1 = $db->prepare("SELECT id FROM s_person");
-	// 	$sql1->execute();
-	// 	$personID = $sql1->fetchAll(PDO::FETCH_ASSOC);
 	//
 	// 	//retrieve item id
 	// 	if (!empty($_GET['id'])) {
