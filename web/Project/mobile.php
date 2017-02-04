@@ -54,9 +54,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
 		<title>Front-end UI</title>
 
-		<!-- Bootstrap core CSS -->
-		<link href="/bs/css/bootstrap.min.css" rel="stylesheet">
-
 		<!-- Custom styles for this template -->
 		<link href="sticky-footer-navbar.css" rel="stylesheet">
 	</head>
@@ -97,20 +94,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 		<div class="collapse navbar-collapse" id="navbar-collapse-1">
 			<form class="navbar-form navbar-left" role="search">
 				<div class="form-group">
-					<!--input type="text" class="form-control" placeholder="Search"-->
 				</div>
-				<!--button type="submit" class="btn btn-default"><i class="glyphicon glyphicon-search"></i></button-->
 			</form>
 			<ul class="nav navbar-nav navbar-right">
-				<li><a href="#">Collection</a></li>
 				<li class="dropdown">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown">Select Item<b class="caret"></b></a>
 					<ul class="dropdown-menu">
-						<li><a href="#">Action</a></li>
-						<li><a href="#">Another action</a></li>
-						<li><a href="#">Something else here</a></li>
+						<li><a href="#">Item #1</a></li>
+						<li><a href="#">Item #2</a></li>
+						<li><a href="#">Item #3</a></li>
+						<li><a href="#">Item #4/a></li>
 						<li class="divider"></li>
-						<li><a href="#">Separated link</a></li>
+						<li><a href="#">Home</a></li>
 					</ul>
 				</li>
 			</ul>
@@ -127,11 +122,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 <!-- Begin page content -->
 <div class="container">
 	<div class="page-header">
-		<h1>Item Name</h1>
-		<p>SKU: 123456789</p>
+		<h1>Welcome!</h1>
+		<p>Start by selecting an item from the dropdown menu.</p>
 	</div>
-	<p class="lead">Item description.</p>
-	<p>Item details.</p>
 	<p></p>
 	<?php
 	if (!$isContent) {
