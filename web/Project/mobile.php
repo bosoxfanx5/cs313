@@ -32,7 +32,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 			$result = $sql->fetch(PDO::FETCH_ASSOC);
 		}
 
-	$sql1 = $dp->prepare("INSERT INTO s_person (fname) VALUES ('Visitor')");
+	$sql1 = $db->prepare("INSERT INTO s_person (fname) VALUES ('Visitor')");
 	$sql1->execute();
 	print_r($sql1);
 	}
