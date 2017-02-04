@@ -35,6 +35,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 	$sql1 = $db->prepare("INSERT INTO s_person (fname) VALUES ('Visitor')");
 	$sql1->execute();
 	print_r($sql1);
+
+	// 	//retrieve new person id
+	$sql1 = $db->prepare("SELECT id FROM s_person");
+	$sql1->execute();
+	$personID = $sql1->fetchAll(PDO::FETCH_ASSOC);
 	}
 
 
