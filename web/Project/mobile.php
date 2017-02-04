@@ -21,6 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 	$database = new PDO("pgsql:host=" . $dbopts['host'] . "; dbname=" . str_replace('/', '', $dbopts['path']),  $dbopts['user'], $dbopts['pass']);
 	$db = $database;
 	$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+	$db->setAttribute(PDO::ATTR_EMULATE_PREPARES,TRUE);
 
 	$sql0 = $db->prepare("SELECT id, title FROM s_item");
 	$sql0->execute();
