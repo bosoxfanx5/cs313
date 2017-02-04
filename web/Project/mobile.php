@@ -21,7 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
 	$sql0 = $db->prepare("SELECT id, title FROM s_item");
 	$sql0->execute();
-	$result0 = $sql->fetchAll(PDO::FETCH_ASSOC);
+	$result0 = $sql0->fetchAll(PDO::FETCH_ASSOC);
 
 	if (!empty($_GET['id'])) {
 		$isContent = true;
