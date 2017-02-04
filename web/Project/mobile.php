@@ -12,7 +12,6 @@ Heroku CLI: heroku pg:psql postgresql-cubic-94519 --app rocky-everglades-86262
 error_reporting(E_ALL);
 ini_set("display_errors", 1);
 $isContent = false;
-$item = "";
 if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 	$url = parse_url("postgres://kjufgxkwzbdxoe:7df3e724097d356a12363ec6ff37de41a1dce21c3c4767b88d5d7de61086d5df@ec2-54-163-246-165.compute-1.amazonaws.com:5432/de0qfpfe2sp27l");
 	$dbopts = $url;
@@ -20,18 +19,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 	$db = $database;
 	$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
+	$sql = $db->prepare("SELECT id, title FROM s_item");
+	$sql->execute();
+	$result0 = $sql->fetchAll(PDO::FETCH_ASSOC);
+
 	if (!empty($_GET['id'])) {
 		$isContent = true;
 		$sql = $db->prepare("SELECT * FROM s_item
 			WHERE id = :id");
 			$sql->execute(array(":id" => $_GET['id']));
 			$result = $sql->fetch(PDO::FETCH_ASSOC);
-		} else {
-			// echo "query is empty<br>";
-			$sql = $db->prepare("SELECT * FROM s_item");
-			$sql->execute();
-			$result = $sql->fetchAll(PDO::FETCH_ASSOC);
-			// print_r("Result<br><pre>".var_dump($result)."</pre>");
 		}
 	}
 	$database = null;
@@ -103,8 +100,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 						<li><a href="#">Item #4</a></li> -->
 						<?php
 						if (!$isContent) {
-							if (!empty($result)) {
-							foreach($result as $row) {
+							if (!empty($result0)) {
+							foreach($result0 as $row) {
 								echo '<li><a href="mobile.php?id='
 								. $row["id"]          . '">'
 								. $row["title"]       .
