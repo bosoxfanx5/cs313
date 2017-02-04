@@ -95,7 +95,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 			</form>
 			<ul class="nav navbar-nav navbar-right">
 				<li class="dropdown">
-					<!-- <a href="#" class="dropdown-toggle" data-toggle="dropdown">Select Item<b class="caret"></b></a> -->
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown">Select Item<b class="caret"></b></a>
 					<ul class="dropdown-menu">
 						<!-- <li><a href="#">Item #1</a></li>
 						<li><a href="#">Item #2</a></li>
@@ -105,10 +105,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 						if (!$isContent) {
 							if (!empty($result)) {
 							foreach($result as $row) {
-								print_r('<li><a href="mobile.php?id='
+								echo '<li><a href="mobile.php?id='
 								. $row["id"]          . '">'
 								. $row["title"]       .
-								'</a></li>');
+								'</a></li>';
 							}
 						}
 					}
