@@ -98,7 +98,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 				<li class="dropdown">
 					<!-- <a href="#" class="dropdown-toggle" data-toggle="dropdown">Select Item<b class="caret"></b></a> -->
 					<ul class="dropdown-menu">
-						<li><option value=<?php echo "Item #1" ?></li>
+						<li><a href="#">Item #1</a></li>
 						<li><a href="#">Item #2</a></li>
 						<li><a href="#">Item #3</a></li>
 						<li><a href="#">Item #4</a></li>
