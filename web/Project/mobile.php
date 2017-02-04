@@ -12,7 +12,6 @@ Heroku CLI: heroku pg:psql postgresql-cubic-94519 --app rocky-everglades-86262
 session_start();
 
 $_SESSION["id"] = "";
-$person = $_SESSION["id"];
 error_reporting(E_ALL);
 ini_set("display_errors", 1);
 $isContent = false;
@@ -39,12 +38,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 	$sql1->execute();
 
 	// 	//retrieve new person id
-	$sql1 = $db->prepare("SELECT id FROM s_person WHERE id='$person'");
-	$sql1->execute();
-
-	$personID = $sql1->fetchAll(PDO::FETCH_ASSOC);
-	$_SESSION["id"] = $personID;
-	print_r($personID);
+	$_SESSION["id"] = $db->lastInsertId();
 	print_r($_SESSION["id"]);
 	}
 
