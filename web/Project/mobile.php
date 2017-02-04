@@ -211,7 +211,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 				<h1><?php echo $result["title"] ?></h1>
 				<br><br>
 			</div>
-			<div class="description">
+			<div class="container">
 				<p><?php echo $result["description"] ?></p>
 			</div>
 		<?php endif ?>
