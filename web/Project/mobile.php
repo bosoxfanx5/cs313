@@ -103,9 +103,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 						<li><a href="#">Item #1</a></li>
 						<li><a href="#">Item #2</a></li>
 						<li><a href="#">Item #3</a></li>
-						<li><a href="#">Item #4/a></li>
-						<li class="divider"></li>
-						<li><a href="#">Home</a></li>
+						<li><a href="#">Item #4</a></li>
 					</ul>
 				</li>
 			</ul>
@@ -124,6 +122,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 	<div class="page-header">
 		<h1>Welcome!</h1>
 		<p>Start by selecting an item from the dropdown menu.</p>
+		<p>For this project and the sake of making it easy for you to navigate, instead of requiring
+			a product key, we supplied you a dropdown menu to choose a product. This will return the data
+			associated with that product and update information in the database about you, the user.</p>
 	</div>
 	<p></p>
 	<?php
@@ -137,7 +138,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 				</strong><br><br>";
 			}
 		} else {
-			echo 'Search for things!';
+			echo '';
 		}
 	} else {
 		echo '<strong>' . $result["name"] . " " . $result["description"] . ":" . $result["name"] . "</strong> - " . $result['name'];
