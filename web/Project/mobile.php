@@ -102,13 +102,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 						<li><a href="#">Item #3</a></li>
 						<li><a href="#">Item #4</a></li> -->
 						<?php if (!empty($result)) {
-		              foreach($result as $row) {
-		                print_r('<li><a href="mobile.php?id='
-		                          . $row["id"]          . '">'
-		                          . $row["title"]       .
-		                        '</a></li>');
-		              }
-						  ?>
+							foreach($result as $row) {
+								print_r('<li><a href="mobile.php?id='
+								. $row["id"]          . '">'
+								. $row["title"]       .
+								'</a></li>');
+							}
+						}
+							?>
 					</ul>
 				</li>
 			</ul>
