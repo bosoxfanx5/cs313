@@ -193,26 +193,41 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 			associated with that product and update information in the database about you, the user.</p>
 	</div>
 	<p></p>
-	<?php
-      if (!$isContent) {
-          if (!empty($result)) {
-            foreach($result as $row) {
-              print_r('<strong><a href="mobile.php?id='
-                        . $row["id"]          . '">'
-                        . $row["title"]       . " "
-                        . $row["description"] . ":"
-                        . $row["title"]       .
-                      '</a></strong><br><br>');
-            }
-          }
-        } else {
-          print_r('<strong>' . $result["title"]       . " "
-                             . $result["description"] . ":"
-                             . $result["title"]       . "</strong> - "
-                             . $result['title']);
-        }
-      ?>
-
+	<!-- <?php
+      // if (!$isContent) {
+      //     if (!empty($result)) {
+      //       foreach($result as $row) {
+      //         print_r('<strong><a href="mobile.php?id='
+      //                   . $row["id"]          . '">'
+      //                   . $row["title"]       . " "
+      //                   . $row["description"] . ":"
+      //                   . $row["title"]       .
+      //                 '</a></strong><br><br>');
+      //       }
+      //     }
+      //   } else {
+      //     print_r('<strong>' . $result["title"]       . " "
+      //                        . $result["description"] . ":"
+      //                        . $result["title"]       . "</strong> - "
+      //                        . $result['title']);
+      //   }
+      ?> -->
+		<?php if(!$isContent) : ?>
+			<?php if (!empty($result)) : ?>
+				<?php foreach($result as $row) : ?>
+					<?php print_r('<strong><a href="mobile.php?id='
+											. $row["id"]          . '">'
+											. $row["title"]       . " "
+											. $row["description"] . ":"
+											. $row["title"]       .
+										 '</a></strong><br><br>'); ?>
+				<?php endforeach ?>
+			<?php endif ?>
+		<?php else : ?>
+			<div>
+				<h1><?php echo $result["title"] ?>
+			</div>
+		<?php endif ?>
 </div>
 
 <!--
