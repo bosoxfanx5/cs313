@@ -27,11 +27,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 			$sql->execute(array(":id" => $_GET['id']));
 			$result = $sql->fetch(PDO::FETCH_ASSOC);
 		} else {
-			echo "query is empty<br>";
+			// echo "query is empty<br>";
 			$sql = $db->prepare("SELECT * FROM s_item");
 			$sql->execute();
 			$result = $sql->fetchAll(PDO::FETCH_ASSOC);
-			print_r("Result<br><pre>".var_dump($result)."</pre>");
+			// print_r("Result<br><pre>".var_dump($result)."</pre>");
 		}
 	}
 	$database = null;
@@ -126,22 +126,26 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 	</div>
 	<p></p>
 	<?php
-	if (!$isContent) {
-		if (!empty($result)) {
-			foreach($result as $row) {
-				echo '<strong>
-				<a href="mobile.php?id='.$row["id"].'">'
-				. $row["title"] . " " . $row["description"] . ":" . $row["title"] . "
-				</a>
-				</strong><br><br>";
-			}
-		} else {
-			echo '';
-		}
-	} else {
-		echo '<strong>' . $result["title"] . " " . $result["description"] . ":" . $result["title"] . "</strong> - " . $result['title'];
-	}
-	?>
+      if (!$isContent) {
+          if (!empty($result)) {
+            foreach($result as $row) {
+              print_r('<strong><a href="mobile.php?id='
+                        . $row["id"]          . '">'
+                        . $row["title"]       . " "
+                        . $row["description"] . ":"
+                        . $row["title"]       .
+                      '</a></strong><br><br>');
+            }
+          } else {
+            echo 'Search for things!';
+          }
+        } else {
+          print_r('<strong>' . $result["title"]       . " "
+                             . $result["description"] . ":"
+                             . $result["title"]       . "</strong> - "
+                             . $result['title']);
+        }
+      ?>
 </div>
 
 <!--
