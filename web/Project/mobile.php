@@ -31,11 +31,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 			$sql->execute(array(":id" => $_GET['id']));
 			$result = $sql->fetch(PDO::FETCH_ASSOC);
 		}
-	}
 
 	$sql1 = $dp->prepare("INSERT INTO s_person (fname) VALUES ('Visitor')");
 	$sql1->execute();
 	print_r($sql1);
+	}
+
+
 
 	//check session for visitor id
 
