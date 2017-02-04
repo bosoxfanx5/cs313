@@ -11,7 +11,6 @@ Heroku CLI: heroku pg:psql postgresql-cubic-94519 --app rocky-everglades-86262
 <?php
 error_reporting(E_ALL);
 ini_set("display_errors", 1);
-$scripture = "";
 $isContent = false;
 if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 	$url = parse_url("postgres://kjufgxkwzbdxoe:7df3e724097d356a12363ec6ff37de41a1dce21c3c4767b88d5d7de61086d5df@ec2-54-163-246-165.compute-1.amazonaws.com:5432/de0qfpfe2sp27l");
@@ -19,15 +18,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 	$database = new PDO("pgsql:host=" . $dbopts['host'] . "; dbname=" . str_replace('/', '', $dbopts['path']),  $dbopts['user'], $dbopts['pass']);
 	$db = $database;
 	$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
 	if (!empty($_GET['id'])) {
 		$isContent = true;
-		$sql = $db->prepare("SELECT * FROM items
+		$sql = $db->prepare("SELECT * FROM s_item
 			WHERE id = :id");
 			$sql->execute(array(":id" => $_GET['id']));
 			$result = $sql->fetch(PDO::FETCH_ASSOC);
 		} else if (!empty($_GET['query'])) {
-			$sql = $db->prepare("SELECT * FROM items
-				WHERE LOWER(name) LIKE '%" . strtolower($_GET['query']) . "%' OR "
+			$sql = $db->prepare("SELECT * FROM s_item
+				WHERE LOWER(title) LIKE '%" . strtolower($_GET['query']) . "%' OR "
 				." LOWER(description) LIKE '%" . strtolower($_GET['query']) . "%'"
 			);
 			$sql->execute();
@@ -132,8 +132,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 		if (!empty($result)) {
 			foreach($result as $row) {
 				echo '<strong>
-				<a href="teamAssignment.php?id='.$row["id"].'">'
-				. $row["name"] . " " . $row["description"] . ":" . $row["name"] . "
+				<a href="mobile.php?id='.$row["id"].'">'
+				. $row["title"] . " " . $row["description"] . ":" . $row["title"] . "
 				</a>
 				</strong><br><br>";
 			}
@@ -141,7 +141,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 			echo '';
 		}
 	} else {
-		echo '<strong>' . $result["name"] . " " . $result["description"] . ":" . $result["name"] . "</strong> - " . $result['name'];
+		echo '<strong>' . $result["title"] . " " . $result["description"] . ":" . $result["title"] . "</strong> - " . $result['title'];
 	}
 	?>
 </div>
