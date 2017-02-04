@@ -175,7 +175,7 @@ _/          _/_/      _/_/        _/      _/_/_/_/  _/    _/
 			<!-- Left Side -->
 			<div class="btn-group">
 				<ul class="nav navbar-nav navbar-left">
-					<li><a href="#">Copyright 2017 Dan McDaniel, All Rights Reserved</a></li>
+					<li><a href="#">Copyright 2017 Brooks Robison and Dan McDaniel, All Rights Reserved</a></li>
 				</ul>
 			</div>
 		</div>
@@ -183,23 +183,6 @@ _/          _/_/      _/_/        _/      _/_/_/_/  _/    _/
 		<div class="navbar-center navbar-brand" href="#"><a class="navbar-brand"></a></div>
 		<!-- Collect the nav links, forms, and other content for toggling -->
 
-		<div class="collapse navbar-collapse" id="navbar-collapse-1">
-			<!-- Right Side -->
-			<ul class="nav navbar-nav navbar-right">
-				<li><a href="#">First</a></li>
-				<li><a href="#">Previous</a></li>
-				<li><a href="#">Next</a></li>
-				<li><a href="#">Last</a></li>
-				<li>
-					<form class="navbar-form navbar-left" role="search">
-						<div class="form-group">
-							<input type="text" class="form-control" placeholder="Search">
-						</div>
-						<button type="submit" class="btn btn-default"><i class="glyphicon glyphicon-search"></i></button>
-					</form>
-				</li>
-			</ul>
-		</div><!-- /.navbar-collapse -->
 	</nav>
 </footer>
 
