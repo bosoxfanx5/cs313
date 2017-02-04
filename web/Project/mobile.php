@@ -155,7 +155,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
                         . $row["description"] . ":"
                         . $row["title"]       .
                       '</a></strong><br><br>');
-					echo "This section is active"
+					echo "This section is active";
             }
           }
         } else {
