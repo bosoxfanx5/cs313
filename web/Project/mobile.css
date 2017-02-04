@@ -1,5 +1,4 @@
 /*stuff*/
 .description {
-	position: absolute;
-	margin-left: 100%;
+	float: right;
 }
