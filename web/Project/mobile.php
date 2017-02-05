@@ -22,14 +22,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 	$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 	$db->setAttribute(PDO::ATTR_EMULATE_PREPARES,TRUE);
 
-	$sql0 = $db->prepare("SELECT id, title FROM s_item");
+	$sql0 = $db->prepare("SELECT id, title FROM s_saleable_item");
 	$sql0->execute();
 	$result0 = $sql0->fetchAll(PDO::FETCH_ASSOC);
 
 	if (!empty($_GET['id'])) {
 		$isContent = true;
 		$welcome = false;
-		$sql = $db->prepare("SELECT * FROM s_item
+		$sql = $db->prepare("SELECT * FROM s_saleable_item
 			WHERE id = :id");
 			$sql->execute(array(":id" => $_GET['id']));
 			$result = $sql->fetch(PDO::FETCH_ASSOC);
@@ -50,13 +50,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
 		// 	//retrieve new person id
 		$personID = $db->lastInsertId();
-		echo $db->lastInsertId();
 
 		$sql1 = $db->prepare("SELECT id FROM s_person WHERE autoinc='$personID'");
 		$sql1->execute();
 		$result1 = $sql1->fetch();
 		$_SESSION["id"] = $result1["id"];
-		echo $_SESSION["id"];
 
 	}
 
@@ -64,7 +62,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 	//retrieve item id
 	if (!empty($_GET['id'])) {
 		$isContent = true;
-		$sql = $db->prepare("SELECT * FROM s_item
+		$sql = $db->prepare("SELECT * FROM s_saleable_item
 			WHERE id = :id");
 			$sql->execute(array(":id" => $_GET['id']));
 			$result2 = $sql->fetch(PDO::FETCH_ASSOC);
@@ -75,7 +73,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 			$sql1->execute();
 		}
 
-	//insert into visited item table the visitor id and item id
+
 
 
 
