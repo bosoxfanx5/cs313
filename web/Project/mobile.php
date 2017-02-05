@@ -47,7 +47,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 	$sql1 = $db->prepare("SELECT id FROM s_person WHERE autoinc='$personID'");
 	$sql1->execute();
 	$result1 = $sql1->fetch();
-	$_SESSION["id"] = $result1;
+	$_SESSION["id"] = $result1["id"];
 	echo $_SESSION["id"];
 	}
 
