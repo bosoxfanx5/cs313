@@ -196,6 +196,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 		<?php else : ?>
 			<div>
 				<h1><?php echo $result["title"] ?></h1>
+				<p>UPC: <?php echo $result["upc"] ?></p>
 				<br><br>
 			</div>
 			<div class="container">
