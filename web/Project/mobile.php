@@ -33,223 +33,212 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 			WHERE id = :id");
 			$sql->execute(array(":id" => $_GET['id']));
 			$result = $sql->fetch(PDO::FETCH_ASSOC);
-		}
-
-
-
 	}
+}
 
 
 
-	//check session for visitor id
+//check session for visitor id
 
 
-	if (empty($_SESSION["id"])) {
-		$sql1 = $db->prepare("INSERT INTO s_person (id) VALUES (uuid_generate_v4())");
+if (empty($_SESSION["id"])) {
+	$sql1 = $db->prepare("INSERT INTO s_person (id) VALUES (uuid_generate_v4())");
+	$sql1->execute();
+
+	// 	//retrieve new person id
+	$personID = $db->lastInsertId();
+
+	$sql1 = $db->prepare("SELECT id FROM s_person WHERE autoinc='$personID'");
+	$sql1->execute();
+	$result1 = $sql1->fetch();
+	$_SESSION["id"] = $result1["id"];
+
+}
+
+
+//retrieve item id
+if (!empty($_GET['id'])) {
+	$isContent = true;
+	$sql = $db->prepare("SELECT * FROM s_saleable_item
+		WHERE id = :id");
+		$sql->execute(array(":id" => $_GET['id']));
+		$result2 = $sql->fetch(PDO::FETCH_ASSOC);
+		$itemID = $result2["id"];
+
+		$personID = $_SESSION["id"];
+		$sql1 = $db->prepare("INSERT INTO s_visited_items (visitor_id, item_id) VALUES ('$personID', '$itemID')");
 		$sql1->execute();
-
-		// 	//retrieve new person id
-		$personID = $db->lastInsertId();
-
-		$sql1 = $db->prepare("SELECT id FROM s_person WHERE autoinc='$personID'");
-		$sql1->execute();
-		$result1 = $sql1->fetch();
-		$_SESSION["id"] = $result1["id"];
-
-	}
+}
+$database = null;
+?>
 
 
-	//retrieve item id
-	if (!empty($_GET['id'])) {
-		$isContent = true;
-		$sql = $db->prepare("SELECT * FROM s_saleable_item
-			WHERE id = :id");
-			$sql->execute(array(":id" => $_GET['id']));
-			$result2 = $sql->fetch(PDO::FETCH_ASSOC);
-			$itemID = $result2["id"];
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+	<meta name="description" content="Front-end UI">
+	<meta name="author" content="Brooks Robison">
+	<link rel="icon" href="/favicon.ico">
 
-			$personID = $_SESSION["id"];
-			$sql1 = $db->prepare("INSERT INTO s_visited_items (visitor_id, item_id) VALUES ('$personID', '$itemID')");
-			$sql1->execute();
-		}
+	<title>Front-end UI</title>
 
+	<!-- Custom styles for this template -->
+	<link href="sticky-footer-navbar.css" rel="stylesheet">
+</head>
 
-
-
-
-
-
-
-
-		$database = null;
-		?>
-
-
-		<!DOCTYPE html>
-		<html lang="en">
-		<head>
-			<meta charset="utf-8">
-			<meta http-equiv="X-UA-Compatible" content="IE=edge">
-			<meta name="viewport" content="width=device-width, initial-scale=1">
-			<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-			<meta name="description" content="Front-end UI">
-			<meta name="author" content="Brooks Robison">
-			<link rel="icon" href="/favicon.ico">
-
-			<title>Front-end UI</title>
-
-			<!-- Custom styles for this template -->
-			<link href="sticky-footer-navbar.css" rel="stylesheet">
-		</head>
-
-		<body>
-			<!--
-			_/    _/  _/_/_/_/    _/_/    _/_/_/    _/_/_/_/  _/_/_/
-			_/    _/  _/        _/    _/  _/    _/  _/        _/    _/
-			_/_/_/_/  _/_/_/    _/_/_/_/  _/    _/  _/_/_/    _/_/_/
-			_/    _/  _/        _/    _/  _/    _/  _/        _/    _/
-			_/    _/  _/_/_/_/  _/    _/  _/_/_/    _/_/_/_/  _/    _/
-		-->
+<body>
+	<!--
+	_/    _/  _/_/_/_/    _/_/    _/_/_/    _/_/_/_/  _/_/_/
+	_/    _/  _/        _/    _/  _/    _/  _/        _/    _/
+	_/_/_/_/  _/_/_/    _/_/_/_/  _/    _/  _/_/_/    _/_/_/
+	_/    _/  _/        _/    _/  _/    _/  _/        _/    _/
+	_/    _/  _/_/_/_/  _/    _/  _/_/_/    _/_/_/_/  _/    _/
+-->
 
 
-		<!-- Fixed navbar -->
-		<nav class="navbar navbar-default" role="navigation">
-			<!-- Brand and toggle get grouped for better mobile display -->
-			<div class="navbar-header">
-				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-1">
-					<span class="sr-only">Toggle navigation</span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-				</button>
-				&nbsp;
-				<!-- Left Side -->
-				<div class="btn-group">
-					<ul class="nav navbar-nav navbar-left">
-						<li><a href="mobile.php">Product View</a></li>
-					</ul>
-				</div>
+<!-- Fixed navbar -->
+<nav class="navbar navbar-default" role="navigation">
+	<!-- Brand and toggle get grouped for better mobile display -->
+	<div class="navbar-header">
+		<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-1">
+			<span class="sr-only">Toggle navigation</span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+		</button>
+		&nbsp;
+		<!-- Left Side -->
+		<div class="btn-group">
+			<ul class="nav navbar-nav navbar-left">
+				<li><a href="mobile.php">Product View</a></li>
+			</ul>
+		</div>
+	</div>
+
+	<!-- Center -->
+	<div class="navbar-center navbar-brand" href="#"><a class="navbar-brand"></a></div>
+	<!-- Collect the nav links, forms, and other content for toggling -->
+
+	<!-- Right Side -->
+	<div class="collapse navbar-collapse" id="navbar-collapse-1">
+		<form class="navbar-form navbar-left" role="search">
+			<div class="form-group">
 			</div>
-
-			<!-- Center -->
-			<div class="navbar-center navbar-brand" href="#"><a class="navbar-brand"></a></div>
-			<!-- Collect the nav links, forms, and other content for toggling -->
-
-			<!-- Right Side -->
-			<div class="collapse navbar-collapse" id="navbar-collapse-1">
-				<form class="navbar-form navbar-left" role="search">
-					<div class="form-group">
-					</div>
-				</form>
-				<ul class="nav navbar-nav navbar-right">
-					<li class="dropdown">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown">Select Item<b class="caret"></b></a>
-						<ul class="dropdown-menu">
-							<!-- <li><a href="#">Item #1</a></li>
-							<li><a href="#">Item #2</a></li>
-							<li><a href="#">Item #3</a></li>
-							<li><a href="#">Item #4</a></li> -->
-							<?php
-							if (!empty($result0)) {
-								foreach($result0 as $row) {
-									echo '<li><a href="mobile.php?id='
-									. $row["id"]          . '">'
-									. $row["title"]       .
-									'</a></li>';
-								}
-							}
-							?>
-						</ul>
-					</li>
-				</ul>
-			</div>
-		</nav>
-
-		<!--
-		_/_/_/      _/_/    _/_/_/    _/      _/
-		_/    _/  _/    _/  _/    _/    _/  _/
-		_/_/_/    _/    _/  _/    _/      _/
-		_/    _/  _/    _/  _/    _/      _/
-		_/_/_/      _/_/    _/_/_/        _/
-	-->
-	<!-- Begin page content -->
-	<?php if ($welcome) : ?>
-		<div class="container">
-			<div class="page-header">
-				<h1>Welcome!</h1>
-				<p>Start by selecting an item from the dropdown menu.</p>
-				<p>For this project and the sake of making it easy for you to navigate, instead of requiring
-					a product key, we supplied you a dropdown menu to choose a product. This will return the data
-					associated with that product and update information in the database about you, the user.</p>
-				</div>
-			<?php else : ?>
-				<?php if(!$isContent) : ?>
-					<?php if (!empty($result)) : ?>
-						<?php foreach($result as $row) : ?>
-							<?php print_r('<strong><a href="mobile.php?id='
+		</form>
+		<ul class="nav navbar-nav navbar-right">
+			<li class="dropdown">
+				<a href="#" class="dropdown-toggle" data-toggle="dropdown">Select Item<b class="caret"></b></a>
+				<ul class="dropdown-menu">
+					<!-- <li><a href="#">Item #1</a></li>
+					<li><a href="#">Item #2</a></li>
+					<li><a href="#">Item #3</a></li>
+					<li><a href="#">Item #4</a></li> -->
+					<?php
+					if (!empty($result0)) {
+						foreach($result0 as $row) {
+							echo '<li><a href="mobile.php?id='
 							. $row["id"]          . '">'
-							. $row["title"]       . " "
-							. $row["description"] . ":"
 							. $row["title"]       .
-							'</a></strong><br><br>'); ?>
-						<?php endforeach ?>
-					<?php endif ?>
-				<?php else : ?>
-					<div>
-						<h1><?php echo $result["title"] ?></h1>
-						<p>UPC: <?php echo $result["upc"] ?></p>
-						<br><br>
-					</div>
-					<div class="container">
-						<h1>Description</h1>
-						<p><?php echo $result["description"] ?></p>
-					</div>
+							'</a></li>';
+						}
+					}
+					?>
+				</ul>
+			</li>
+		</ul>
+	</div>
+</nav>
+
+<!--
+_/_/_/      _/_/    _/_/_/    _/      _/
+_/    _/  _/    _/  _/    _/    _/  _/
+_/_/_/    _/    _/  _/    _/      _/
+_/    _/  _/    _/  _/    _/      _/
+_/_/_/      _/_/    _/_/_/        _/
+-->
+<!-- Begin page content -->
+<?php if ($welcome) : ?>
+	<div class="container">
+		<div class="page-header">
+			<h1>Welcome!</h1>
+			<p>Start by selecting an item from the dropdown menu.</p>
+			<p>For this project and the sake of making it easy for you to navigate, instead of requiring
+				a product key, we supplied you a dropdown menu to choose a product. This will return the data
+				associated with that product and update information in the database about you, the user.</p>
+			</div>
+		<?php else : ?>
+			<?php if(!$isContent) : ?>
+				<?php if (!empty($result)) : ?>
+					<?php foreach($result as $row) : ?>
+						<?php print_r('<strong><a href="mobile.php?id='
+						. $row["id"]          . '">'
+						. $row["title"]       . " "
+						. $row["description"] . ":"
+						. $row["title"]       .
+						'</a></strong><br><br>'); ?>
+					<?php endforeach ?>
+				<?php endif ?>
+			<?php else : ?>
+				<div>
+					<h1><?php echo $result["title"] ?></h1>
+					<p>UPC: <?php echo $result["upc"] ?></p>
+					<br><br>
 				</div>
 				<div class="container">
-					<div class="row push-to-bottom">
-						<div class="column">
-							<h2>Price: $<?php echo $result["price"] ?> per lb.</h2>
-						</div>
-					</div>
-				</div>
-			<?php endif ?>
-		<?php endif ?>
-		<!--
-		_/_/_/_/    _/_/      _/_/    _/_/_/_/_/  _/_/_/_/  _/_/_/
-		_/        _/    _/  _/    _/      _/      _/        _/    _/
-		_/_/_/    _/    _/  _/    _/      _/      _/_/_/    _/_/_/
-		_/        _/    _/  _/    _/      _/      _/        _/    _/
-		_/          _/_/      _/_/        _/      _/_/_/_/  _/    _/
-	-->
-
-	<!-- Begin footer content -->
-	<footer class="footer">
-		<nav class="navbar navbar-default">
-			<!-- Brand and toggle get grouped for better mobile display -->
-			<div class="navbar-header">
-				<!-- Left Side -->
-				<div class="btn-group">
-					<ul class="nav navbar-nav navbar-left">
-						<li><a href="#">Copyright 2017 Brooks Robison, All Rights Reserved</a></li>
-					</ul>
+					<h1>Description</h1>
+					<p><?php echo $result["description"] ?></p>
 				</div>
 			</div>
-			<!-- Center -->
-			<div class="navbar-center navbar-brand" href="#"><a class="navbar-brand"></a></div>
-			<!-- Collect the nav links, forms, and other content for toggling -->
+			<div class="container">
+				<div class="row push-to-bottom">
+					<div class="column">
+						<h2>Price: $<?php echo $result["price"] ?> per lb.</h2>
+					</div>
+				</div>
+			</div>
+		<?php endif ?>
+	<?php endif ?>
+	<!--
+	_/_/_/_/    _/_/      _/_/    _/_/_/_/_/  _/_/_/_/  _/_/_/
+	_/        _/    _/  _/    _/      _/      _/        _/    _/
+	_/_/_/    _/    _/  _/    _/      _/      _/_/_/    _/_/_/
+	_/        _/    _/  _/    _/      _/      _/        _/    _/
+	_/          _/_/      _/_/        _/      _/_/_/_/  _/    _/
+-->
+</div>
+<!-- Begin footer content -->
+<footer class="footer">
+	<nav class="navbar navbar-default">
+		<!-- Brand and toggle get grouped for better mobile display -->
+		<div class="navbar-header">
+			<!-- Left Side -->
+			<div class="btn-group">
+				<ul class="nav navbar-nav navbar-left">
+					&nbsp;
+					<li><a href="#">Copyright 2017 Brooks Robison, All Rights Reserved</a></li>
+				</ul>
+			</div>
+		</div>
+		<!-- Center -->
+		<div class="navbar-center navbar-brand" href="#"><a class="navbar-brand"></a></div>
+		<!-- Collect the nav links, forms, and other content for toggling -->
 
-		</nav>
-	</footer>
+	</nav>
+</footer>
 
 
-	<!-- Bootstrap core JavaScript
-	================================================== -->
-	<!-- Placed at the end of the document so the pages load faster -->
-	<!-- Latest compiled and minified JavaScript -->
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-	<link rel="stylesheet" href="mobile.css">
-	<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-	<!-- <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script> -->
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<link rel="stylesheet" href="mobile.css">
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<!-- <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script> -->
 </body>
 </html>
