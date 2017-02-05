@@ -35,13 +35,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 			$result = $sql->fetch(PDO::FETCH_ASSOC);
 		}
 
-	// $sql1 = $db->prepare("INSERT INTO s_person (fname) VALUES ('Visitor')");
-	// $sql1->execute();
-	//
-	// // 	//retrieve new person id
-	// $_SESSION["id"] = $db->lastInsertId();
-	// echo $_SESSION["id"];
-	// echo $db->lastInsertId();
+	$sql1 = $db->prepare("INSERT INTO s_person (fname) VALUES ('Visitor')");
+	$sql1->execute();
+
+	// 	//retrieve new person id
+	$_SESSION["id"] = $db->lastInsertId();
+	echo $_SESSION["id"];
+	echo $db->lastInsertId();
 	}
 
 
@@ -212,6 +212,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 				<br><br>
 			</div>
 			<div class="container">
+				<h1>Description</h1>
 				<p><?php echo $result["description"] ?></p>
 			</div>
 		<?php endif ?>
