@@ -40,9 +40,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 	$sql1->execute();
 
 	// 	//retrieve new person id
-	$_SESSION["id"] = $db->lastInsertId();
-	echo $_SESSION["id"];
+
+	$personID = $db->lastInsertId();
 	echo $db->lastInsertId();
+
+	$sql1 = $db->prepare("SELECT id FROM s_person WHERE autoinc='$personID'");
+	$sql1->execute();
+	$result1 = $sql1->fetch();
+	$_SESSION["id"] = $result1;
+	echo $_SESSION["id"];
 	}
 
 
