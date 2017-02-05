@@ -35,7 +35,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 			$result = $sql->fetch(PDO::FETCH_ASSOC);
 		}
 
-	$sql1 = $db->prepare("INSERT INTO s_person (fname) VALUES ('Visitor')");
+
+	$sql1 = $db->prepare("INSERT INTO s_person (id) VALUES (uuid_generate_v4())");
 	$sql1->execute();
 
 	// 	//retrieve new person id
