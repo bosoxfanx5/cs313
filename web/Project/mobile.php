@@ -226,7 +226,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 		<nav class="navbar navbar-default">
 			<!-- Brand and toggle get grouped for better mobile display -->
 			<div class="navbar-header">
-				&nbsp;
 				<!-- Left Side -->
 				<div class="btn-group">
 					<ul class="nav navbar-nav navbar-left">
