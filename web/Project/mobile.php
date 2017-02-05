@@ -88,6 +88,7 @@ $database = null;
 
 	<!-- Custom styles for this template -->
 	<link href="sticky-footer-navbar.css" rel="stylesheet">
+	<link rel="stylesheet" href="mobile.css">
 </head>
 
 <body>
@@ -132,10 +133,6 @@ $database = null;
 			<li class="dropdown">
 				<a href="#" class="dropdown-toggle" data-toggle="dropdown">Select Item<b class="caret"></b></a>
 				<ul class="dropdown-menu">
-					<!-- <li><a href="#">Item #1</a></li>
-					<li><a href="#">Item #2</a></li>
-					<li><a href="#">Item #3</a></li>
-					<li><a href="#">Item #4</a></li> -->
 					<?php
 					if (!empty($result0)) {
 						foreach($result0 as $row) {
@@ -237,7 +234,6 @@ _/_/_/      _/_/    _/_/_/        _/
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-<link rel="stylesheet" href="mobile.css">
 <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
 <!-- <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script> -->
 </body>
