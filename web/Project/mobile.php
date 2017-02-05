@@ -206,6 +206,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 		<?php endif ?>
 <?php endif ?>
 </div>
+<div class="container">
+	<div class="row push-to-bottom">
+		<div class="column">
+			<h2>Price: <?php echo $result["price"] ?> per lb.</h2>
+		</div>
+	</div>
+</div>
 
 <!--
 _/_/_/_/    _/_/      _/_/    _/_/_/_/_/  _/_/_/_/  _/_/_/
