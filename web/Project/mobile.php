@@ -67,7 +67,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 		$sql = $db->prepare("SELECT * FROM s_item
 			WHERE id = :id");
 			$sql->execute(array(":id" => $_GET['id']));
-			$itemID = $sql->fetch(PDO::FETCH_ASSOC);
+			$result2 = $sql->fetch(PDO::FETCH_ASSOC);
+			$itemID = $result2["id"];
 
 			$personID = $_SESSION["id"];
 			$sql1 = $db->prepare("INSERT INTO s_visited_items (visitor_id, item_id) VALUES ('$personID', '$itemID')");
