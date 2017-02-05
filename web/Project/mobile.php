@@ -230,7 +230,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 				<!-- Left Side -->
 				<div class="btn-group">
 					<ul class="nav navbar-nav navbar-left">
-						<li><a href="#">Copyright 2017 Brooks Robison and Dan McDaniel, All Rights Reserved</a></li>
+						<li><a href="#">Copyright 2017 Brooks Robison, All Rights Reserved</a></li>
 					</ul>
 				</div>
 			</div>
