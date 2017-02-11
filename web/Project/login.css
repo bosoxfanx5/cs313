@@ -3,12 +3,19 @@
 .wrapper {	
 	margin-top: 80px;
    margin-bottom: 80px;
+   position: absolute;
+   top:0;
+   bottom: 0;
+   left: 0;
+   right: 0;
+
+   margin: auto;
 }
 
 .form-signin {
-	width: 40%;
+	max-width: 200px;
    padding: 15px 35px 45px;
-   /* margin: 0 auto; */
+   margin: 0 auto;
    background-color: #fff;
    border: 1px solid rgba(0,0,0,0.1);  
 
@@ -22,7 +29,7 @@
 
 .form-control {
 	position: relative;
-	font-size: 12px;
+	font-size: 16px;
 	height: auto;
 	padding: 10px;
 	@include box-sizing(border-box);
