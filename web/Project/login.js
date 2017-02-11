@@ -1,20 +1,22 @@
-$("forgot").click(function() {
-	$("setPass").css("visibility", "visible");
+$(document).ready(function() {
+	$("forgot").click(function() {
+		$("setPass").css("visibility", "visible");
 
 
 
-};
+	};
 
-$("close").click(function() {
-	$("setPass").css("visibility", "hidden");
-
-
-
-};
-
-$("save").click(function() {
-	$("setPass").css("visibility", "hidden");
+	$("close").click(function() {
+		$("setPass").css("visibility", "hidden");
 
 
 
+	};
+
+	$("save").click(function() {
+		$("setPass").css("visibility", "hidden");
+		
+
+
+	};
 };
