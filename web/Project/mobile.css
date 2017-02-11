@@ -3,3 +3,7 @@
 	/* position: absolute; */
 	margin: 60px auto;
 }
+
+.fixed {
+	position: fixex;
+}
