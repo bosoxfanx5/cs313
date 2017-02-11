@@ -35,11 +35,11 @@ session_start();
 // 	$db = $database;
 // 	$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 // 	$db->setAttribute(PDO::ATTR_EMULATE_PREPARES,TRUE);
-// 
+//
 // 	$sql0 = $db->prepare("SELECT id, title FROM s_saleable_item");
 // 	$sql0->execute();
 // 	$result0 = $sql0->fetchAll(PDO::FETCH_ASSOC);
-// 
+//
 // 	if (!empty($_GET['id'])) {
 // 		$isContent = true;
 // 		$welcome = false;
@@ -49,27 +49,27 @@ session_start();
 // 			$result = $sql->fetch(PDO::FETCH_ASSOC);
 // 	}
 // }
-// 
-// 
-// 
+//
+//
+//
 // //check session for visitor id
-// 
-// 
+//
+//
 // if (empty($_SESSION["id"])) {
 // 	$sql1 = $db->prepare("INSERT INTO s_person (id) VALUES (uuid_generate_v4())");
 // 	$sql1->execute();
-// 
+//
 // 	// 	//retrieve new person id
 // 	$personID = $db->lastInsertId();
-// 
+//
 // 	$sql1 = $db->prepare("SELECT id FROM s_person WHERE autoinc='$personID'");
 // 	$sql1->execute();
 // 	$result1 = $sql1->fetch();
 // 	$_SESSION["id"] = $result1["id"];
-// 
+//
 // }
-// 
-// 
+//
+//
 // //retrieve item id
 // if (!empty($_GET['id'])) {
 // 	$isContent = true;
@@ -78,7 +78,7 @@ session_start();
 // 		$sql->execute(array(":id" => $_GET['id']));
 // 		$result2 = $sql->fetch(PDO::FETCH_ASSOC);
 // 		$itemID = $result2["id"];
-// 
+//
 // 		$personID = $_SESSION["id"];
 // 		$sql1 = $db->prepare("INSERT INTO s_visited_items (visitor_id, item_id) VALUES ('$personID', '$itemID')");
 // 		$sql1->execute();
@@ -155,7 +155,7 @@ session_start();
 </div>
 
 <div class="wrapper">
-   <form class="form-signin">       
+   <form class="form-signin">
    	<h2 class="form-signin-heading">Please login</h2>
       <input type="text" class="form-control" name="email" placeholder="Email Address" />
       <br>
