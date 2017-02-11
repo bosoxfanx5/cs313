@@ -89,6 +89,7 @@ Heroku CLI: heroku pg:psql postgresql-cubic-94519 --app rocky-everglades-86262
 	<!-- Custom styles for this template -->
 	<link href="sticky-footer-navbar.css" rel="stylesheet">
 	<link rel="stylesheet" href="mobile.css">
+	<link rel="stylesheet" href="login.css">
 </head>
 
 <body>
