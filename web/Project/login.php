@@ -11,7 +11,7 @@ Heroku CLI: heroku pg:psql postgresql-cubic-94519 --app rocky-everglades-86262
 <?php
 session_start();
 
- if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	$url = parse_url("postgres://kjufgxkwzbdxoe:7df3e724097d356a12363ec6ff37de41a1dce21c3c4767b88d5d7de61086d5df@ec2-54-163-246-165.compute-1.amazonaws.com:5432/de0qfpfe2sp27l");
 	$dbopts = $url;
 	$database = new PDO("pgsql:host=" . $dbopts['host'] . "; dbname=" . str_replace('/', '', $dbopts['path']),  $dbopts['user'], $dbopts['pass']);
@@ -108,96 +108,98 @@ session_start();
 
 <body>
 
-<!-- Fixed navbar -->
-<nav class="navbar navbar-default" role="navigation">
-	<!-- Brand and toggle get grouped for better mobile display -->
-	<div class="navbar-header">
-		<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-1">
-			<span class="sr-only">Toggle navigation</span>
-			<span class="icon-bar"></span>
-			<span class="icon-bar"></span>
-		</button>
-		&nbsp;
-		<!-- Left Side -->
-		<div class="btn-group">
-			<ul class="nav navbar-nav navbar-left">
-				<li><a href="mobile.php">Login</a></li>
-			</ul>
-		</div>
-	</div>
-
-	<!-- Center -->
-	<div class="navbar-center navbar-brand" href="#"><a class="navbar-brand"></a></div>
-	<!-- Collect the nav links, forms, and other content for toggling -->
-
-	<!-- Right Side -->
-	<div class="collapse navbar-collapse" id="navbar-collapse-1">
-		<ul class="nav navbar-nav navbar-right">
-			<li><a href="mobile.php">Product View</a></li>
-			<li><a href="login.php">Login</a></li>
-		</ul>
-	</div>
-</nav>
-
-<!-- Begin page content -->
-
-<div id="setPass" class="overlay">
-  <a href="javascript:void(0)" id="close" class="closebtn">&times;</a>
-  <div class="overlay-content">
-    <div class="wrapper">
-    	<form class="form-signin">
-    		<h2>Forgot your password? No biggie.</h2>
-    		<input type="text" class="form-control" name="email" placeholder="Email Address"/>
-    		<br>
-    		<input type="password" class="form-control" name="password" placeholder="New Password"/>
-    		<button id="save" class="btn btn-success" type="submit">Save</button>
-  </div>
-</div>
-
-<div class="wrapper">
-   <form class="form-signin">
-   	<h2 class="form-signin-heading">Please login</h2>
-      <input type="text" class="form-control" name="email" placeholder="Email Address" />
-      <br>
-      <input type="password" class="form-control" name="password" placeholder="Password" />
-      <br>
-   	<button class="btn btn-success" type="submit">Login</button>
-   	<a href="#" id="forgot">Forgot Password</a>
-	</form>
-</div>
-
-
-
-<!-- Begin footer content -->
-
-<footer class="footer">
-	<nav class="navbar navbar-default">
+	<!-- Fixed navbar -->
+	<nav class="navbar navbar-default" role="navigation">
 		<!-- Brand and toggle get grouped for better mobile display -->
 		<div class="navbar-header">
+			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-1">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			&nbsp;
 			<!-- Left Side -->
 			<div class="btn-group">
 				<ul class="nav navbar-nav navbar-left">
-					&nbsp;
-					<li><a href="#">Copyright 2017 Brooks Robison, All Rights Reserved</a></li>
+					<li><a href="mobile.php">Login</a></li>
 				</ul>
 			</div>
 		</div>
+
 		<!-- Center -->
 		<div class="navbar-center navbar-brand" href="#"><a class="navbar-brand"></a></div>
 		<!-- Collect the nav links, forms, and other content for toggling -->
 
+		<!-- Right Side -->
+		<div class="collapse navbar-collapse" id="navbar-collapse-1">
+			<ul class="nav navbar-nav navbar-right">
+				<li><a href="mobile.php">Product View</a></li>
+				<li><a href="login.php">Login</a></li>
+			</ul>
+		</div>
 	</nav>
-</footer>
+
+	<!-- Begin page content -->
+
+	<div id="setPass" class="overlay">
+		<a href="javascript:void(0)" id="close" class="closebtn">&times;</a>
+		<div class="overlay-content">
+			<div class="wrapper">
+				<form class="form-signin">
+					<h2>Forgot your password? No biggie.</h2>
+					<input type="text" class="form-control" name="email" placeholder="Email Address"/>
+					<br>
+					<input type="password" class="form-control" name="password" placeholder="New Password"/>
+					<button id="save" class="btn btn-success" type="submit">Save</button>
+				</form>
+			</div>
+		</div>
+	</div>
+
+	<div class="wrapper">
+		<form class="form-signin">
+			<h2 class="form-signin-heading">Please login</h2>
+			<input type="text" class="form-control" name="email" placeholder="Email Address" />
+			<br>
+			<input type="password" class="form-control" name="password" placeholder="Password" />
+			<br>
+			<button class="btn btn-success" type="submit">Login</button>
+			<a href="#" id="forgot">Forgot Password</a>
+		</form>
+	</div>
 
 
-<!-- Bootstrap core JavaScript
-================================================== -->
-<!-- Placed at the end of the document so the pages load faster -->
-<!-- Latest compiled and minified JavaScript -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-<!-- <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script> -->
+
+	<!-- Begin footer content -->
+
+	<footer class="footer">
+		<nav class="navbar navbar-default">
+			<!-- Brand and toggle get grouped for better mobile display -->
+			<div class="navbar-header">
+				<!-- Left Side -->
+				<div class="btn-group">
+					<ul class="nav navbar-nav navbar-left">
+						&nbsp;
+						<li><a href="#">Copyright 2017 Brooks Robison, All Rights Reserved</a></li>
+					</ul>
+				</div>
+			</div>
+			<!-- Center -->
+			<div class="navbar-center navbar-brand" href="#"><a class="navbar-brand"></a></div>
+			<!-- Collect the nav links, forms, and other content for toggling -->
+
+		</nav>
+	</footer>
+
+
+	<!-- Bootstrap core JavaScript
+	================================================== -->
+	<!-- Placed at the end of the document so the pages load faster -->
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+	<!-- <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script> -->
 </body>
 </html>
