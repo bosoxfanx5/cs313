@@ -126,10 +126,9 @@ $database = null;
 	<!-- Right Side -->
 	<div class="collapse navbar-collapse" id="navbar-collapse-1">
 		<ul class="nav navbar-nav navbar-right">
-		<li><a href="login.php">Login<b class="caret"></b></a></li>
+		<li><a href="login.php">Login</a></li>
 			<li class="dropdown">
 				<a href="#" class="dropdown-toggle" data-toggle="dropdown">Select Item<b class="caret"></b></a>
-				
 				<ul class="dropdown-menu">
 					<?php
 					if (!empty($result0)) {
