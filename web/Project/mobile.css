@@ -1,5 +1,5 @@
 /*stuff*/
 .push-to-bottom {
-	position: absolute;
-	bottom: 15%;
+	/* position: absolute; */
+	margin: 60px auto;
 }
