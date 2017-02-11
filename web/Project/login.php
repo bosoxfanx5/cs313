@@ -148,7 +148,8 @@ session_start();
       <br>
       <input type="password" class="form-control" name="password" placeholder="Password" />
       <br>
-   	<button class="btn btn-success" type="submit">Login</button>   
+   	<button class="btn btn-success" type="submit">Login</button>
+   	<a href="#">Forgot Password</a>
 	</form>
 </div>
 
