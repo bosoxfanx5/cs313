@@ -1,19 +1,19 @@
 $(document).ready(function() {
-	$(".forgot").click(function() {
+	$("#forgot").click(function() {
 		$("#setPass").fadeIn("slow");
 
 
 
 	});
 
-	$(".close").click(function() {
+	$("#close").click(function() {
 		$("#setPass").fadeOut("slow");
 
 
 
 	});
 
-	$(".save").click(function() {
+	$("#save").click(function() {
 		$("#setPass").fadeOut("slow");
 
 
