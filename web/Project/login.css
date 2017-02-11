@@ -1,7 +1,7 @@
 @import "bourbon";
 
 .wrapper {	
-   margin-top: 80px;
+	margin-top: 80px;
    margin-bottom: 80px;
    position: absolute;
    top:0;
@@ -11,29 +11,25 @@
 }
 
 .form-signin {
-   max-width: 400px;
+	max-width: 400px;
    padding: 15px 35px 45px;
    margin: 0 auto;
    background-color: #fff;
    border: 1px solid rgba(0,0,0,0.1);  
 
-.form-signin-heading, .checkbox {
-   margin-bottom: 30px;
-}
-
-.checkbox {
-   font-weight: normal;
+.form-signin-heading {
+	margin-bottom: 30px;
 }
 
 .form-control {
-   position: relative;
-   font-size: 16px;
-   height: auto;
-   padding: 10px;
-   @include box-sizing(border-box);
-      &:focus {
-         z-index: 2;
-      }
+	position: relative;
+	font-size: 16px;
+	height: auto;
+	padding: 10px;
+	@include box-sizing(border-box);
+	&:focus {
+		z-index: 2;
+	}
 }
 
 input[type="text"] {
