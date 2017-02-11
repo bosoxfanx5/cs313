@@ -4,19 +4,19 @@ $(document).ready(function() {
 
 
 
-	};
+	});
 
 	$(".close").click(function() {
 		$(".setPass").css('visibility', 'hidden');
 
 
 
-	};
+	});
 
 	$(".save").click(function() {
 		$(".setPass").css('visibility', 'hidden');
 
 
 
-	};
-};
+	});
+});
