@@ -126,22 +126,20 @@ Heroku CLI: heroku pg:psql postgresql-cubic-94519 --app rocky-everglades-86262
 </nav>
 
 <!-- Begin page content -->
-<div class="mycontainer">
+
 <div class="wrapper">
    <form class="form-signin">       
    	<h2 class="form-signin-heading">Please login</h2>
       <input type="text" class="form-control" name="username" placeholder="Email Address" />
+      <br>
       <input type="password" class="form-control" name="password" placeholder="Password" />
+      <br>
    	<button class="btn btn-success" type="submit">Login</button>   
 	</form>
 </div>
-</div>
-
-
-
-
 
 <!-- Begin footer content -->
+
 <footer class="footer">
 	<nav class="navbar navbar-default">
 		<!-- Brand and toggle get grouped for better mobile display -->
