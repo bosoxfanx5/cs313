@@ -1,20 +1,20 @@
 $(document).ready(function() {
 	$(".forgot").click(function() {
-		$(".setPass").css('visibility', 'visible');
+		$("#setPass").fadeIn("slow");
 
 
 
 	});
 
 	$(".close").click(function() {
-		$(".setPass").css('visibility', 'hidden');
+		$("#setPass").fadeOut("slow");
 
 
 
 	});
 
 	$(".save").click(function() {
-		$(".setPass").css('visibility', 'hidden');
+		$("#setPass").fadeOut("slow");
 
 
 

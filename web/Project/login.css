@@ -2,25 +2,25 @@
 
 .wrapper {
 	margin-top: 80px;
-   margin-bottom: 80px;
-   position: absolute;
-   top:0;
-   bottom: 0;
-   left: 0;
-   right: 0;
+	margin-bottom: 80px;
+	position: absolute;
+	top:0;
+	bottom: 0;
+	left: 0;
+	right: 0;
 }
 
 .form-signin {
 	max-width: 400px;
-   padding: 15px 35px 45px;
-   margin: 0 auto;
-   background-color: #fff;
-   border: 1px solid rgba(0,0,0,0.1);
+	padding: 15px 35px 45px;
+	margin: 0 auto;
+	background-color: #fff;
+	border: 1px solid rgba(0,0,0,0.1);
 
-.form-signin-heading {
-	margin-bottom: 30px;
+	.form-signin-heading {
+		margin-bottom: 30px;
+	}
 }
-
 .form-control {
 	position: relative;
 	font-size: 16px;
@@ -45,21 +45,21 @@ input[type="password"] {
 }
 
 .overlay {
-    height: 100%;
-    width: 75%;
-    position: fixed;
-    z-index: 1;
-    top: 0;
-    left: 0;
-    background-color: rgb(0,0,0);
-    background-color: rgba(0,0,0, 0.9);
-    overflow-x: hidden;
-    visibility: hidden;
+	height: 100%;
+	width: 75%;
+	position: fixed;
+	z-index: 1;
+	top: 0;
+	left: 0;
+	background-color: rgb(0,0,0);
+	background-color: rgba(0,0,0, 0.9);
+	overflow-x: hidden;
+	display: none;
 }
 
 .overlay .closebtn {
-    position: absolute;
-    top: 20px;
-    right: 45px;
-    font-size: 60px;
+	position: absolute;
+	top: 20px;
+	right: 45px;
+	font-size: 60px;
 }
