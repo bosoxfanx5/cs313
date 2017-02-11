@@ -104,6 +104,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	<link href="sticky-footer-navbar.css" rel="stylesheet">
 	<link rel="stylesheet" href="mobile.css">
 	<link rel="stylesheet" href="login.css">
+	<script src="login.js"/>
 </head>
 
 <body>
