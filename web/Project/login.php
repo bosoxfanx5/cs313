@@ -124,7 +124,7 @@ Heroku CLI: heroku pg:psql postgresql-cubic-94519 --app rocky-everglades-86262
 	</div>
 </nav>
 <!-- Begin page content -->
-  <div class="wrapper">
+  <div class="">
     <form class="form-signin">       
       <h2 class="form-signin-heading">Please login</h2>
       <input type="text" class="form-control" name="username" placeholder="Email Address" required="" autofocus="" />
