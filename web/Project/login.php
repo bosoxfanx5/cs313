@@ -141,17 +141,32 @@ session_start();
 
 <!-- Begin page content -->
 
+<div id="setPass" class="overlay">
+  <a href="javascript:void(0)" id="close" class="closebtn">&times;</a>
+  <div class="overlay-content">
+    <div class="wrapper">
+    	<form class="form-signin">
+    		<h2>Forgot your password? No biggie.</h2>
+    		<input type="text" class="form-control" name="email" placeholder="Email Address"/>
+    		<br>
+    		<input type="password" class="form-control" name="password" placeholder="New Password"/>
+    		<button id="save" class="btn btn-success" type="submit">Save</button>
+  </div>
+</div>
+
 <div class="wrapper">
    <form class="form-signin">       
    	<h2 class="form-signin-heading">Please login</h2>
-      <input type="text" class="form-control" name="username" placeholder="Email Address" />
+      <input type="text" class="form-control" name="email" placeholder="Email Address" />
       <br>
       <input type="password" class="form-control" name="password" placeholder="Password" />
       <br>
    	<button class="btn btn-success" type="submit">Login</button>
-   	<a href="#">Forgot Password</a>
+   	<a href="#" id="forgot">Forgot Password</a>
 	</form>
 </div>
+
+
 
 <!-- Begin footer content -->
 
