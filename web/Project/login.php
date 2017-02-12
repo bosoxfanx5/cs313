@@ -38,13 +38,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 			$userFound = true;
 			$forgot = true;
 			echo "User Found";
+			echo $result['email'];
+			echo $result['psswd'];
 
 		} else {
 			$userFound = false;
 			$creation = true;
 			$forgot = false;
 			echo "User not found";
+			echo $result['email'];
+			echo $result['psswd'];
 		}
+
+
 	}
 
 
