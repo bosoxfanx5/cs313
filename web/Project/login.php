@@ -74,7 +74,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 			if (!empty($_SESSION["id"])) {
 				$personID = $_SESSION["id"];
 				$sql = $db->prepare("UPDATE s_person SET fname=''$fname', lname='$lname', gender='$gender',
-					email='$cEmail', psswd='$cPassword') WHERE id='$personID'");
+					email='$cEmail', psswd='$cPassword' WHERE id='$personID'");
 					$sql->execute();
 					$_SESSION['email'] = $cEmail;
 					header( 'Location: https://mysterious-bayou-55662.herokuapp.com/Project/mobile.php' );
