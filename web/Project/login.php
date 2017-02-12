@@ -21,8 +21,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	// $fname = $_POST['fname'];
 	// $lname = $_POST['lname'];
 	// $gender = $_POST['gender'];
-	// $email = $_POST['email'];
-	// $password = $_POST['password'];
+	$email = $_POST['email'];
+	$password = $_POST['password'];
 
 
 	$personID = $_SESSION["id"];
@@ -32,13 +32,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		$sql0->execute();
 		$result = $sql0->fetch();
 
-		if (!isset($result['email'])) {
-			$userFound = false;
+		if ($result['email'] == $email && $result == $password) {
+			$userFound = true;
 
 		} else {
-			$userFound = true;
-			$email = $result['email'];
-			$password = $result['psswd'];
+			$userFound = false;
 		}
 	}
 
@@ -176,9 +174,9 @@ $database = null;
 			<div class="wrapper">
 				<form class="form-signin" method="POST">
 					<h2>Forgot your password? No biggie.</h2>
-					<input type="text" class="form-control" name="email" placeholder="Email Address"/>
+					<input type="text" class="form-control" name="newEmail" placeholder="Email Address"/>
 					<br>
-					<input type="password" class="form-control" name="password" placeholder="New Password"/>
+					<input type="password" class="form-control" name="newPassword" placeholder="New Password"/>
 					<button id="save" class="btn btn-success" type="submit">Save</button>
 				</form>
 			</div>
@@ -205,9 +203,9 @@ $database = null;
 						<label class="control-label" for="Female">Female</label>
 						<br>
 					</div>
-					<input type="text" class="form-control" name="email" placeholder="Email Address" required>
+					<input type="text" class="form-control" name="createEmail" placeholder="Email Address" required>
 					<br>
-					<input type="password" class="form-control" name="password" placeholder="Password" required>
+					<input type="password" class="form-control" name="createPassword" placeholder="Password" required>
 					<button id="submitCreate" class="btn btn-success" type="submit">Submit</button>
 				</div>
 				</form>
