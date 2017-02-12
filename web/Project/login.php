@@ -38,7 +38,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		$sql0 = $db->prepare("SELECT email, psswd FROM s_person WHERE id='$personID'");
 		$sql0->execute();
 		$result = $sql0->fetchAll();
-		echo $result;
+		echo "<pre>";
+		print_r($result);
+		echo "</pre>";
 		echo "authenticating user";
 		echo $result['email'];
 		echo $result['psswd'];
