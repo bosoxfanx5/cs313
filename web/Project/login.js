@@ -6,19 +6,24 @@ $(document).ready(function() {
 
 	});
 
-	$("#close").click(function() {
-		$("#setPass").fadeOut("slow");
-
-
-
-	});
-
 	$("#save").click(function() {
 		$("#setPass").fadeOut("slow");
 
 
 
 	});
+
+	$("#closeSet").click(function() {
+		$("#setPass").fadeOut("slow");
+
+
+
+	});
+
+
+
+
+
 
 	$("#createNew").click(function() {
 		$("#creation").fadeIn("slow");
@@ -27,7 +32,18 @@ $(document).ready(function() {
 
 	});
 
-	$("#save").click(function() {
+
+	$("#closeCreate").click(function() {
+		$("#creation").fadeOut("slow");
+
+
+
+	});
+
+
+
+
+	$("#submitCreate").click(function() {
 		$("#creation").fadeOut("slow");
 
 
