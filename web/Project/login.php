@@ -149,6 +149,10 @@ $database = null;
 
 <body>
 	<?php echo $_SESSION["id"]; ?>
+	<br>
+	<?php echo $result['email'];
+	echo $result['psswd'];
+	?>
 	<!-- Fixed navbar -->
 	<nav class="navbar navbar-default" role="navigation">
 		<!-- Brand and toggle get grouped for better mobile display -->
