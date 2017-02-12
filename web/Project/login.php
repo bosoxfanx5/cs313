@@ -153,7 +153,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	<!-- Begin page content -->
 
 	<div id="setPass" class="overlay">
-		<a href="javascript:void(0)" id="close" class="closebtn">&times;</a>
+		<a href="javascript:void(0)" id="closeSet" class="closebtn">&times;</a>
 		<div class="overlay-content">
 			<div class="wrapper">
 				<form class="form-signin" method="POST">
@@ -168,7 +168,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	</div>
 
 	<div id="creation" class="overlay">
-		<a href="javascript:void(0)" id="close" class="closebtn">&times;</a>
+		<a href="javascript:void(0)" id="closeCreate" class="closebtn">&times;</a>
 		<div class="overlay-content">
 			<div class="wrapper">
 				<div class="form-group">
@@ -180,17 +180,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 					<input type="text" class="form-control" name="lname" placeholder="Last Name">
 					<br>
 					<div class="radio">
-						<input type="radio" class="form-control" name="gender" value="Male">
+						<input type="radio" name="gender" value="Male">
 						<label class="control-label" for="Male">Male</label>
 						<br>
-						<input type="radio" class="form-control" name="gender" value="Female">
+						<input type="radio" name="gender" value="Female">
 						<label class="control-label" for="Female">Female</label>
 						<br>
 					</div>
 					<input type="text" class="form-control" name="email" placeholder="Email Address">
 					<br>
 					<input type="password" class="form-control" name="password" placeholder="Password">
-					<button id="save" class="btn btn-success" type="submit">Submit</button>
+					<button id="submitCreate" class="btn btn-success" type="submit">Submit</button>
 				</div>
 				</form>
 			</div>
