@@ -9,7 +9,7 @@ Heroku CLI: heroku pg:psql postgresql-cubic-94519 --app rocky-everglades-86262
 -->
 
 <?php
-session_start();
+require "mobile.php";
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	$url = parse_url("postgres://kjufgxkwzbdxoe:7df3e724097d356a12363ec6ff37de41a1dce21c3c4767b88d5d7de61086d5df@ec2-54-163-246-165.compute-1.amazonaws.com:5432/de0qfpfe2sp27l");
 	$dbopts = $url;
@@ -32,13 +32,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		$sql0->execute();
 		$result = $sql0->fetch();
 
-		if ($result['email'] == $email && $result == $password) {
+		if ($result['email'] == $email && $result['password'] == $password) {
 			$userFound = true;
+			$forgot = true;
+			echo "User Found";
 
 		} else {
 			$userFound = false;
+			$creation = true;
+			$forgot = false;
+			echo "User not found";
 		}
 	}
+
 
 
 
@@ -216,9 +222,9 @@ $database = null;
 	<div class="wrapper">
 		<form class="form-signin" method="POST" action=<?php if($userFound == true){echo "mobile.php";} else {echo "";} ?>>
 			<h2 class="form-signin-heading">Please login</h2>
-			<input type="text" class="form-control" name="email" placeholder="Email Address" />
+			<input type="text" class="form-control" name="email" placeholder="Email Address" required>
 			<br>
-			<input type="password" class="form-control" name="password" placeholder="Password" />
+			<input type="password" class="form-control" name="password" placeholder="Password" required>
 			<br>
 			<button class="btn btn-success" type="submit">Login</button>
 			<a href="#" id="forgot">Forgot Password</a> or <a href="#" id="createNew">Create New Login</a>
