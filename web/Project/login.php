@@ -10,7 +10,10 @@ Heroku CLI: heroku pg:psql postgresql-cubic-94519 --app rocky-everglades-86262
 
 <?php
 session_start();
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+	echo $_POST['email'] . "<br>";
+	echo $_POST['password'] . "<br>";
 	$url = parse_url("postgres://kjufgxkwzbdxoe:7df3e724097d356a12363ec6ff37de41a1dce21c3c4767b88d5d7de61086d5df@ec2-54-163-246-165.compute-1.amazonaws.com:5432/de0qfpfe2sp27l");
 	$dbopts = $url;
 	$database = new PDO("pgsql:host=" . $dbopts['host'] . "; dbname=" . str_replace('/', '', $dbopts['path']),  $dbopts['user'], $dbopts['pass']);
@@ -26,7 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 
 
-
+	echo "checking session";
 	if (isset($_SESSION["id"])) {
 		$personID = $_SESSION["id"];
 		$h_id = $_POST['h_id'];
@@ -34,18 +37,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		$sql0->execute();
 		$result = $sql0->fetchAll();
 
-
+		echo "authenticating user";
+		echo $result['email'];
+		echo $result['psswd'];
 		if ($result['email'] == $email && $result['psswd'] == $password && $personID == $h_id) {
 			$userFound = true;
 			$forgot = true;
-			echo "User Found";
+			echo "User Authenticated";
 			header( 'Location: https://mysterious-bayou-55662.herokuapp.com/Project/mobile.php' );
 
 		} else {
 			$userFound = false;
 			$creation = true;
 			$forgot = false;
-			echo "User not found";
+			echo "User not authenticated";
 			echo $result['email'];
 			echo $result['psswd'];
 		}
@@ -150,9 +155,7 @@ $database = null;
 <body>
 	<?php echo $_SESSION["id"]; ?>
 	<br>
-	<?php echo $result['email'];
-	echo $result['psswd'];
-	?>
+
 	<!-- Fixed navbar -->
 	<nav class="navbar navbar-default" role="navigation">
 		<!-- Brand and toggle get grouped for better mobile display -->
