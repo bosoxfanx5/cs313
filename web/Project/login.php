@@ -25,21 +25,21 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	$password = $_POST['password'];
 
 
-	$personID = $_SESSION["id"];
+
 
 	if (isset($_SESSION["id"])) {
-		$sql0 = $db->prepare("SELECT email, psswd FROM s_person WHERE id='$personID'");
+		$personID = $_SESSION["id"];
+		$h_id = $_POST['h_id'];
+		$sql0 = $db->prepare("SELECT email, psswd FROM s_person WHERE id='$h_id'");
 		$sql0->execute();
 		$result = $sql0->fetchAll();
-		echo $result['email'];
-		echo $result['psswd'];
 
-		if ($result['email'] == $email && $result['psswd'] == $password) {
+
+		if ($result['email'] == $email && $result['psswd'] == $password && $personID == $h_id) {
 			$userFound = true;
 			$forgot = true;
 			echo "User Found";
-			echo $result['email'];
-			echo $result['psswd'];
+			header( 'Location: https://mysterious-bayou-55662.herokuapp.com/Project/mobile.php' );
 
 		} else {
 			$userFound = false;
@@ -190,7 +190,7 @@ $database = null;
 		<a href="javascript:void(0)" id="closeSet" class="closebtn">&times;</a>
 		<div class="overlay-content">
 			<div class="wrapper">
-				<form class="form-signin" method="POST">
+				<form class="form-signin" method="POST" action="">
 					<h2>Forgot your password? No biggie.</h2>
 					<input type="text" class="form-control" name="newEmail" placeholder="Email Address"/>
 					<br>
@@ -232,7 +232,8 @@ $database = null;
 	</div>
 
 	<div class="wrapper">
-		<form class="form-signin" method="POST" action=<?php if($userFound == true){echo "mobile.php";} else {echo "";} ?>>
+		<form class="form-signin" method="POST" action="">
+			<?php echo "<input type='hidden' name='h_id' value='$personID'</input>"; ?>
 			<h2 class="form-signin-heading">Please login</h2>
 			<input type="text" class="form-control" name="email" placeholder="Email Address" required>
 			<br>
@@ -242,8 +243,6 @@ $database = null;
 			<a href="#" id="forgot">Forgot Password</a> or <a href="#" id="createNew">Create New Login</a>
 		</form>
 	</div>
-
-
 
 	<!-- Begin footer content -->
 
