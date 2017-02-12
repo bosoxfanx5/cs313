@@ -180,6 +180,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 			<button class="btn btn-success" type="submit">Login</button>
 			<a href="#" id="forgot">Forgot Password</a>
 		</form>
+		<?php echo $forgotPsswd; ?>
 	</div>
 
 
