@@ -205,9 +205,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 			<input type="password" class="form-control" name="password" placeholder="Password" />
 			<br>
 			<button class="btn btn-success" type="submit">Login</button>
-			<a href="#" id="forgot">Forgot Password</a>
-			<br>
-			<a href="#" id="createNew">Create New Login</a>
+			<a href="#" id="forgot">Forgot Password</a> or <a href="#" id="createNew">Create New Login</a>
 		</form>
 	</div>
 
