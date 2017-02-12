@@ -30,7 +30,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 
 	echo "checking session";
-	if (isset($_SESSION["id"])) {
+	if (!empty($_SESSION["id"])) {
 		$personID = $_SESSION["id"];
 		$h_id = $_POST['h_id'];
 		$sql0 = $db->prepare("SELECT email, psswd FROM s_person WHERE id='$h_id'");
