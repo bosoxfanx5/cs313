@@ -10,6 +10,7 @@ Heroku CLI: heroku pg:psql postgresql-cubic-94519 --app rocky-everglades-86262
 
 <?php
 session_start();
+$forgotPsswd = false;
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	$url = parse_url("postgres://kjufgxkwzbdxoe:7df3e724097d356a12363ec6ff37de41a1dce21c3c4767b88d5d7de61086d5df@ec2-54-163-246-165.compute-1.amazonaws.com:5432/de0qfpfe2sp27l");
@@ -19,9 +20,22 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 	$db->setAttribute(PDO::ATTR_EMULATE_PREPARES,TRUE);
 
-	$sql0 = $db->prepare("SELECT id, title FROM s_saleable_item");
-	$sql0->execute();
-	$result0 = $sql0->fetchAll(PDO::FETCH_ASSOC);
+
+	$email = $_POST['email'];
+	$password = $_POST['password'];
+
+
+	$_SESSION["id"] = $personID;
+
+	if ($forgotPsswd == true) {
+		$sql0 = $db->prepare("INSERT INTO s_person (email, psswd) VALUES ('$email', '$password')
+		WHERE id='$personID'");
+		$sql0->execute();
+		echo $forgotPsswd;
+	}
+
+
+
 }
 
 // $welcome = true;
@@ -145,19 +159,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		<a href="javascript:void(0)" id="close" class="closebtn">&times;</a>
 		<div class="overlay-content">
 			<div class="wrapper">
-				<form class="form-signin">
+				<form class="form-signin" method="POST">
 					<h2>Forgot your password? No biggie.</h2>
 					<input type="text" class="form-control" name="email" placeholder="Email Address"/>
 					<br>
 					<input type="password" class="form-control" name="password" placeholder="New Password"/>
-					<button id="save" class="btn btn-success" type="submit">Save</button>
+					<button id="save" class="btn btn-success" type="submit" / onclick="<?php $forgotPsswd = true; ?>">Save</button>
 				</form>
 			</div>
 		</div>
 	</div>
 
 	<div class="wrapper">
-		<form class="form-signin">
+		<form class="form-signin" method="POST" action="mobile.php">
 			<h2 class="form-signin-heading">Please login</h2>
 			<input type="text" class="form-control" name="email" placeholder="Email Address" />
 			<br>
