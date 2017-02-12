@@ -35,7 +35,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	if (!empty($_SESSION["id"])) {
 		$personID = $_SESSION["id"];
 		$h_id = $_POST['h_id'];
-		$sql0 = $db->prepare("SELECT email, psswd FROM s_person WHERE id='$h_id'");
+		$sql0 = $db->prepare("SELECT email, psswd FROM s_person WHERE id='$personID'");
 		$sql0->execute();
 		$result = $sql0->fetchAll();
 
