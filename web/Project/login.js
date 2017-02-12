@@ -19,4 +19,18 @@ $(document).ready(function() {
 
 
 	});
+
+	$("#createNew").click(function() {
+		$("#creation").fadeIn("slow");
+
+
+
+	});
+
+	$("#createNew").click(function() {
+		$("#creation").fadeOut("slow");
+
+
+
+	});
 });
