@@ -30,7 +30,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	if (isset($_SESSION["id"])) {
 		$sql0 = $db->prepare("SELECT email, psswd FROM s_person WHERE id='$personID'");
 		$sql0->execute();
-		$result = $sql0->fetch();
+		$result = $sql0->fetchAll();
 
 		if ($result['email'] == $email && $result['password'] == $password) {
 			$userFound = true;
