@@ -37,7 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		$h_id = $_POST['h_id'];
 		$sql0 = $db->prepare("SELECT email, psswd FROM s_person WHERE id='$personID'");
 		$sql0->execute();
-		$result = $sql0->fetchAll();
+		$result = $sql0->fetch();
 		echo "<pre>";
 		print_r($result);
 		echo "</pre>";
