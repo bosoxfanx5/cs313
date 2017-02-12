@@ -14,8 +14,6 @@ error_reporting(E_ALL);
 ini_set("display_errors", 1);
 $personID = "";
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-	echo $_POST['email'] . "<br>";
-	echo $_POST['password'] . "<br>";
 	$url = parse_url("postgres://kjufgxkwzbdxoe:7df3e724097d356a12363ec6ff37de41a1dce21c3c4767b88d5d7de61086d5df@ec2-54-163-246-165.compute-1.amazonaws.com:5432/de0qfpfe2sp27l");
 	$dbopts = $url;
 	$database = new PDO("pgsql:host=" . $dbopts['host'] . "; dbname=" . str_replace('/', '', $dbopts['path']),  $dbopts['user'], $dbopts['pass']);
@@ -236,10 +234,10 @@ $database = null;
 					<input type="text" class="form-control" name="lname" placeholder="Last Name" required>
 					<br>
 					<div class="radio">
-						<input type="radio" name="gender" value="Male">
+						<input type="radio" name="gender" value="1">
 						<label class="control-label" for="Male">Male</label>
 						<br>
-						<input type="radio" name="gender" value="Female">
+						<input type="radio" name="gender" value="0">
 						<label class="control-label" for="Female">Female</label>
 						<br>
 					</div>
