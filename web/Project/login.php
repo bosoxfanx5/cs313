@@ -71,13 +71,21 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 			$cEmail = $_POST['createEmail'];
 			$cPassword = $_POST['createPassword'];
 
-			$sql = $db->prepare("INSERT INTO s_person (fname, lname, gender, email, psswd)
-				VALUES ('$fname', '$lname', '$gender', '$cEmail', '$cPassword')");
-			$sql->execute();
-			$_SESSION['email'] = $cEmail;
-			header( 'Location: https://mysterious-bayou-55662.herokuapp.com/Project/mobile.php' );
-
-		}
+			if (!empty($_SESSION["id"])) {
+				$personID = $_SESSION["id"];
+				$sql = $db->prepare("UPDATE s_person SET fname=''$fname', lname='$lname', gender='$gender',
+					email='$cEmail', psswd='$cPassword') WHERE id='$personID'");
+					$sql->execute();
+					$_SESSION['email'] = $cEmail;
+					header( 'Location: https://mysterious-bayou-55662.herokuapp.com/Project/mobile.php' );
+			} else {
+				$sql = $db->prepare("INSERT INTO s_person (fname, lname, gender, email, psswd)
+					VALUES ('$fname', '$lname', '$gender', '$cEmail', '$cPassword')");
+					$sql->execute();
+					$_SESSION['email'] = $cEmail;
+					header( 'Location: https://mysterious-bayou-55662.herokuapp.com/Project/mobile.php' );
+			}
+	}
 
 
 }
@@ -223,7 +231,7 @@ $database = null;
 		<div class="overlay-content">
 			<div class="wrapper">
 				<div class="form-group">
-				<form class="form-signin" method="POST">
+				<form class="form-signin" method="POST" action="">
 					<h2>You want to join? Sweet!</h2>
 					<p>Fill out the form and click submit.</p>
 					<input type="text" class="form-control" name="fname" placeholder="First Name" required>
