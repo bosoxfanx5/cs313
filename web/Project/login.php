@@ -10,7 +10,7 @@ Heroku CLI: heroku pg:psql postgresql-cubic-94519 --app rocky-everglades-86262
 
 <?php
 session_start();
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+// if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	$url = parse_url("postgres://kjufgxkwzbdxoe:7df3e724097d356a12363ec6ff37de41a1dce21c3c4767b88d5d7de61086d5df@ec2-54-163-246-165.compute-1.amazonaws.com:5432/de0qfpfe2sp27l");
 	$dbopts = $url;
 	$database = new PDO("pgsql:host=" . $dbopts['host'] . "; dbname=" . str_replace('/', '', $dbopts['path']),  $dbopts['user'], $dbopts['pass']);
@@ -33,7 +33,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 
 
-}
+// }
 
 // $welcome = true;
 // error_reporting(E_ALL);
@@ -94,7 +94,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 // 		$sql1 = $db->prepare("INSERT INTO s_visited_items (visitor_id, item_id) VALUES ('$personID', '$itemID')");
 // 		$sql1->execute();
 // }
-// $database = null;
+$database = null;
 ?>
 
 
@@ -177,7 +177,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 			<button class="btn btn-success" type="submit">Login</button>
 			<a href="#" id="forgot">Forgot Password</a>
 		</form>
-		<?php echo $forgotPsswd; ?>
 	</div>
 
 
