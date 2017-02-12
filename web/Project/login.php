@@ -9,8 +9,8 @@ Heroku CLI: heroku pg:psql postgresql-cubic-94519 --app rocky-everglades-86262
 -->
 
 <?php
-session_start();
-
+require "header.php";
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	$url = parse_url("postgres://kjufgxkwzbdxoe:7df3e724097d356a12363ec6ff37de41a1dce21c3c4767b88d5d7de61086d5df@ec2-54-163-246-165.compute-1.amazonaws.com:5432/de0qfpfe2sp27l");
 	$dbopts = $url;
 	$database = new PDO("pgsql:host=" . $dbopts['host'] . "; dbname=" . str_replace('/', '', $dbopts['path']),  $dbopts['user'], $dbopts['pass']);
@@ -33,7 +33,7 @@ session_start();
 
 
 
-
+}
 
 // $welcome = true;
 // error_reporting(E_ALL);
@@ -94,7 +94,7 @@ session_start();
 // 		$sql1 = $db->prepare("INSERT INTO s_visited_items (visitor_id, item_id) VALUES ('$personID', '$itemID')");
 // 		$sql1->execute();
 // }
-// $database = null;
+$database = null;
 ?>
 
 
@@ -121,6 +121,7 @@ session_start();
 
 	<!-- Fixed navbar -->
 	<nav class="navbar navbar-default" role="navigation">
+		<?php echo $_SESSION["id"]; ?>
 		<!-- Brand and toggle get grouped for better mobile display -->
 		<div class="navbar-header">
 			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-1">
