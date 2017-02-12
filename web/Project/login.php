@@ -171,6 +171,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		<a href="javascript:void(0)" id="close" class="closebtn">&times;</a>
 		<div class="overlay-content">
 			<div class="wrapper">
+				<div class="form-group">
 				<form class="form-signin" method="POST">
 					<h2>You want to join? Sweet!</h2>
 					<p>Fill out the form and click submit.</p>
@@ -178,18 +179,21 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 					<br>
 					<input type="text" class="form-control" name="lname" placeholder="Last Name">
 					<br>
+				</div>
 					<div class="radio">
 						<input type="radio" class="form-control" name="gender" value="Male">
 						<label class="control-label" for="Male">Male</label>
 						<br>
 						<input type="radio" class="form-control" name="gender" value="Female">
 						<label class="control-label" for="Female">Female</label>
-					<br>
+						<br>
 					</div>
+				<div class="form-group">
 					<input type="text" class="form-control" name="email" placeholder="Email Address">
 					<br>
 					<input type="password" class="form-control" name="password" placeholder="Password">
-					<button id="save" class="btn btn-success" type="submit">Save</button>
+					<button id="save" class="btn btn-success" type="submit">Submit</button>
+				</div>
 				</form>
 			</div>
 		</div>
