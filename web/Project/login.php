@@ -63,12 +63,21 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 	}
 
+	if (!empty($_POST["fname"]) && !empty($_POST["lname"]) && !empty($_POST["gender"])
+		&& !empty($_POST["createEmail"]) && !empty($_POST["createPassword"])) {
+			$fname = $_POST['fname'];
+			$lname = $_POST['lname'];
+			$gender = $_POST['gender'];
+			$cEmail = $_POST['createEmail'];
+			$cPassword = $_POST['createPassword'];
 
+			$sql = $db->prepare("INSERT INTO s_person (fname, lname, gender, email, psswd)
+				VALUES ('$fname', '$lname', '$gender', '$cEmail', '$cPassword')");
+			$sql->execute();
+			$_SESSION['email'] = $cEmail;
+			header( 'Location: https://mysterious-bayou-55662.herokuapp.com/Project/mobile.php' );
 
-
-
-
-
+		}
 
 
 }
