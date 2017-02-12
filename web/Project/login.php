@@ -44,7 +44,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		echo "authenticating user";
 		echo $result["email"];
 		echo $result["psswd"];
-		if ($result["email"] == $email && $result["psswd"] == $password && $personID == $h_id) {
+		if ($result["email"] == $email && $result["psswd"] == $password) {
 			$userFound = true;
 			$forgot = true;
 			echo "User Authenticated";
