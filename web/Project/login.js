@@ -40,13 +40,13 @@ $(document).ready(function() {
 
 	});
 
-
-
-
-	$("#submitCreate").click(function() {
-		$("#creation").fadeOut("slow");
-
-
-
-	});
+	//
+	//
+	//
+	// $("#submitCreate").click(function() {
+	// 	$("#creation").fadeOut("slow");
+	//
+	//
+	//
+	// });
 });

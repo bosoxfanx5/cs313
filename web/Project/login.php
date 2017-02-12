@@ -21,33 +21,31 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 	$db->setAttribute(PDO::ATTR_EMULATE_PREPARES,TRUE);
 
-	// $fname = $_POST['fname'];
-	// $lname = $_POST['lname'];
-	// $gender = $_POST['gender'];
 	$email = $_POST['email'];
 	$password = $_POST['password'];
 
 
 
-	// echo "checking session";
+	// if session for user has been created already
 	if (!empty($_SESSION["id"])) {
 		$personID = $_SESSION["id"];
 		$h_id = $_POST['h_id'];
+
+		// query for email and password of user
 		$sql0 = $db->prepare("SELECT email, psswd FROM s_person WHERE id='$personID'");
 		$sql0->execute();
 		$result = $sql0->fetch();
-		// echo "<pre>";
-		// print_r($result);
-		// echo "</pre>";
-		// echo "authenticating user";
-		// echo $result["email"];
-		// echo $result["psswd"];
-		if ($result["email"] == $email && $result["psswd"] == $password) {
-			$userFound = true;
-			$forgot = true;
-			// echo "User Authenticated";
-			$_SESSION["email"] = $result["email"];
-			header( 'Location: https://mysterious-bayou-55662.herokuapp.com/Project/mobile.php' );
+
+		// check result of query
+		if(!empty($result["email"]) && !empty($result["psswd"])) {
+			// authenticate user provided info with database
+			if ($result["email"] == $email && $result["psswd"] == $password) {
+				$userFound = true;
+				$forgot = true;
+				// echo "User Authenticated";
+				$_SESSION["email"] = $result["email"];
+				header( 'Location: https://mysterious-bayou-55662.herokuapp.com/Project/mobile.php' );
+			}
 
 		} else {
 			$userFound = false;
@@ -61,6 +59,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 	}
 
+	// if user is creating a new login account
 	if (!empty($_POST["fname"]) && !empty($_POST["lname"]) && !empty($_POST["gender"])
 		&& !empty($_POST["createEmail"]) && !empty($_POST["createPassword"])) {
 			$fname = $_POST['fname'];
@@ -69,6 +68,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 			$cEmail = $_POST['createEmail'];
 			$cPassword = $_POST['createPassword'];
 
+			// if user already has a session id and is creating a new login
 			if (!empty($_SESSION["id"])) {
 				$personID = $_SESSION["id"];
 				$sql = $db->prepare("UPDATE s_person SET fname='$fname', lname='$lname', gender='$gender',
@@ -77,6 +77,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 					$_SESSION['email'] = $cEmail;
 					header( 'Location: https://mysterious-bayou-55662.herokuapp.com/Project/mobile.php' );
 			} else {
+				// if there isn't a session id for the user yet
+				// need to add a pull of the person id and set the session id
 				$sql = $db->prepare("INSERT INTO s_person (fname, lname, gender, email, psswd)
 					VALUES ('$fname', '$lname', '$gender', '$cEmail', '$cPassword')");
 					$sql->execute();
@@ -87,68 +89,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 
 }
-
-
-
-// $welcome = true;
-// error_reporting(E_ALL);
-// ini_set("display_errors", 1);
-// $isContent = false;
-// if ($_SERVER['REQUEST_METHOD'] == 'GET') {
-// 	$url = parse_url("postgres://kjufgxkwzbdxoe:7df3e724097d356a12363ec6ff37de41a1dce21c3c4767b88d5d7de61086d5df@ec2-54-163-246-165.compute-1.amazonaws.com:5432/de0qfpfe2sp27l");
-// 	$dbopts = $url;
-// 	$database = new PDO("pgsql:host=" . $dbopts['host'] . "; dbname=" . str_replace('/', '', $dbopts['path']),  $dbopts['user'], $dbopts['pass']);
-// 	$db = $database;
-// 	$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-// 	$db->setAttribute(PDO::ATTR_EMULATE_PREPARES,TRUE);
-//
-// 	$sql0 = $db->prepare("SELECT id, title FROM s_saleable_item");
-// 	$sql0->execute();
-// 	$result0 = $sql0->fetchAll(PDO::FETCH_ASSOC);
-//
-// 	if (!empty($_GET['id'])) {
-// 		$isContent = true;
-// 		$welcome = false;
-// 		$sql = $db->prepare("SELECT * FROM s_saleable_item
-// 			WHERE id = :id");
-// 			$sql->execute(array(":id" => $_GET['id']));
-// 			$result = $sql->fetch(PDO::FETCH_ASSOC);
-// 	}
-// }
-//
-//
-//
-// //check session for visitor id
-//
-//
-// if (empty($_SESSION["id"])) {
-// 	$sql1 = $db->prepare("INSERT INTO s_person (id) VALUES (uuid_generate_v4())");
-// 	$sql1->execute();
-//
-// 	// 	//retrieve new person id
-// 	$personID = $db->lastInsertId();
-//
-// 	$sql1 = $db->prepare("SELECT id FROM s_person WHERE autoinc='$personID'");
-// 	$sql1->execute();
-// 	$result1 = $sql1->fetch();
-// 	$_SESSION["id"] = $result1["id"];
-//
-// }
-//
-//
-// //retrieve item id
-// if (!empty($_GET['id'])) {
-// 	$isContent = true;
-// 	$sql = $db->prepare("SELECT * FROM s_saleable_item
-// 		WHERE id = :id");
-// 		$sql->execute(array(":id" => $_GET['id']));
-// 		$result2 = $sql->fetch(PDO::FETCH_ASSOC);
-// 		$itemID = $result2["id"];
-//
-// 		$personID = $_SESSION["id"];
-// 		$sql1 = $db->prepare("INSERT INTO s_visited_items (visitor_id, item_id) VALUES ('$personID', '$itemID')");
-// 		$sql1->execute();
-// }
 $database = null;
 ?>
 
