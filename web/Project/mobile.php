@@ -123,7 +123,7 @@ $database = null;
 	<div class="collapse navbar-collapse" id="navbar-collapse-1">
 		<ul class="nav navbar-nav navbar-right">
 			<?php if (isset($_POST["email"])) : ?>
-				<li><?php echo $_POST["email"]; ?>
+				<li><?php echo $_POST["email"]; ?></li>
 			<?php endif ?>
 			<li class="dropdown">
 				<a href="#" class="dropdown-toggle" data-toggle="dropdown">Select Item<b class="caret"></b></a>
