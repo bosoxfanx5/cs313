@@ -10,8 +10,6 @@ Heroku CLI: heroku pg:psql postgresql-cubic-94519 --app rocky-everglades-86262
 
 <?php
 session_start();
-$forgotPsswd = false;
-echo $_SESSION["id"];
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	$url = parse_url("postgres://kjufgxkwzbdxoe:7df3e724097d356a12363ec6ff37de41a1dce21c3c4767b88d5d7de61086d5df@ec2-54-163-246-165.compute-1.amazonaws.com:5432/de0qfpfe2sp27l");
 	$dbopts = $url;
@@ -25,14 +23,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	$password = $_POST['password'];
 
 
-	$_SESSION["id"] = $personID;
+	$personID = $_SESSION["id"];
 
-	if ($forgotPsswd == true) {
-		$sql0 = $db->prepare("UPDATE s_person SET email='$email', psswd='$password')
+
+	$sql0 = $db->prepare("UPDATE s_person SET email='$email', psswd='$password')
 		WHERE id='$personID'");
-		$sql0->execute();
-		echo $forgotPsswd;
-	}
+	$sql0->execute();
+
 
 
 
@@ -164,7 +161,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 					<input type="text" class="form-control" name="email" placeholder="Email Address"/>
 					<br>
 					<input type="password" class="form-control" name="password" placeholder="New Password"/>
-					<button id="save" class="btn btn-success" type="submit" / onclick="<?php $forgotPsswd = true; ?>">Save</button>
+					<button id="save" class="btn btn-success" type="submit">Save</button>
 				</form>
 			</div>
 		</div>
