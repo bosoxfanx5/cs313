@@ -175,9 +175,6 @@ $database = null;
 </head>
 
 <body>
-	<?php echo $_SESSION["id"]; ?>
-	<br>
-
 	<!-- Fixed navbar -->
 	<nav class="navbar navbar-default" role="navigation">
 		<!-- Brand and toggle get grouped for better mobile display -->
