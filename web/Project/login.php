@@ -28,7 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	$_SESSION["id"] = $personID;
 
 	if ($forgotPsswd == true) {
-		$sql0 = $db->prepare("INSERT INTO s_person (email, psswd) VALUES ('$email', '$password')
+		$sql0 = $db->prepare("UPDATE s_person SET email='$email', psswd='$password')
 		WHERE id='$personID'");
 		$sql0->execute();
 		echo $forgotPsswd;
