@@ -18,20 +18,30 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 	$db->setAttribute(PDO::ATTR_EMULATE_PREPARES,TRUE);
 
-	$fname = $_POST['fname'];
-	$lname = $_POST['lname'];
-	$gender = $_POST['gender'];
-	$email = $_POST['email'];
-	$password = $_POST['password'];
+	// $fname = $_POST['fname'];
+	// $lname = $_POST['lname'];
+	// $gender = $_POST['gender'];
+	// $email = $_POST['email'];
+	// $password = $_POST['password'];
 
 
 	$personID = $_SESSION["id"];
 
 	if (isset($_SESSION["id"])) {
-		$sql0 = $db->prepare("UPDATE s_person SET email='$email', psswd='$password')
-			WHERE id='$personID'");
+		$sql0 = $db->prepare("SELECT email, psswd FROM s_person WHERE id='$personID'");
 		$sql0->execute();
+		$result = $sql0->fetch();
+
+		if (!isset($result['email'])) {
+			$userFound = false;
+
+		} else {
+			$userFound = true;
+			$email = $result['email'];
+			$password = $result['psswd'];
+		}
 	}
+
 
 
 
@@ -183,9 +193,9 @@ $database = null;
 				<form class="form-signin" method="POST">
 					<h2>You want to join? Sweet!</h2>
 					<p>Fill out the form and click submit.</p>
-					<input type="text" class="form-control" name="fname" placeholder="First Name">
+					<input type="text" class="form-control" name="fname" placeholder="First Name" required>
 					<br>
-					<input type="text" class="form-control" name="lname" placeholder="Last Name">
+					<input type="text" class="form-control" name="lname" placeholder="Last Name" required>
 					<br>
 					<div class="radio">
 						<input type="radio" name="gender" value="Male">
@@ -195,9 +205,9 @@ $database = null;
 						<label class="control-label" for="Female">Female</label>
 						<br>
 					</div>
-					<input type="text" class="form-control" name="email" placeholder="Email Address">
+					<input type="text" class="form-control" name="email" placeholder="Email Address" required>
 					<br>
-					<input type="password" class="form-control" name="password" placeholder="Password">
+					<input type="password" class="form-control" name="password" placeholder="Password" required>
 					<button id="submitCreate" class="btn btn-success" type="submit">Submit</button>
 				</div>
 				</form>
@@ -206,7 +216,7 @@ $database = null;
 	</div>
 
 	<div class="wrapper">
-		<form class="form-signin" method="POST" action="mobile.php">
+		<form class="form-signin" method="POST" action=<?php if($userFound == true){echo "mobile.php";} else {echo "";} ?>>
 			<h2 class="form-signin-heading">Please login</h2>
 			<input type="text" class="form-control" name="email" placeholder="Email Address" />
 			<br>
