@@ -9,7 +9,7 @@ Heroku CLI: heroku pg:psql postgresql-cubic-94519 --app rocky-everglades-86262
 -->
 
 <?php
-// session_start();
+session_start();
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	$url = parse_url("postgres://kjufgxkwzbdxoe:7df3e724097d356a12363ec6ff37de41a1dce21c3c4767b88d5d7de61086d5df@ec2-54-163-246-165.compute-1.amazonaws.com:5432/de0qfpfe2sp27l");
 	$dbopts = $url;
