@@ -27,7 +27,7 @@ $(document).ready(function() {
 
 	});
 
-	$("#createNew").click(function() {
+	$("#save").click(function() {
 		$("#creation").fadeOut("slow");
 
 
