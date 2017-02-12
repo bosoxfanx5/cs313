@@ -178,12 +178,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 					<br>
 					<input type="text" class="form-control" name="lname" placeholder="Last Name">
 					<br>
-					<input type="radio" class="form-control" name="gender" value="Male">
-					<label class="control-label" for="Male">Male</label>
+					<div class="radio">
+						<input type="radio" class="form-control" name="gender" value="Male">
+						<label class="control-label" for="Male">Male</label>
+						<br>
+						<input type="radio" class="form-control" name="gender" value="Female">
+						<label class="control-label" for="Female">Female</label>
 					<br>
-					<input type="radio" class="form-control" name="gender" value="Female">
-					<label class="control-label" for="Female">Female</label>
-					<br>
+					</div>
 					<input type="text" class="form-control" name="email" placeholder="Email Address">
 					<br>
 					<input type="password" class="form-control" name="password" placeholder="Password">
