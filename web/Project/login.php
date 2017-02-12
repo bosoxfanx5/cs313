@@ -121,7 +121,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 	<!-- Fixed navbar -->
 	<nav class="navbar navbar-default" role="navigation">
-		<?php echo $_SESSION["id"]; ?>
 		<!-- Brand and toggle get grouped for better mobile display -->
 		<div class="navbar-header">
 			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-1">
@@ -168,6 +167,30 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		</div>
 	</div>
 
+	<div id="creation" class="overlay">
+		<a href="javascript:void(0)" id="close" class="closebtn">&times;</a>
+		<div class="overlay-content">
+			<div class="wrapper">
+				<form class="form-signin" method="POST">
+					<h2>You want to join? Sweet!</h2>
+					<p>Fill out the form and click submit.</p>
+					<input type="text" class="form-control" name="fname" placeholder="First Name">
+					<br>
+					<input type="text" class="form-control" name="lname" placeholder="Last Name">
+					<br>
+					<input type="radio" class="form-control" name="gender" value="Male">Male
+					<br>
+					<input type="radio" class="form-control" name="gender" value="Female">Female
+					<br>
+					<input type="text" class="form-control" name="email" placeholder="Email Address">
+					<br>
+					<input type="password" class="form-control" name="password" placeholder="Password">
+					<button id="save" class="btn btn-success" type="submit">Save</button>
+				</form>
+			</div>
+		</div>
+	</div>
+
 	<div class="wrapper">
 		<form class="form-signin" method="POST" action="mobile.php">
 			<h2 class="form-signin-heading">Please login</h2>
@@ -177,6 +200,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 			<br>
 			<button class="btn btn-success" type="submit">Login</button>
 			<a href="#" id="forgot">Forgot Password</a>
+			<br>
+			<a href="#" id="createNew">Create New Login</a>
 		</form>
 	</div>
 
