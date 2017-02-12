@@ -12,7 +12,7 @@ Heroku CLI: heroku pg:psql postgresql-cubic-94519 --app rocky-everglades-86262
 session_start();
 error_reporting(E_ALL);
 ini_set("display_errors", 1);
-
+$personID = "";
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	echo $_POST['email'] . "<br>";
 	echo $_POST['password'] . "<br>";
