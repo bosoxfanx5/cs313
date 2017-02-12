@@ -32,7 +32,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		$sql0->execute();
 		$result = $sql0->fetchAll();
 
-		if ($result['email'] == $email && $result['password'] == $password) {
+		if ($result['email'] == $email && $result['psswd'] == $password) {
 			$userFound = true;
 			$forgot = true;
 			echo "User Found";
