@@ -31,23 +31,24 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 
 
-	echo "checking session";
+	// echo "checking session";
 	if (!empty($_SESSION["id"])) {
 		$personID = $_SESSION["id"];
 		$h_id = $_POST['h_id'];
 		$sql0 = $db->prepare("SELECT email, psswd FROM s_person WHERE id='$personID'");
 		$sql0->execute();
 		$result = $sql0->fetch();
-		echo "<pre>";
-		print_r($result);
-		echo "</pre>";
-		echo "authenticating user";
-		echo $result["email"];
-		echo $result["psswd"];
+		// echo "<pre>";
+		// print_r($result);
+		// echo "</pre>";
+		// echo "authenticating user";
+		// echo $result["email"];
+		// echo $result["psswd"];
 		if ($result["email"] == $email && $result["psswd"] == $password) {
 			$userFound = true;
 			$forgot = true;
-			echo "User Authenticated";
+			// echo "User Authenticated";
+			$_SESSION["email"] = $result["email"];
 			header( 'Location: https://mysterious-bayou-55662.herokuapp.com/Project/mobile.php' );
 
 		} else {
@@ -240,7 +241,7 @@ $database = null;
 
 	<div class="wrapper">
 		<form class="form-signin" method="POST" action="">
-			<?php echo "<input type='hidden' name='h_id' value='$personID'</input>"; ?>
+			<!-- <?php //echo "<input type='hidden' name='h_id' value='$personID'</input>"; ?> -->
 			<h2 class="form-signin-heading">Please login</h2>
 			<input type="text" class="form-control" name="email" placeholder="Email Address" required>
 			<br>

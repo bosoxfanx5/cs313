@@ -138,7 +138,7 @@ $database = null;
 				</ul>
 			</li>
 			<?php if (isset($_POST["email"])) : ?>
-				<li><a href="#"><?php echo $_POST["email"]; ?></a></li>
+				<li><a href="#"><?php echo $_SESSION["email"]; ?></a></li>
 			<?php else : ?>
 				<li><a href="login.php">Login</a></li>
 			<?php endif?>
