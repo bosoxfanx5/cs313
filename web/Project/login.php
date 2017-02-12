@@ -42,9 +42,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		print_r($result);
 		echo "</pre>";
 		echo "authenticating user";
-		echo $result['email'];
-		echo $result['psswd'];
-		if ($result['email'] == $email && $result['psswd'] == $password && $personID == $h_id) {
+		echo $result["email"];
+		echo $result["psswd"];
+		if ($result["email"] == $email && $result["psswd"] == $password && $personID == $h_id) {
 			$userFound = true;
 			$forgot = true;
 			echo "User Authenticated";
@@ -55,8 +55,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 			$creation = true;
 			$forgot = false;
 			echo "User not authenticated";
-			echo $result['email'];
-			echo $result['psswd'];
+			echo $result["email"];
+			echo $result["psswd"];
 		}
 
 
