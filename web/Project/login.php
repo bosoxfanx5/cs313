@@ -179,7 +179,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 					<br>
 					<input type="text" class="form-control" name="lname" placeholder="Last Name">
 					<br>
-				</div>
 					<div class="radio">
 						<input type="radio" class="form-control" name="gender" value="Male">
 						<label class="control-label" for="Male">Male</label>
@@ -188,7 +187,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 						<label class="control-label" for="Female">Female</label>
 						<br>
 					</div>
-				<div class="form-group">
 					<input type="text" class="form-control" name="email" placeholder="Email Address">
 					<br>
 					<input type="password" class="form-control" name="password" placeholder="Password">
