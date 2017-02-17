@@ -187,7 +187,7 @@ $database = null;
 	<!-- Begin page content -->
 
 	<!--Forgot Password-->
-	<div id="setPass" class="overlay">
+	<div id="resetPass" class="overlay">
 		<a href="javascript:void(0)" id="closeSet" class="closebtn">&times;</a>
 		<div class="overlay-content">
 			<div class="wrapper">
@@ -195,7 +195,7 @@ $database = null;
 					<h2>Forgot your password? No biggie.</h2>
 					<input type="text" class="form-control" name="forgotEmail" placeholder="Email Address" required/>
 					<br>
-					<button id="save" class="btn btn-success" type="submit">Submit</button>
+					<button id="reset" class="btn btn-success" type="submit">Submit</button>
 				</form>
 			</div>
 		</div>
