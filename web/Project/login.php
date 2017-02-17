@@ -14,6 +14,7 @@ include 'dbconnect.php';
 error_reporting(E_ALL);
 ini_set("display_errors", 1);
 $personID = "";
+$userFound = true;
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 	$email = $_POST['email'];
