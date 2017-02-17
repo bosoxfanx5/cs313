@@ -208,7 +208,7 @@ $database = null;
 			<a href="#" id="forgot">Forgot Password</a> or <a href="#" id="createNew">Create New Login</a>
 		</form>
 	</div>
-	!--
+	<!--
 	_/_/_/_/    _/_/      _/_/    _/_/_/_/_/  _/_/_/_/  _/_/_/
 	_/        _/    _/  _/    _/      _/      _/        _/    _/
 	_/_/_/    _/    _/  _/    _/      _/      _/_/_/    _/_/_/
