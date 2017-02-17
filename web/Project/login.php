@@ -41,6 +41,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 			if ($result["email"] == $email && $authenticated) {
 				$_SESSION["isLoggedIn"] = true;
+				$userFound = true;
 				$_SESSION["email"] = $result["email"];
 				header( 'Location: https://mysterious-bayou-55662.herokuapp.com/Project/mobile.php' );
 			} else {
@@ -229,9 +230,10 @@ $database = null;
 			<br>
 			<button class="btn btn-success" type="submit">Login</button>
 			<a href="#" id="forgot">Forgot Password</a> or <a href="#" id="createNew">Create New Login</a>
-			<?php if (!$userfound) : ?>
-				<br><p id="loginError">*Email address or password is incorrect.</p>
-			<?php endif ?>
+			<?php if (!$userFound) {
+				echo "<br><p id='loginError'>*Email address and/or password is incorrect.</p>";
+			}
+			?>
 		</form>
 	</div>
 	<!--
