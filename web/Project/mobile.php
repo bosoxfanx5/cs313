@@ -9,10 +9,11 @@ Heroku CLI: heroku pg:psql postgresql-cubic-94519 --app rocky-everglades-86262--
 
 <?php
 session_start();
+include 'footer.php';
 $welcome = true;
 $isContent = false;
 if ($_SERVER['REQUEST_METHOD'] == 'GET') {
-
+	include 'dbconnect.php';
 
 	$sql0 = $db->prepare("SELECT id, title FROM s_saleable_item");
 	$sql0->execute();
@@ -189,5 +190,6 @@ _/_/_/      _/_/    _/_/_/        _/
 		<?php endif ?>
 	<?php endif ?>
 </div>
+</body>
 
 </html>
