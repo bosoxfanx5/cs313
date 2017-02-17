@@ -8,12 +8,11 @@ URI: postgres://kjufgxkwzbdxoe:7df3e724097d356a12363ec6ff37de41a1dce21c3c4767b88
 Heroku CLI: heroku pg:psql postgresql-cubic-94519 --app rocky-everglades-86262-->
 
 <?php
-session_start();
+include 'dbconnect.php';
 include 'footer.php';
 $welcome = true;
 $isContent = false;
 if ($_SERVER['REQUEST_METHOD'] == 'GET') {
-	include 'dbconnect.php';
 
 	$sql0 = $db->prepare("SELECT id, title FROM s_saleable_item");
 	$sql0->execute();
