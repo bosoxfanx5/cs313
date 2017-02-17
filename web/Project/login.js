@@ -1,13 +1,13 @@
 $(document).ready(function() {
 	$("#forgot").click(function() {
-		$("#setPass").fadeIn("slow");
+		$("#resetPass").fadeIn("slow");
 
 
 
 	});
 
 	$("#save").click(function() {
-		$("#setPass").fadeOut("slow");
+		$("#resetPass").fadeOut("slow");
 
 
 
