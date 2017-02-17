@@ -13,13 +13,6 @@ $(document).ready(function() {
 
 	});
 
-	$("#closeSet").click(function() {
-		$("#setPass").fadeOut("slow");
-
-
-
-	});
-
 
 
 
