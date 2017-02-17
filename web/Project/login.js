@@ -6,7 +6,7 @@ $(document).ready(function() {
 
 	});
 
-	$("#save").click(function() {
+	$("#closeSet").click(function() {
 		$("#resetPass").fadeOut("slow");
 
 
