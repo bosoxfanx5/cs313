@@ -8,13 +8,7 @@
 			<span class="icon-bar"></span>
 		</button>
 		&nbsp;
-		<!-- Left Side -->
-		<div class="btn-group">
-			<ul class="nav navbar-nav navbar-left">
-				<li><a href="mobile.php">Product View</a></li>
-			</ul>
-		</div>
-	</div>
+		
 
 	<!-- Center -->
 	<div class="navbar-center navbar-brand" href="#"><a class="navbar-brand"></a></div>

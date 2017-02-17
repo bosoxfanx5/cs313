@@ -84,7 +84,13 @@ _/_/_/_/  _/_/_/    _/_/_/_/  _/    _/  _/_/_/    _/_/_/
 _/    _/  _/        _/    _/  _/    _/  _/        _/    _/
 _/    _/  _/_/_/_/  _/    _/  _/_/_/    _/_/_/_/  _/    _/
 -->
-
+<!-- Left Side -->
+<div class="btn-group">
+	<ul class="nav navbar-nav navbar-left">
+		<li><a href="mobile.php">Product View</a></li>
+	</ul>
+</div>
+</div>
 
 	<!-- Right Side -->
 	<div class="collapse navbar-collapse" id="navbar-collapse-1">
