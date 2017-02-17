@@ -39,14 +39,4 @@ $(document).ready(function() {
 
 
 	});
-
-	//
-	//
-	//
-	// $("#submitCreate").click(function() {
-	// 	$("#creation").fadeOut("slow");
-	//
-	//
-	//
-	// });
 });

@@ -9,7 +9,7 @@ Heroku CLI: heroku pg:psql postgresql-cubic-94519 --app rocky-everglades-86262--
 
 <?php
 include 'dbconnect.php';
-include 'footer.php';
+
 $welcome = true;
 $isContent = false;
 if ($_SERVER['REQUEST_METHOD'] == 'GET') {
@@ -130,7 +130,7 @@ $database = null;
 					?>
 				</ul>
 			</li>
-			<?php if (isset($_SESSION["email"])) : ?>
+			<?php if ($_SESSION["isLoggedIn"]) : ?>
 				<li><a href="#"><?php echo $_SESSION["email"]; ?></a></li>
 			<?php else : ?>
 				<li><a href="login.php">Login</a></li>
@@ -155,40 +155,43 @@ _/_/_/      _/_/    _/_/_/        _/
 			<p>For this project and the sake of making it easy for you to navigate, instead of requiring
 				a product key, we supplied you a dropdown menu to choose a product. This will return the data
 				associated with that product and update information in the database about you, the user.</p>
-			</div>
+		</div>
+	<?php else : ?>
+		<?php if(!$isContent) : ?>
+			<?php if (!empty($result)) : ?>
+				<?php foreach($result as $row) : ?>
+					<?php print_r('<strong><a href="mobile.php?id='
+					. $row["id"]          . '">'
+					. $row["title"]       . " "
+					. $row["description"] . ":"
+					. $row["title"]       .
+					'</a></strong><br><br>'); ?>
+				<?php endforeach ?>
+			<?php endif ?>
 		<?php else : ?>
-			<?php if(!$isContent) : ?>
-				<?php if (!empty($result)) : ?>
-					<?php foreach($result as $row) : ?>
-						<?php print_r('<strong><a href="mobile.php?id='
-						. $row["id"]          . '">'
-						. $row["title"]       . " "
-						. $row["description"] . ":"
-						. $row["title"]       .
-						'</a></strong><br><br>'); ?>
-					<?php endforeach ?>
-				<?php endif ?>
-			<?php else : ?>
-				<div>
-					<h1><?php echo $result["title"] ?></h1>
-					<p>UPC: <?php echo $result["upc"] ?></p>
-					<br><br>
-				</div>
-				<div class="container">
-					<h1>Description</h1>
-					<p><?php echo $result["description"] ?></p>
-				</div>
+			<div>
+				<h1><?php echo $result["title"] ?></h1>
+				<p>UPC: <?php echo $result["upc"] ?></p>
+				<br><br>
 			</div>
 			<div class="container">
-				<div class="row push-to-bottom">
-					<div class="column">
-						<h2>Price: $<?php echo $result["price"] ?> per lb.</h2>
-					</div>
+				<h1>Description</h1>
+				<p><?php echo $result["description"] ?></p>
+			</div>
+		</div>
+		<div class="container">
+			<div class="row push-to-bottom">
+				<div class="column">
+					<h2>Price: $<?php echo $result["price"] ?> per lb.</h2>
 				</div>
 			</div>
-		<?php endif ?>
+		</div>
 	<?php endif ?>
+<?php endif ?>
 </div>
 </body>
 
+<?php
+include 'footer.php';
+?>
 </html>

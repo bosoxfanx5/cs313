@@ -9,7 +9,7 @@ Heroku CLI: heroku pg:psql postgresql-cubic-94519 --app rocky-everglades-86262
 -->
 
 <?php
-include 'footer.php';
+
 include 'dbconnect.php';
 error_reporting(E_ALL);
 ini_set("display_errors", 1);
@@ -19,10 +19,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	$email = $_POST['email'];
 	$password = $_POST['password'];
 
-	// if session for user has been created already
+
+
+	/******************************************************************
+	* User logging in authentication
+	*******************************************************************/
+
 	if (!empty($_SESSION["id"])) {
 		$personID = $_SESSION["id"];
-		$h_id = $_POST['h_id'];
 
 		// query for email and password of user
 		$sql0 = $db->prepare("SELECT email, psswd FROM s_person WHERE id='$personID'");
@@ -32,27 +36,21 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		// check result of query
 		if(!empty($result["email"]) && !empty($result["psswd"])) {
 			// authenticate user provided info with database
-			if ($result["email"] == $email && $result["psswd"] == $password) {
-				$userFound = true;
-				$forgot = true;
-				// echo "User Authenticated";
+			$authenticated = password_verify($_POST["password"], $result['psswd']);
+
+			if ($result["email"] == $email && $authenticated) {
+				$_SESSION["isLoggedIn"] = true;
 				$_SESSION["email"] = $result["email"];
 				header( 'Location: https://mysterious-bayou-55662.herokuapp.com/Project/mobile.php' );
 			}
-
-		} else {
-			$userFound = false;
-			$creation = true;
-			$forgot = false;
-			echo "User not authenticated";
-			echo $result["email"];
-			echo $result["psswd"];
 		}
-
-
 	}
 
-	// if user is creating a new login account
+	/******************************************************************
+	* Creation of new login account
+	*******************************************************************/
+
+
 	if (!empty($_POST["fname"]) && !empty($_POST["lname"]) && !empty($_POST["gender"])
 		&& !empty($_POST["createEmail"]) && !empty($_POST["createPassword"])) {
 			$fname = $_POST['fname'];
@@ -61,22 +59,35 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 			$cEmail = $_POST['createEmail'];
 			$cPassword = $_POST['createPassword'];
 
+			//hash the password
+			$hashed = password_hash($cPassword, PASSWORD_DEFAULT);
+
 			// if user already has a session id and is creating a new login
 			if (!empty($_SESSION["id"])) {
 				$personID = $_SESSION["id"];
 				$sql = $db->prepare("UPDATE s_person SET fname='$fname', lname='$lname', gender='$gender',
-					email='$cEmail', psswd='$cPassword' WHERE id='$personID'");
-					$sql->execute();
-					$_SESSION['email'] = $cEmail;
-					header( 'Location: https://mysterious-bayou-55662.herokuapp.com/Project/mobile.php' );
+				email='$cEmail', psswd='$hashed' WHERE id='$personID'");
+
+				$sql->execute();
+				$_SESSION['email'] = $cEmail;
+				$_SESSION["isLoggedIn"] = true;
+				header( 'Location: https://mysterious-bayou-55662.herokuapp.com/Project/mobile.php' );
+				die();
 			} else {
 				// if there isn't a session id for the user yet
-				// need to add a pull of the person id and set the session id
 				$sql = $db->prepare("INSERT INTO s_person (fname, lname, gender, email, psswd)
-					VALUES ('$fname', '$lname', '$gender', '$cEmail', '$cPassword')");
-					$sql->execute();
-					$_SESSION['email'] = $cEmail;
-					header( 'Location: https://mysterious-bayou-55662.herokuapp.com/Project/mobile.php' );
+				VALUES ('$fname', '$lname', '$gender', '$cEmail', '$hashed')");
+
+				$sql->execute();
+				$_SESSION['email'] = $cEmail;
+				$sql = $db->prepare("SELECT id FROM s_person WHERE email='$cEmail'");
+				$sql->execute();
+				$result2 = $sql->fetch();
+
+				$_SESSION["id"] = $result2['id'];
+				$_SESSION["isLoggedIn"] = true;
+				header( 'Location: https://mysterious-bayou-55662.herokuapp.com/Project/mobile.php' );
+				die();
 			}
 	}
 
@@ -198,4 +209,8 @@ $database = null;
 		</form>
 	</div>
 </body>
+
+<?php
+include 'footer.php';
+?>
 </html>
