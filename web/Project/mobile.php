@@ -217,8 +217,8 @@ _/          _/_/      _/_/        _/      _/_/_/_/  _/    _/
 </footer>
 
 
-<!-- Bootstrap core JavaScript
-================================================== -->
+<!-- Bootstrap core JavaScript -->
+<!-- ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
@@ -226,6 +226,5 @@ _/          _/_/      _/_/        _/      _/_/_/_/  _/    _/
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
 <!-- <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script> -->
-</body>
 </body>
 </html>
