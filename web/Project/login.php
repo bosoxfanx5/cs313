@@ -15,6 +15,7 @@ error_reporting(E_ALL);
 ini_set("display_errors", 1);
 $personID = "";
 $userFound = true;
+$validEmail = true;
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 	$email = $_POST['email'];
@@ -42,8 +43,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 			if ($result["email"] == $email && $authenticated) {
 				$_SESSION["isLoggedIn"] = true;
 				$userFound = true;
-				$_SESSION["email"] = $result["email"];
 				header( 'Location: https://mysterious-bayou-55662.herokuapp.com/Project/mobile.php' );
+				die();
 			} else {
 				$userFound = false;
 			}
@@ -64,6 +65,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		$fname = $_POST['fname'];
 		$lname = $_POST['lname'];
 		$gender = $_POST['gender'];
+
+		if ($gender == 1) {
+			$prefix = "Mr.";
+		} else {
+			$prefix = "Mrs.";
+		}
+
 		$cEmail = $_POST['createEmail'];
 		$cPassword = $_POST['createPassword'];
 
@@ -73,7 +81,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		// if user already has a session id and is creating a new login
 		if (!empty($_SESSION["id"])) {
 			$personID = $_SESSION["id"];
-			$sql = $db->prepare("UPDATE s_person SET fname='$fname', lname='$lname', gender='$gender',
+			$sql = $db->prepare("UPDATE s_person SET fname='$fname', lname='$lname', prefix='$prefix' gender='$gender',
 				email='$cEmail', psswd='$hashed' WHERE id='$personID'");
 
 				$sql->execute();
@@ -84,7 +92,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 			} else {
 				// if there isn't a session id for the user yet
 				$sql = $db->prepare("INSERT INTO s_person (fname, lname, gender, email, psswd)
-				VALUES ('$fname', '$lname', '$gender', '$cEmail', '$hashed')");
+				VALUES ('$fname', '$lname', prefix='$prefix' '$gender', '$cEmail', '$hashed')");
 
 				$sql->execute();
 				$_SESSION['email'] = $cEmail;
@@ -103,16 +111,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	* Forgot Password
 	*******************************************************************/
 
-	if (!empty($_POST["forgotEmail"])) {
+	if (!empty($_POST["forgotEmail"]) && ($_POST["forgotEmail"] == $_SESSION["email"])) {
+		$qry = $db->prepare("SELECT prefix, lname FROM s_person WHERE ");
+		$qry->execute();
+		$data = $qry->fetch();
+
+		
 
 
 
 
 
 
-
-
-
+	} else {
+		$validEmail = false;
 	}
 
 }
