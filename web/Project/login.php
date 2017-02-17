@@ -115,6 +115,7 @@ $database = null;
 	<link href="sticky-footer-navbar.css" rel="stylesheet">
 	<link rel="stylesheet" href="mobile.css">
 	<link rel="stylesheet" href="login.css">
+	<script src="login.js"></script>
 </head>
 
 <body>
@@ -230,13 +231,13 @@ $database = null;
 			</div>
 			<!-- Center -->
 			<div class="navbar-center navbar-brand" href="#"><a class="navbar-brand"></a></div>
-			<!-- Collect the nav links, forms, and other content for toggling -->
+			<!--Collect the nav links, forms, and other content for toggling-->
 
 		</nav>
 	</footer>
 
 
-	<!-- Bootstrap core JavaScript
+	<!-- Bootstrap core JavaScript -->
 	================================================== -->
 	<!-- Placed at the end of the document so the pages load faster -->
 	<!-- Latest compiled and minified JavaScript -->
