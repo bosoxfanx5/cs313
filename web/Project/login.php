@@ -116,7 +116,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		$qry->execute();
 		$data = $qry->fetch();
 
-		
+
 
 
 
@@ -193,7 +193,7 @@ $database = null;
 			<div class="wrapper">
 				<form class="form-signin" method="POST" action="">
 					<h2>Forgot your password? No biggie.</h2>
-					<input type="text" class="form-control" name="forgotEmail" placeholder="Email Address"/>
+					<input type="text" class="form-control" name="forgotEmail" placeholder="Email Address" required/>
 					<br>
 					<button id="save" class="btn btn-success" type="submit">Submit</button>
 				</form>
