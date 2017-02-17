@@ -14,8 +14,7 @@ error_reporting(E_ALL);
 ini_set("display_errors", 1);
 $isContent = false;
 if ($_SERVER['REQUEST_METHOD'] == 'GET') {
-	include 'dbconnect.php'
-
+	include 'dbconnect.php';
 	$sql0 = $db->prepare("SELECT id, title FROM s_saleable_item");
 	$sql0->execute();
 	$result0 = $sql0->fetchAll(PDO::FETCH_ASSOC);
