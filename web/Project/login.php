@@ -42,8 +42,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 				$_SESSION["isLoggedIn"] = true;
 				$_SESSION["email"] = $result["email"];
 				header( 'Location: https://mysterious-bayou-55662.herokuapp.com/Project/mobile.php' );
+			} else {
+				$userFound = false;
 			}
+		} else {
+			$userFound = false;
 		}
+	} else {
+		$userFound= false;
 	}
 
 	/******************************************************************
@@ -52,20 +58,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 
 	if (!empty($_POST["fname"]) && !empty($_POST["lname"]) && !empty($_POST["gender"])
-		&& !empty($_POST["createEmail"]) && !empty($_POST["createPassword"])) {
-			$fname = $_POST['fname'];
-			$lname = $_POST['lname'];
-			$gender = $_POST['gender'];
-			$cEmail = $_POST['createEmail'];
-			$cPassword = $_POST['createPassword'];
+	&& !empty($_POST["createEmail"]) && !empty($_POST["createPassword"])) {
+		$fname = $_POST['fname'];
+		$lname = $_POST['lname'];
+		$gender = $_POST['gender'];
+		$cEmail = $_POST['createEmail'];
+		$cPassword = $_POST['createPassword'];
 
-			//hash the password
-			$hashed = password_hash($cPassword, PASSWORD_DEFAULT);
+		//hash the password
+		$hashed = password_hash($cPassword, PASSWORD_DEFAULT);
 
-			// if user already has a session id and is creating a new login
-			if (!empty($_SESSION["id"])) {
-				$personID = $_SESSION["id"];
-				$sql = $db->prepare("UPDATE s_person SET fname='$fname', lname='$lname', gender='$gender',
+		// if user already has a session id and is creating a new login
+		if (!empty($_SESSION["id"])) {
+			$personID = $_SESSION["id"];
+			$sql = $db->prepare("UPDATE s_person SET fname='$fname', lname='$lname', gender='$gender',
 				email='$cEmail', psswd='$hashed' WHERE id='$personID'");
 
 				$sql->execute();
@@ -89,8 +95,23 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 				header( 'Location: https://mysterious-bayou-55662.herokuapp.com/Project/mobile.php' );
 				die();
 			}
-	}
+		}
 
+	/******************************************************************
+	* Forgot Password
+	*******************************************************************/
+
+	if (!empty($_POST["forgotEmail"])) {
+
+
+
+
+
+
+
+
+
+	}
 
 }
 $database = null;
@@ -131,7 +152,7 @@ $database = null;
 			<!-- Left Side -->
 			<div class="btn-group">
 				<ul class="nav navbar-nav navbar-left">
-					<li><a href="mobile.php">Login</a></li>
+					<li><a href="login.php">Login</a></li>
 				</ul>
 			</div>
 		</div>
@@ -151,21 +172,22 @@ $database = null;
 
 	<!-- Begin page content -->
 
+	<!--Forgot Password-->
 	<div id="setPass" class="overlay">
 		<a href="javascript:void(0)" id="closeSet" class="closebtn">&times;</a>
 		<div class="overlay-content">
 			<div class="wrapper">
 				<form class="form-signin" method="POST" action="">
 					<h2>Forgot your password? No biggie.</h2>
-					<input type="text" class="form-control" name="newEmail" placeholder="Email Address"/>
+					<input type="text" class="form-control" name="forgotEmail" placeholder="Email Address"/>
 					<br>
-					<input type="password" class="form-control" name="newPassword" placeholder="New Password"/>
-					<button id="save" class="btn btn-success" type="submit">Save</button>
+					<button id="save" class="btn btn-success" type="submit">Submit</button>
 				</form>
 			</div>
 		</div>
 	</div>
 
+	<!--Create new login account-->
 	<div id="creation" class="overlay">
 		<a href="javascript:void(0)" id="closeCreate" class="closebtn">&times;</a>
 		<div class="overlay-content">
@@ -196,6 +218,7 @@ $database = null;
 		</div>
 	</div>
 
+	<!--Login to account-->
 	<div class="wrapper">
 		<form class="form-signin" method="POST" action="">
 			<h2 class="form-signin-heading">Please login</h2>
@@ -205,6 +228,9 @@ $database = null;
 			<br>
 			<button class="btn btn-success" type="submit">Login</button>
 			<a href="#" id="forgot">Forgot Password</a> or <a href="#" id="createNew">Create New Login</a>
+			<?php if (!$userfound) : ?>
+				<br><p id="loginError">*Email address or password is incorrect.</p>
+			<?php endif ?>
 		</form>
 	</div>
 	<!--

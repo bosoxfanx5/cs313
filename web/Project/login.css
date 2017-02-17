@@ -63,3 +63,7 @@ input[type="password"] {
 	right: 45px;
 	font-size: 60px;
 }
+
+#loginError {
+	color: red;
+}
