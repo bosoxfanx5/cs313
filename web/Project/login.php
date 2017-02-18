@@ -42,7 +42,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		} else {
 			$userFound = false;
 		}
-	} 
+	}
 
 	/******************************************************************
 	* Creation of new login account
@@ -107,23 +107,29 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		$qry->execute();
 		$data = $qry->fetch();
 
-		$to = $data["email"];
-		$subject = "Reet Deets - Forgot Password";
-		$from = "info@ReetDeets.com";
-		$url = 'https://mysterious-bayou-55662.herokuapp.com/Project/password_reset.php?id= '; //not sure how to construct this with security in mind
-		$body = 'Hello ' . $data['prefix'] . ' ' . $data['lname'] . ', <br><br> Someone has requested a to reset your password. If this
-		was not you, please ignore this email. If this was you who requested a password reset, please follow this link below:<br><br>' .
-		$url . '<br><br>Thank you,<br>Your ReetDeets Team';
-		$headers = "From: " . strip_tags($from) . "\r\n";
-		mail($to, $subject, $body, $headers);
+		if ($_POST["forgotEmail"] == $data["email"]) {
+			$to = $data["email"];
+			$subject = "Reet Deets - Forgot Password";
+			$from = "info@ReetDeets.com";
+			$url = 'https://mysterious-bayou-55662.herokuapp.com/Project/password_reset.php?id= '; //not sure how to construct this with security in mind
+			$body = 'Hello ' . $data['prefix'] . ' ' . $data['lname'] . ', <br><br> Someone has requested a to reset your password. If this
+			was not you, please ignore this email. If this was you who requested a password reset, please follow this link below:<br><br>' .
+			$url . '<br><br>Thank you,<br>Your ReetDeets Team';
+			$headers .= "MIME-Version: 1.0" . "\r\n";
+			$headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+			$headers = "From: " . strip_tags($from);
 
-	} else {
-		$validEmail = false;
+
+			mail($to, $subject, $body, $headers);
+
+		} else {
+			$validEmail = false;
+		}
 	}
 
 }
 $database = null;
-
+print phpinfo();
 ?>
 
 
@@ -160,7 +166,7 @@ $database = null;
 			<!-- Left Side -->
 			<div class="btn-group">
 				<ul class="nav navbar-nav navbar-left">
-					<li><a href="login.php">Reet Deets</a></li>
+					<li><a href="mobile.php"><img src="rd.png"></a></li>
 				</ul>
 			</div>
 		</div>
