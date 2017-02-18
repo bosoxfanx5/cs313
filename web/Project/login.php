@@ -42,9 +42,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		} else {
 			$userFound = false;
 		}
-	} else {
-		$userFound= false;
-	}
+	} 
 
 	/******************************************************************
 	* Creation of new login account
@@ -239,7 +237,7 @@ $database = null;
 			<button class="btn btn-success" type="submit">Login</button>
 			<a href="#" id="forgot">Forgot Password</a> or <a href="#" id="createNew">Create New Login</a>
 			<?php if (!$userFound) {
-				echo "<br><p id='loginError'>*Email address and/or password is incorrect.</p>";
+				echo "<br><br><p id='loginError'>*Email address and/or password is incorrect.</p>";
 			}
 			?>
 		</form>
