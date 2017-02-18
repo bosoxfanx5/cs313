@@ -32,7 +32,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		// authenticate user provided info with database
 		$authenticated = password_verify($_POST["password"], $result['psswd']);
 
-		if ($result["email"] == $email && $authenticated) {
+		if ($result["email"] == $personEmail && $authenticated) {
 			$_SESSION["isLoggedIn"] = true;
 			$_SESSION["id"] = $result["id"];
 			$_SESSION["email"] = $result["email"];
