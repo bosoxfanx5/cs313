@@ -18,20 +18,14 @@ $userFound = true;
 $validEmail = true;
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
-	$email = $_POST['email'];
-	$password = $_POST['password'];
-
-
-
 	/******************************************************************
 	* User logging in authentication
 	*******************************************************************/
 
-	if (!empty($_SESSION["id"])) {
-		$personID = $_SESSION["id"];
-
+	if (!empty($_POST["email"])) {
+		$personEmail = $_POST["email"];
 		// query for email and password of user
-		$sql0 = $db->prepare("SELECT email, psswd FROM s_person WHERE id='$personID'");
+		$sql0 = $db->prepare("SELECT id, email, psswd FROM s_person WHERE email='$personEmail'");
 		$sql0->execute();
 		$result = $sql0->fetch();
 
@@ -116,12 +110,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		$qry->execute();
 		$data = $qry->fetch();
 
-
-
-
-
-
-
+		$to = $_SESSION["email"];
+		$subject = "Reet Deets - Forgot Password";
+		$from = "info@ReetDeets.com";
+		$url = 'https://mysterious-bayou-55662.herokuapp.com/Project/password_reset.php?id= '; //not sure how to construct this with security in mind
+		$body = 'Hello ' . $data['prefix'] . ' ' . $data['lname'] . ', <br><br> Someone has requested a to reset your password. If this
+		was not you, please ignore this email. If this was you who requested a password reset, please follow this link below:<br><br>' .
+		$url . '<br><br>Thank you,<br>Your ReetDeets Team';
+		$headers = "From: " . strip_tags($from) . "\r\n";
+		mail($to, $subject, $body, $headers);
 
 	} else {
 		$validEmail = false;
@@ -178,7 +175,7 @@ $database = null;
 		<!-- Right Side -->
 		<div class="collapse navbar-collapse" id="navbar-collapse-1">
 			<ul class="nav navbar-nav navbar-right">
-				<li><a href="mobile.php">Product View</a></li>
+				<li><a href="mobile.php">Reet Deets</a></li>
 				<li><a href="login.php">Login</a></li>
 			</ul>
 		</div>
@@ -215,10 +212,10 @@ $database = null;
 					<input type="text" class="form-control" name="lname" placeholder="Last Name" required>
 					<br>
 					<div class="radio">
-						<input type="radio" name="gender" value="1">
+						<input type="radio" name="gender" value= 1>
 						<label class="control-label" for="Male">Male</label>
 						<br>
-						<input type="radio" name="gender" value="0">
+						<input type="radio" name="gender" value= 0>
 						<label class="control-label" for="Female">Female</label>
 						<br>
 					</div>
