@@ -161,7 +161,7 @@ $database = null;
 			<!-- Left Side -->
 			<div class="btn-group">
 				<ul class="nav navbar-nav navbar-left">
-					<li><a href="login.php">Login</a></li>
+					<li><a href="login.php">Reet Deets</a></li>
 				</ul>
 			</div>
 		</div>
@@ -174,7 +174,7 @@ $database = null;
 		<div class="collapse navbar-collapse" id="navbar-collapse-1">
 			<ul class="nav navbar-nav navbar-right">
 				<li><a href="mobile.php">Product View</a></li>
-				<li><a href="mobile.php">Reet Deets</a></li>
+				<li><a href="mobile.php">Login</a></li>
 			</ul>
 		</div>
 	</nav>
