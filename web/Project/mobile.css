@@ -3,3 +3,8 @@
 	/* position: absolute; */
 	margin: 60px auto;
 }
+
+#logo {
+	width: 150px;
+	height: auto;
+}
