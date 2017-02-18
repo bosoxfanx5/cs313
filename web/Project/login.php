@@ -63,7 +63,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		if ($gender == 1) {
 			$prefix = "Mr.";
 		} else {
-			$prefix = "Mrs.";
+			$prefix = "Ms.";
 		}
 
 		$cEmail = $_POST['createEmail'];
@@ -75,7 +75,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		// if user already has a session id and is creating a new login
 		if (!empty($_SESSION["id"])) {
 			$personID = $_SESSION["id"];
-			$sql = $db->prepare("UPDATE s_person SET fname='$fname', lname='$lname', prefix='$prefix' gender='$gender',
+			$sql = $db->prepare("UPDATE s_person SET fname='$fname', lname='$lname', prefix='$prefix' gender=$gender,
 				email='$cEmail', psswd='$hashed' WHERE id='$personID'");
 
 				$sql->execute();
@@ -86,7 +86,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 			} else {
 				// if there isn't a session id for the user yet
 				$sql = $db->prepare("INSERT INTO s_person (fname, lname, gender, email, psswd)
-				VALUES ('$fname', '$lname', prefix='$prefix' '$gender', '$cEmail', '$hashed')");
+				VALUES ('$fname', '$lname', prefix='$prefix' $gender, '$cEmail', '$hashed')");
 
 				$sql->execute();
 				$_SESSION['email'] = $cEmail;
@@ -212,10 +212,10 @@ $database = null;
 					<input type="text" class="form-control" name="lname" placeholder="Last Name" required>
 					<br>
 					<div class="radio">
-						<input type="radio" name="gender" value= 1>
+						<input type="radio" name="gender" value="1">
 						<label class="control-label" for="Male">Male</label>
 						<br>
-						<input type="radio" name="gender" value= 0>
+						<input type="radio" name="gender" value="0">
 						<label class="control-label" for="Female">Female</label>
 						<br>
 					</div>
