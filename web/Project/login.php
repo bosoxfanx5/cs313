@@ -173,8 +173,8 @@ $database = null;
 		<!-- Right Side -->
 		<div class="collapse navbar-collapse" id="navbar-collapse-1">
 			<ul class="nav navbar-nav navbar-right">
+				<li><a href="mobile.php">Product View</a></li>
 				<li><a href="mobile.php">Reet Deets</a></li>
-				<li><a href="login.php">Login</a></li>
 			</ul>
 		</div>
 	</nav>

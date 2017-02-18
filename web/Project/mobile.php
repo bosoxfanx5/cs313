@@ -104,7 +104,7 @@ $database = null;
 		<!-- Left Side -->
 		<div class="btn-group">
 			<ul class="nav navbar-nav navbar-left">
-				<li><a href="mobile.php">Product View</a></li>
+				<li><a href="mobile.php">Reet Deets</a></li>
 			</ul>
 		</div>
 	</div>
