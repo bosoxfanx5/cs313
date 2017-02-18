@@ -103,12 +103,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	* Forgot Password
 	*******************************************************************/
 
-	if (!empty($_POST["forgotEmail"]) && ($_POST["forgotEmail"] == $_SESSION["email"])) {
-		$qry = $db->prepare("SELECT prefix, lname FROM s_person WHERE ");
+	if (!empty($_POST["forgotEmail"])) {
+		$fEmail = $_POST["forgotEmail"];
+		$qry = $db->prepare("SELECT id, prefix, lname, email FROM s_person WHERE email='$fEmail'");
 		$qry->execute();
 		$data = $qry->fetch();
 
-		$to = $_SESSION["email"];
+		$to = $data["email"];
 		$subject = "Reet Deets - Forgot Password";
 		$from = "info@ReetDeets.com";
 		$url = 'https://mysterious-bayou-55662.herokuapp.com/Project/password_reset.php?id= '; //not sure how to construct this with security in mind
