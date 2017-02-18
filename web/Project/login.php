@@ -166,7 +166,7 @@ print phpinfo();
 			<!-- Left Side -->
 			<div class="btn-group">
 				<ul class="nav navbar-nav navbar-left">
-					<li><a href="mobile.php"><img src="rd.png"></a></li>
+					<li><a href="mobile.php"><img id="logo" src="rd.png"></a></li>
 				</ul>
 			</div>
 		</div>
