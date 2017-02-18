@@ -9,7 +9,7 @@ Heroku CLI: heroku pg:psql postgresql-cubic-94519 --app rocky-everglades-86262
 -->
 
 <?php
-
+include 'session.php';
 include 'dbconnect.php';
 error_reporting(E_ALL);
 ini_set("display_errors", 1);
@@ -22,26 +22,23 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	* User logging in authentication
 	*******************************************************************/
 
-	if (!empty($_POST["email"])) {
+	if (!empty($_POST["email"]) && !empty($_POST["password"])) {
 		$personEmail = $_POST["email"];
 		// query for email and password of user
 		$sql0 = $db->prepare("SELECT id, email, psswd FROM s_person WHERE email='$personEmail'");
 		$sql0->execute();
 		$result = $sql0->fetch();
 
-		// check result of query
-		if(!empty($result["email"]) && !empty($result["psswd"])) {
-			// authenticate user provided info with database
-			$authenticated = password_verify($_POST["password"], $result['psswd']);
+		// authenticate user provided info with database
+		$authenticated = password_verify($_POST["password"], $result['psswd']);
 
-			if ($result["email"] == $email && $authenticated) {
-				$_SESSION["isLoggedIn"] = true;
-				$userFound = true;
-				header( 'Location: https://mysterious-bayou-55662.herokuapp.com/Project/mobile.php' );
-				die();
-			} else {
-				$userFound = false;
-			}
+		if ($result["email"] == $email && $authenticated) {
+			$_SESSION["isLoggedIn"] = true;
+			$_SESSION["id"] = $result["id"];
+			$_SESSION["email"] = $result["email"];
+			$userFound = true;
+			header( 'Location: https://mysterious-bayou-55662.herokuapp.com/Project/mobile.php' );
+			die();
 		} else {
 			$userFound = false;
 		}
@@ -78,11 +75,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 			$sql = $db->prepare("UPDATE s_person SET fname='$fname', lname='$lname', prefix='$prefix' gender=$gender,
 				email='$cEmail', psswd='$hashed' WHERE id='$personID'");
 
-				$sql->execute();
-				$_SESSION['email'] = $cEmail;
-				$_SESSION["isLoggedIn"] = true;
-				header( 'Location: https://mysterious-bayou-55662.herokuapp.com/Project/mobile.php' );
-				die();
+			$sql->execute();
+			$_SESSION['email'] = $cEmail;
+			$_SESSION["isLoggedIn"] = true;
+			header( 'Location: https://mysterious-bayou-55662.herokuapp.com/Project/mobile.php' );
+			die();
+
 			} else {
 				// if there isn't a session id for the user yet
 				$sql = $db->prepare("INSERT INTO s_person (fname, lname, prefix, gender, email, psswd)

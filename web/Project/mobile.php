@@ -8,6 +8,7 @@ URI: postgres://kjufgxkwzbdxoe:7df3e724097d356a12363ec6ff37de41a1dce21c3c4767b88
 Heroku CLI: heroku pg:psql postgresql-cubic-94519 --app rocky-everglades-86262-->
 
 <?php
+include 'session.php';
 include 'dbconnect.php';
 
 $welcome = true;
