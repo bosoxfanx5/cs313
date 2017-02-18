@@ -85,8 +85,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 				die();
 			} else {
 				// if there isn't a session id for the user yet
-				$sql = $db->prepare("INSERT INTO s_person (fname, lname, gender, email, psswd)
-				VALUES ('$fname', '$lname', prefix='$prefix' $gender, '$cEmail', '$hashed')");
+				$sql = $db->prepare("INSERT INTO s_person (fname, lname, prefix, gender, email, psswd)
+				VALUES ('$fname', '$lname','$prefix', $gender, '$cEmail', '$hashed')");
 
 				$sql->execute();
 				$_SESSION['email'] = $cEmail;
