@@ -100,10 +100,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		}
 
 	/******************************************************************
-	* Forgot Password
+	* Forgot Password - My attempt at emailing a reset password link to the user.
+	* This would work if Heroku allowed sending emails. I attempted to set up
+	* the MailGun I installed using a domain that I own. However, for this Project
+	* I didn't want to pay the monthly fee to have the email service through GoDaddy.
 	*******************************************************************/
-
-	if (!empty($_POST["forgotEmail"])) {
+	$emailAttempt = false; //set this so that the code below doesn't ever run
+	if ($emailAttempt) {
 		$fEmail = $_POST["forgotEmail"];
 		$qry = $db->prepare("SELECT id, prefix, lname, email FROM s_person WHERE email='$fEmail'");
 		$qry->execute();
@@ -111,19 +114,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		echo "Database: " . $data["email"];
 		echo "Input: " . $_POST["forgotEmail"];
 		if ($_POST["forgotEmail"] == $data["email"]) {
-			// $to = $data["email"];
-			// $subject = "Reet Deets - Forgot Password";
-			// $from = "info@ReetDeets.com";
+
 			$url = 'https://mysterious-bayou-55662.herokuapp.com/Project/reset_password.php?id=' . $data["id"]; //not sure how to construct this with security in mind
-			// $body = 'Hello ' . $data['prefix'] . ' ' . $data['lname'] . ', <br><br> Someone has requested a to reset your password. If this
-			// was not you, please ignore this email. If this was you who requested a password reset, please follow this link below:<br><br>' .
-			// $url . '<br><br>Thank you,<br>Your ReetDeets Team';
-			// $headers = "MIME-Version: 1.0" . "\r\n";
-			// $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
-			// $headers .= "From: " . strip_tags($from);
-			//
-			//
-			// mail($to, $subject, $body, $headers);
 
 			$to = $data["email"];
 			$subject = 'Reet Deets - Forgot Password';
@@ -147,6 +139,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 				$confirmation = '<p class="alert alert-danger">There was a problem sending your message. Please try again.</p>';
 			}
 
+		}
+	}
+
+	if (!empty($_POST["forgotEmail"])) {
+		$fEmail = $_POST["forgotEmail"];
+		$qry = $db->prepare("SELECT id, prefix, lname, email FROM s_person WHERE email='$fEmail'");
+		$qry->execute();
+		$data = $qry->fetch();
+
+		if ($_POST["forgotEmail"] == $data["email"]) {
+			header('https://mysterious-bayou-55662.herokuapp.com/Project/reset_password.php?id=' . $data["id"]);
 		}
 	}
 
@@ -269,10 +272,6 @@ $database = null;
 			}
 			?>
 		</form>
-		<br>
-		<?php
-			echo $confirmation;
-		?>
 	</div>
 	<!--
 	_/_/_/_/    _/_/      _/_/    _/_/_/_/_/  _/_/_/_/  _/_/_/
