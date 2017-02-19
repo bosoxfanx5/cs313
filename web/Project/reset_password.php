@@ -3,6 +3,7 @@
 	include 'dbconnect.php';
 	$confirmation = "";
 	$success;
+	$newPass;
 	if (isset($_GET["id"])) {
 		if (isset($_POST["newPass"])) {
 			$qry = $db->prepare("SELECT prefix, lname FROM s_person WHERE id='".$_GET["id"]."'");
@@ -23,7 +24,7 @@
 			}
 		}
 	}
-
+$database = null;
 ?>
 
 
