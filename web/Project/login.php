@@ -113,7 +113,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 			// $to = $data["email"];
 			// $subject = "Reet Deets - Forgot Password";
 			// $from = "info@ReetDeets.com";
-			$url = 'https://mysterious-bayou-55662.herokuapp.com/Project/reset_password.php?id='; //not sure how to construct this with security in mind
+			$url = 'https://mysterious-bayou-55662.herokuapp.com/Project/reset_password.php?id=' . $data["id"]; //not sure how to construct this with security in mind
 			// $body = 'Hello ' . $data['prefix'] . ' ' . $data['lname'] . ', <br><br> Someone has requested a to reset your password. If this
 			// was not you, please ignore this email. If this was you who requested a password reset, please follow this link below:<br><br>' .
 			// $url . '<br><br>Thank you,<br>Your ReetDeets Team';
@@ -135,12 +135,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 			$headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
 
 			// Add from to the header
-			$headers .= 'From: Reet Deets Team <info@reetdeets.com>';
+			$headers .= 'From: Reet Deets Team <info@reetdeets.com>' . "\r\n";
 
 			// Mail it
 			if(mail($to, $subject, $message, $headers)) {
 				// Message sent successfully
-				$emailSent = true;
 				$confirmation = '<p class="alert alert-success">Your message was sent successfully!</p>';
 			} else {
 				// Message was not successful
@@ -269,10 +268,9 @@ $database = null;
 			}
 			?>
 		</form>
+		<br>
 		<?php
-		if (!$emailSent) {
 			echo $confirmation;
-		}
 		?>
 	</div>
 	<!--
