@@ -13,6 +13,13 @@ include 'dbconnect.php';
 
 $welcome = true;
 $isContent = false;
+
+if (isset($_GET["loggedIn"]) && !$_GET["loggedIn"]) {
+	session_unset();
+	session_destroy();
+	echo "it hit this section";
+}
+
 if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
 	$sql0 = $db->prepare("SELECT id, title FROM s_saleable_item");
@@ -60,11 +67,7 @@ if (!empty($_GET['id'])) {
 		$sql1->execute();
 }
 
-if (isset($_GET["loggedIn"]) && !$_GET["loggedIn"]) {
-	session_unset();
-	session_destroy();
-	echo "it hit this section";
-}
+
 
 $database = null;
 ?>
