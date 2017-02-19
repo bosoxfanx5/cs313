@@ -158,6 +158,9 @@ _/_/_/      _/_/    _/_/_/        _/
 				a product key, we supplied you a dropdown menu to choose a product. This will return the data
 				associated with that product and update information in the database about you, the user.</p>
 		</div>
+		<div id="welcome">
+			<img id="mainimg" src="rd.png">
+		</div>
 	<?php else : ?>
 		<?php if(!$isContent) : ?>
 			<?php if (!empty($result)) : ?>
