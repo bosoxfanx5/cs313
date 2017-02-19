@@ -14,11 +14,12 @@ include 'dbconnect.php';
 $welcome = true;
 $isContent = false;
 
-if (isset($_GET["loggedIn"]) && $_GET["loggedIn"] == false) {
+if ($_GET["loggedIn"] == false) {
 	session_unset($_SESSION["id"]);
 	session_unset($_SESSION["email"]);
 	session_destroy();
 }
+
 if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
 	$sql0 = $db->prepare("SELECT id, title FROM s_saleable_item");
