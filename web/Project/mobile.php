@@ -63,6 +63,7 @@ if (!empty($_GET['id'])) {
 if (isset($_GET["loggedIn"]) && !$_GET["loggedIn"]) {
 	session_unset();
 	session_destroy();
+	echo "it hit this section";
 }
 
 $database = null;
