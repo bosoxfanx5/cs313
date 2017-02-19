@@ -149,7 +149,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		$data = $qry->fetch();
 
 		if ($_POST["forgotEmail"] == $data["email"]) {
-			header('https://mysterious-bayou-55662.herokuapp.com/Project/reset_password.php?id=' . $data["id"]);
+			header('Location: https://mysterious-bayou-55662.herokuapp.com/Project/reset_password.php?id=' . $data["id"]);
 		}
 	}
 
