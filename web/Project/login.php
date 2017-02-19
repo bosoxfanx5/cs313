@@ -93,7 +93,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 				$result2 = $sql->fetch();
 
 				$_SESSION["id"] = $result2['id'];
-				$_SESSION["isLoggedIn"] = true;
+				$_SESSION["loggedIn"] = true;
 				header( 'Location: https://mysterious-bayou-55662.herokuapp.com/Project/mobile.php' );
 				die();
 			}

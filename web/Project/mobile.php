@@ -16,8 +16,6 @@ $welcome = true;
 
 if (isset($_REQUEST["logout"]) && $_REQUEST["logout"] == true) {
 	session_unset($_SESSION["id"]);
-	session_unset($_SESSION["email"]);
-	session_unset($_SESSION["loggedIn"]);
 	session_destroy();
 }
 
