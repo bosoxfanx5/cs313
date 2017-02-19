@@ -3,6 +3,7 @@
 	include 'dbconnect.php';
 	$confirmation = "";
 	$success;
+	$showForm = true;
 	if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		if (isset($_GET["id"])) {
 			if (isset($_POST["newPass"])) {
@@ -18,9 +19,10 @@
 				$success = true;
 
 				if ($success) {
-					$confirmation = '<p class="alert alert-success">Your message was sent successfully!</p>';
+					$confirmation = '<p class="alert alert-success">Password was reset successfully!</p>';
+					$showForm = false;
 				} else {
-					$confirmation = '<p class="alert alert-danger">There was a problem sending your message. Please try again.</p>';
+					$confirmation = '<p class="alert alert-danger">There was a problem resetting your password. Please try again.</p>';
 				}
 			}
 		}
@@ -81,7 +83,7 @@ $database = null;
 			</ul>
 		</div>
 	</nav>
-
+	<?php if($showForm) : ?>
 	<div class="wrapper">
 		<form class="form-signin" method="POST" action="">
 			<h2 class="form-signin-heading">What's your new password?</h2>
@@ -92,12 +94,7 @@ $database = null;
 		</form>
 		<?php echo $confirmation; ?>
 	</div>
-
-	<br><br>
-
-	<div id="message">
-
-	</div>
+	<?php endif ?>
 
 	<!-- Begin footer content -->
 	<footer class="footer">
