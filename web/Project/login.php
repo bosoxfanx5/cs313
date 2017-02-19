@@ -129,7 +129,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 }
 $database = null;
-print phpinfo();
 ?>
 
 
@@ -225,8 +224,7 @@ print phpinfo();
 					<input type="text" class="form-control" name="createEmail" placeholder="Email Address" required>
 					<br>
 					<input type="password" class="form-control" name="createPassword" placeholder="Password" required>
-					<button id="submitCreate" class="btn btn-success" type="submit">Submit</button>
-				
+					<button id="submitCreate" class="btn btn-success" type="submit">Submit</button>				
 				</form>
 				</div>
 			</div>
