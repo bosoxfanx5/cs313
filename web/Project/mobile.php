@@ -12,11 +12,12 @@ include 'session.php';
 include 'dbconnect.php';
 
 $welcome = true;
-$isContent = false;
 
-if ($_GET["loggedIn"] == false) {
+
+if (isset($_REQUEST["logout"]) && $_REQUEST["logout"] == true) {
 	session_unset($_SESSION["id"]);
 	session_unset($_SESSION["email"]);
+	session_unset($_SESSION["loggedIn"]);
 	session_destroy();
 }
 
@@ -146,7 +147,7 @@ $database = null;
 				<li class="dropdown">
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo $_SESSION["email"]; ?><b class="caret"></b></a>
 					<ul class="dropdown-menu">
-						<li><a href="mobile.php?loggedIn=false">Log Out</a></li>
+						<li><a href="mobile.php?logout=true">Log Out</a></li>
 					</ul>
 				</li>
 			<?php else : ?>

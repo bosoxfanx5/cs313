@@ -35,7 +35,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		$authenticated = password_verify($_POST["password"], $result['psswd']);
 
 		if ($result["email"] == $personEmail && $authenticated) {
-			$_SESSION["isLoggedIn"] = true;
+			$_SESSION["loggedIn"] = true;
 			$_SESSION["id"] = $result["id"];
 			$_SESSION["email"] = $result["email"];
 			$userFound = true;
@@ -77,7 +77,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 			$sql->execute();
 			$_SESSION['email'] = $cEmail;
-			$_SESSION["isLoggedIn"] = true;
+			$_SESSION["loggedIn"] = true;
 			header( 'Location: https://mysterious-bayou-55662.herokuapp.com/Project/mobile.php' );
 			die();
 
