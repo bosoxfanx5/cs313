@@ -108,7 +108,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		$qry = $db->prepare("SELECT id, prefix, lname, email FROM s_person WHERE email='$fEmail'");
 		$qry->execute();
 		$data = $qry->fetch();
-
+		echo "Database: " . $data["email"];
+		echo "Input: " . $_POST["email"];
 		if ($_POST["forgotEmail"] == $data["email"]) {
 			// $to = $data["email"];
 			// $subject = "Reet Deets - Forgot Password";
@@ -124,7 +125,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 			//
 			// mail($to, $subject, $body, $headers);
 
-			$to = $data["email"];
+			$to = $_POST["email"];
 			$subject = 'Reet Deets - Forgot Password';
 			$message =  "Hello " . $data['prefix'] . " " . $data['lname'] . ", <br><br> Someone has requested a to reset your password. If this
 			was not you, please ignore this email. If this was you who requested a password reset, please follow this link below:<br><br>" .
