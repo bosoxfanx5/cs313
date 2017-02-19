@@ -17,6 +17,7 @@ $personID = "";
 $userFound = true;
 $validEmail = true;
 $emailSent = false;
+$confirmation = "";
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 	/******************************************************************
