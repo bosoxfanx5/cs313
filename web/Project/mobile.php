@@ -19,7 +19,7 @@ if (isset($_GET["loggedIn"]) && !$_GET["loggedIn"]) {
 	session_destroy();
 	echo "it hit this section";
 }
-
+echo $_GET["loggedIn"];
 if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
 	$sql0 = $db->prepare("SELECT id, title FROM s_saleable_item");
