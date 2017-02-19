@@ -92,9 +92,9 @@ $database = null;
 			<br>
 			<button class="btn btn-success" id="subNew" type="submit">Submit</button>
 		</form>
-		<?php echo $confirmation; ?>
 	</div>
 	<?php endif ?>
+	<?php echo $confirmation; ?>
 
 	<!-- Begin footer content -->
 	<footer class="footer">
