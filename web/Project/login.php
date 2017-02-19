@@ -125,9 +125,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 			//
 			// mail($to, $subject, $body, $headers);
 
-			$to = $_POST["email"];
+			$to = $data["email"];
 			$subject = 'Reet Deets - Forgot Password';
-			$message =  "Hello " . $data['prefix'] . " " . $data['lname'] . ", <br><br> Someone has requested a to reset your password. If this
+			$message =  "Hello " . $data["prefix"] . " " . $data["lname"] . ", <br><br> Someone has requested a to reset your password. If this
 			was not you, please ignore this email. If this was you who requested a password reset, please follow this link below:<br><br>" .
 			$url . "<br><br>Thank you,<br>Your ReetDeets Team";
 
