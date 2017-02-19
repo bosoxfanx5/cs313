@@ -269,7 +269,7 @@ $database = null;
 			?>
 		</form>
 		<?php
-		if ($emailSent) {
+		if (!$emailSent) {
 			echo $confirmation;
 		}
 		?>
