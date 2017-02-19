@@ -109,7 +109,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		$qry->execute();
 		$data = $qry->fetch();
 		echo "Database: " . $data["email"];
-		echo "Input: " . $_POST["email"];
+		echo "Input: " . $_POST["forgotEmail"];
 		if ($_POST["forgotEmail"] == $data["email"]) {
 			// $to = $data["email"];
 			// $subject = "Reet Deets - Forgot Password";
