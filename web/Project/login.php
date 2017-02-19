@@ -226,8 +226,9 @@ print phpinfo();
 					<br>
 					<input type="password" class="form-control" name="createPassword" placeholder="Password" required>
 					<button id="submitCreate" class="btn btn-success" type="submit">Submit</button>
-				</div>
+				
 				</form>
+				</div>
 			</div>
 		</div>
 	</div>
