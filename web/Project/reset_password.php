@@ -5,22 +5,24 @@
 	$success;
 	$newPass;
 	if (isset($_GET["id"])) {
-		if (isset($_POST["newPass"])) {
-			$qry = $db->prepare("SELECT prefix, lname FROM s_person WHERE id='".$_GET["id"]."'");
-			$qry->execute();
-			$data = $qry->fetch();
+		if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+			if (isset($_POST["newPass"])) {
+				$qry = $db->prepare("SELECT prefix, lname FROM s_person WHERE id='".$_GET["id"]."'");
+				$qry->execute();
+				$data = $qry->fetch();
 
-			$newPass = $_POST["newpass"];
-			$hashed = password_hash($newPass, PASSWORD_DEFAULT);
+				$newPass = $_POST["newpass"];
+				$hashed = password_hash($newPass, PASSWORD_DEFAULT);
 
-			$qry = $db->prepare("UPDATE s_person SET psswd='$hashed' WHERE id='".$_GET["id"]."'");
-			$qry->execute();
-			$success = true;
+				$qry = $db->prepare("UPDATE s_person SET psswd='$hashed' WHERE id='".$_GET["id"]."'");
+				$qry->execute();
+				$success = true;
 
-			if ($success) {
-				$confirmation = '<p class="alert alert-success">Your message was sent successfully!</p>';
-			} else {
-				$confirmation = '<p class="alert alert-danger">There was a problem sending your message. Please try again.</p>';
+				if ($success) {
+					$confirmation = '<p class="alert alert-success">Your message was sent successfully!</p>';
+				} else {
+					$confirmation = '<p class="alert alert-danger">There was a problem sending your message. Please try again.</p>';
+				}
 			}
 		}
 	}
@@ -89,12 +91,13 @@ $database = null;
 			<br>
 			<button class="btn btn-success" id="subNew" type="submit">Submit</button>
 		</form>
+		<?php echo $confirmation; ?>
 	</div>
 
 	<br><br>
 
 	<div id="message">
-		<?php echo $confirmation; ?>
+
 	</div>
 
 	<!-- Begin footer content -->
