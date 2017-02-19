@@ -111,7 +111,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 			// $to = $data["email"];
 			// $subject = "Reet Deets - Forgot Password";
 			// $from = "info@ReetDeets.com";
-			// $url = "This is the url"; //not sure how to construct this with security in mind
+			$url = 'https://mysterious-bayou-55662.herokuapp.com/Project/reset_password.php?id='; //not sure how to construct this with security in mind
 			// $body = 'Hello ' . $data['prefix'] . ' ' . $data['lname'] . ', <br><br> Someone has requested a to reset your password. If this
 			// was not you, please ignore this email. If this was you who requested a password reset, please follow this link below:<br><br>' .
 			// $url . '<br><br>Thank you,<br>Your ReetDeets Team';
