@@ -16,6 +16,7 @@ ini_set("display_errors", 1);
 $personID = "";
 $userFound = true;
 $validEmail = true;
+$emailSent = false;
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 	/******************************************************************
@@ -133,11 +134,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 			$headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
 
 			// Add from to the header
-			$headers .= 'From: Reet Deets Team <info@reetdeets.com>' . "\r\n";
+			$headers .= 'From: Reet Deets Team <info@reetdeets.com>';
 
 			// Mail it
 			if(mail($to, $subject, $message, $headers)) {
 				// Message sent successfully
+				$emailSent = true;
 				$confirmation = '<p class="alert alert-success">Your message was sent successfully!</p>';
 			} else {
 				// Message was not successful
@@ -266,6 +268,11 @@ $database = null;
 			}
 			?>
 		</form>
+		<?php
+		if ($emailSent) {
+			echo $confirmation;
+		}
+		?>
 	</div>
 	<!--
 	_/_/_/_/    _/_/      _/_/    _/_/_/_/_/  _/_/_/_/  _/_/_/
