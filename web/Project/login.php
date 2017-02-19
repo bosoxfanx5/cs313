@@ -115,9 +115,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 			$body = 'Hello ' . $data['prefix'] . ' ' . $data['lname'] . ', <br><br> Someone has requested a to reset your password. If this
 			was not you, please ignore this email. If this was you who requested a password reset, please follow this link below:<br><br>' .
 			$url . '<br><br>Thank you,<br>Your ReetDeets Team';
-			$headers .= "MIME-Version: 1.0" . "\r\n";
+			$headers = "MIME-Version: 1.0" . "\r\n";
 			$headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
-			$headers = "From: " . strip_tags($from);
+			$headers .= "From: " . strip_tags($from);
 
 
 			mail($to, $subject, $body, $headers);
