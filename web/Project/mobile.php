@@ -59,6 +59,12 @@ if (!empty($_GET['id'])) {
 		$sql1 = $db->prepare("INSERT INTO s_visited_items (visitor_id, item_id) VALUES ('$personID', '$itemID')");
 		$sql1->execute();
 }
+
+if (isset($_GET["loggedIn"]) && !$_GET["loggedIn"]) {
+	session_unset();
+	session_destroy();
+}
+
 $database = null;
 ?>
 
@@ -133,7 +139,12 @@ $database = null;
 				</ul>
 			</li>
 			<?php if (isset($_SESSION["email"])) : ?>
-				<li><a href="#"><?php echo $_SESSION["email"]; ?></a></li>
+				<li class="dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo $_SESSION["email"]; ?><b class="caret"></b></a>
+					<ul class="dropdown-menu">
+						<li><a href="mobile.php?loggedIn=false">Log Out</a></li>
+					</ul>
+				</li>
 			<?php else : ?>
 				<li><a href="login.php">Login</a></li>
 			<?php endif?>
