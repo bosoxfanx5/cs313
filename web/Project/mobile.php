@@ -15,7 +15,7 @@ $welcome = true;
 $isContent = false;
 
 if (isset($_GET["loggedIn"]) && $_GET["loggedIn"] == false) {
-	session_unset();
+	session_unset($_SESSION["id"]);
 	session_destroy();
 }
 if ($_SERVER['REQUEST_METHOD'] == 'GET') {
