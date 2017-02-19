@@ -3,7 +3,6 @@
 	include 'dbconnect.php';
 	$confirmation = "";
 	$success;
-	$newPass;
 	if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		if (isset($_GET["id"])) {
 			if (isset($_POST["newPass"])) {
@@ -11,7 +10,7 @@
 				$qry->execute();
 				$data = $qry->fetch();
 
-				$newPass = $_POST["newpass"];
+				$newPass = $_POST["newPass"];
 				$hashed = password_hash($newPass, PASSWORD_DEFAULT);
 
 				$qry = $db->prepare("UPDATE s_person SET psswd='$hashed' WHERE id='".$_GET["id"]."'");
