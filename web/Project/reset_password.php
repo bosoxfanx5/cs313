@@ -2,7 +2,7 @@
 	include 'session.php';
 	include 'dbconnect.php';
 	$confirmation = "";
-	$success = false;
+	$success;
 	if (isset($_GET["id"])) {
 		if (isset($_POST["newPass"])) {
 			$qry = $db->prepare("SELECT prefix, lname FROM s_person WHERE id='".$_GET["id"]."'");
@@ -14,16 +14,15 @@
 
 			$qry = $db->prepare("UPDATE s_person SET psswd='$hashed' WHERE id='".$_GET["id"]."'");
 			$qry->execute();
+			$success = true;
 
-			$confirmation = '<p class="alert alert-success">Your message was sent successfully!</p>';
-
-		} else {
-			// Message was not successful
-
-			$confirmation = '<p class="alert alert-danger">There was a problem sending your message. Please try again.</p>';
+			if ($success) {
+				$confirmation = '<p class="alert alert-success">Your message was sent successfully!</p>';
+			} else {
+				$confirmation = '<p class="alert alert-danger">There was a problem sending your message. Please try again.</p>';
+			}
 		}
 	}
-
 
 ?>
 
