@@ -10,17 +10,17 @@ if (isset($_POST["submit"])) {
   $to = $_POST["email"];
   $message = $_POST["message"];
   
-  if (!isset($_POST["name"])) {
+  if (!$_POST["name"]) {
     $errorName = "Please provide your name";
     $error = true;
   }
   
-  if (!isset($_POST["email"]) || !filter_var($_POST["email"], FILTER_VALIDATE_EMAIL)) {
+  if (!$_POST["email"] || !filter_var($_POST["email"], FILTER_VALIDATE_EMAIL)) {
     $errorEmail = "Please provide your email address";
     $error = true;
   }
   
-  if (!isset($_POST["message"])) {
+  if (!$_POST["message"]) {
     $errorMessage = "Please include a message";
     $error = true;
   }
