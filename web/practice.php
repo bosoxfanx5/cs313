@@ -25,9 +25,9 @@ if (isset($_POST["submit"])) {
   
   if (!$error) {
     if (email($to, $subject, $message, $from)) {
-      $result = '<div class="alert alert-success">Thank you! We'll           be in contact shortly!</div>';
+      $result = "<div class='alert alert-success'>Thank you! We'll be in contact shortly!</div>";
     } else {
-      $result = '<div class="alert alert-danger">We're sorry, but           your email was unable to be sent.</div>';
+      $result = "<div class='alert alert-danger'>We're sorry, but           your email was unable to be sent.</div>";
   }
   }
 }
@@ -43,7 +43,7 @@ if (isset($_POST["submit"])) {
       <label class="col-sm-2 control-label" for="name">Name</label>
       <div class="col-sm-10">
         <input class="form-control" type="text" name="name" placeholder="Name">
-        <?php echo "<p class="text-danger">$errorName</p>" ?>
+        <?php echo "<p class='text-danger'>$errorName</p>" ?>
       </div>
     </div>
     <div class="form-group">
