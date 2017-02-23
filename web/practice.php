@@ -1,6 +1,9 @@
 <?php 
 if (isset($_POST["submit"])) {
   $error = false;
+  $errorName = "";
+  $errorEmail = "";
+  $errorMessage = "";
   $name = $_POST["name"];
   $to = $_POST["email"];
   $message = $_POST["message"];
@@ -27,15 +30,21 @@ if (isset($_POST["submit"])) {
     if (email($to, $subject, $message, $from)) {
       $result = "<div class='alert alert-success'>Thank you! We'll be in contact shortly!</div>";
     } else {
-      $result = "<div class='alert alert-danger'>We're sorry, but           your email was unable to be sent.</div>";
+      $result = "<div class='alert alert-danger'>We're sorry, but your email was unable to be sent.</div>";
   }
   }
 }
 ?>
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+  <meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+	<meta name="description" content="Front-end UI">
+	<meta name="author" content="Brooks Robison">
 </head>
 <body>
   <form id="form-horizontal" method="post">
