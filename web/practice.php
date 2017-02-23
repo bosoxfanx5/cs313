@@ -1,4 +1,6 @@
 <?php 
+error_reporting(E_ALL);
+ini_set("display_errors", 1);
 if (isset($_POST["submit"])) {
   $error = false;
   $errorName = "";
@@ -67,7 +69,7 @@ if (isset($_POST["submit"])) {
         <textarea class="form-control" rows="4" type="text" name="message" placeholder="Message"></textarea>
       </div>
     </div>
-    <div>
+    <div class="form-group">
       <div class="col-sm-10 col-sm-offset-2">
         <input type="submit" class="btn btn-primary" name="submt" value="Submit">
       </div>
