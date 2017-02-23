@@ -25,7 +25,7 @@ if (isset($_POST["submit"])) {
   $from = "Ballotpedia";
   $subject = "Contact Form Email";
   
-  if (!$error) {
+  if (!$errorName && !$errorEmail && !$errorMessage) {
     if (true) {
       $result = "<div class='alert alert-success'>Thank you! We'll be in contact shortly!</div>";
     } else {
@@ -55,7 +55,7 @@ if (isset($_POST["submit"])) {
       <label class="col-sm-2 control-label" for="name">Name</label>
       <div class="col-sm-10">
         <input class="form-control" type="text" name="name" placeholder="Name">
-        <?php echo $errorName; ?>
+        <?php echo "<p class='text-danger'>$errorName</p>"; ?>
       </div>
     </div>
     
