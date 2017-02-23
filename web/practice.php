@@ -43,7 +43,7 @@ if (isset($_POST["submit"])) {
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
 </head>
 <body>
-<div class ="containter">
+<div class ="container">
   <div class="row">
   	<div class="col-md-6 col-md-offset-3">
       <form id="form-horizontal" method="post" action="" role="form">
