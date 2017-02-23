@@ -54,7 +54,7 @@ if (!$errName && !$errEmail && !$errMessage && !$errHuman) {
   		<div class="row">
   			<div class="col-md-6 col-md-offset-3">
   				<h1 class="page-header text-center">Contact Form Example</h1>
-				<form class="form-horizontal" role="form" method="post" action="index.php">
+				<form class="form-horizontal" role="form" method="post" action="">
 					<div class="form-group">
 						<label for="name" class="col-sm-2 control-label">Name</label>
 						<div class="col-sm-10">
