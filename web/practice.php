@@ -47,6 +47,8 @@ if (isset($_POST["submit"])) {
 </head>
 <body>
 <div class ="containter">
+  <div class="row">
+  	<div class="col-md-6 col-md-offset-3">
   <form id="form-horizontal" method="post" action="">
     <div class="form-group">
       <label class="col-sm-2 control-label" for="name">Name</label>
@@ -79,5 +81,7 @@ if (isset($_POST["submit"])) {
     </div>
   </form>
 </div>
+  </div>
+  </div>
 </body>
 </html>
