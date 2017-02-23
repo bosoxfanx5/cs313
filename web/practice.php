@@ -15,7 +15,7 @@ if (isset($_POST["submit"])) {
     $error = true;
   }
   
-  if (!isset($_POST["email"]) || !filter_var($_POST["email"], FILTER_VALIDATE_EMAIL) {
+  if (!isset($_POST["email"]) || !filter_var($_POST["email"], FILTER_VALIDATE_EMAIL)) {
     $errorEmail = "Please provide your email address";
     $error = true;
   }
