@@ -55,7 +55,7 @@ if (isset($_POST["submit"])) {
       <label class="col-sm-2 control-label" for="name">Name</label>
       <div class="col-sm-10">
         <input class="form-control" type="text" name="name" placeholder="Name">
-        <?php echo "<p class='text-danger'>$errorName</p>"; ?>
+        <?php echo $errorName; ?>
       </div>
     </div>
     
@@ -83,7 +83,7 @@ if (isset($_POST["submit"])) {
    
     <div class="form-group">
       <div class="col-sm-10 col-sm-offset-2">
-        <?php echo $result ?>
+        <?php echo $result; ?>
       </div>
     </div>
  
