@@ -26,7 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	*******************************************************************/
 
 	if (!empty($_POST["email"]) && !empty($_POST["password"])) {
-		echo "<script>alert('Hit the first if statement');</script>";
+
 		$personEmail = $_POST["email"];
 		// query for email and password of user
 		$sql0 = $db->prepare("SELECT id, email, psswd FROM s_person WHERE email='$personEmail'");
@@ -55,7 +55,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 	if (!empty($_POST["fname"]) && !empty($_POST["lname"]) && !empty($_POST["gender"])
 	&& !empty($_POST["createEmail"]) && !empty($_POST["createPassword"])) {
-
+		echo "<script>alert('Hit the first if statement');</script>";
 		$fname = $_POST['fname'];
 		$lname = $_POST['lname'];
 		$gender = $_POST['gender'];
