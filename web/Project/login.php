@@ -59,7 +59,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		echo "<script>alert('Hit the first if statement');</script>";
 		$fname = $_POST['fname'];
 		$lname = $_POST['lname'];
-		$gender = $_POST['gender'];
+		$gender = (int)$_POST['gender'];
 
 		if ($gender == 1) {
 			$prefix = "Mr.";
