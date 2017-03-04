@@ -72,6 +72,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		// if user already has a session id and is creating a new login
 		if (!empty($_SESSION["id"])) {
 			$personID = $_SESSION["id"];
+			echo "session id not empty";
 			//$sql = $db->prepare("UPDATE s_person SET fname='$fname', lname='$lname', prefix='$prefix' gender=$gender,
 			//	email='$cEmail', psswd='$hashed' WHERE id='$personID'");
 
