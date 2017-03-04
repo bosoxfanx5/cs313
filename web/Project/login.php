@@ -20,12 +20,13 @@ $emailSent = false;
 $confirmation = "";
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-	echo "<script>alert('Hit the first if statement');</script>";
+
 	/******************************************************************
 	* User logging in authentication
 	*******************************************************************/
 
 	if (!empty($_POST["email"]) && !empty($_POST["password"])) {
+		echo "<script>alert('Hit the first if statement');</script>";
 		$personEmail = $_POST["email"];
 		// query for email and password of user
 		$sql0 = $db->prepare("SELECT id, email, psswd FROM s_person WHERE email='$personEmail'");
