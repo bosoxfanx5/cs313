@@ -76,8 +76,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 			//$sql = $db->prepare("UPDATE s_person SET fname='$fname', lname='$lname', prefix='$prefix' gender=$gender,
 			//	email='$cEmail', psswd='$hashed' WHERE id='$personID'");
 
-				$sql = $db->prepare("UPDATE s_person SET fname='$fname', lname='$lname', prefix='$prefix' gender=$gender,
-					email='$cEmail', psswd='$cPassword' WHERE id='$personID'");
+			$sql = $db->prepare("UPDATE s_person SET fname='$fname', lname='$lname', prefix='$prefix' gender=$gender,
+			email='$cEmail', psswd='$cPassword' WHERE id='$personID'");
 
 			$sql->execute();
 			$_SESSION['email'] = $cEmail;
@@ -185,6 +185,7 @@ $database = null;
 </head>
 
 <body>
+	<?php echo $_SESSION["id"]; ?>
 	<!-- Fixed navbar -->
 	<nav class="navbar navbar-default" role="navigation">
 		<!-- Brand and toggle get grouped for better mobile display -->
