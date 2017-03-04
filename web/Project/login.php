@@ -18,9 +18,9 @@ $userFound = true;
 $validEmail = true;
 $emailSent = false;
 $confirmation = "";
-echo "<script>alert('Hit the first if statement');</script>";
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+	echo "<script>alert('Hit the first if statement');</script>";
 	/******************************************************************
 	* User logging in authentication
 	*******************************************************************/
