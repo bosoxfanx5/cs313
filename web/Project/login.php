@@ -59,7 +59,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		echo "<script>alert('Hit the first if statement');</script>";
 		$fname = $_POST['fname'];
 		$lname = $_POST['lname'];
-		$gender = $_POST['gender'];
+		$gender = (int)$_POST['gender'];
 
 		if ($gender == 1) {
 			$prefix = "Mr.";
@@ -79,7 +79,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 			//$sql = $db->prepare("UPDATE s_person SET fname='$fname', lname='$lname', prefix='$prefix' gender=$gender,
 			//	email='$cEmail', psswd='$hashed' WHERE id='$personID'");
 
-			$sql = $db->prepare("UPDATE s_person SET fname='$fname', lname='$lname', prefix='$prefix' gender='$gender',
+			$sql = $db->prepare("UPDATE s_person SET fname='$fname', lname='$lname', prefix='$prefix' gender=$gender,
 			email='$cEmail', psswd='$cPassword' WHERE id='$personID'");
 
 			$sql->execute();
