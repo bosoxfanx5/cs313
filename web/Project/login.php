@@ -76,11 +76,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		// if user already has a session id and is creating a new login
 		if (!empty($_SESSION["id"])) {
 			$personID = $_SESSION["id"];
-			//$sql = $db->prepare("UPDATE s_person SET fname='$fname', lname='$lname', prefix='$prefix' gender=$gender,
-			//	email='$cEmail', psswd='$hashed' WHERE id='$personID'");
-
-			$sql = $db->prepare("UPDATE s_person SET fname='$fname', lname='$lname', prefix='$prefix',
-			email='$cEmail', psswd='$cPassword' WHERE id='$personID'");
+			$sql = $db->prepare("UPDATE s_person SET fname='$fname', lname='$lname', prefix='$prefix', gender=$gender,
+				email='$cEmail', psswd='$hashed' WHERE id='$personID'");
 
 			$sql->execute();
 			$_SESSION['email'] = $cEmail;
@@ -90,10 +87,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 			} else {
 				// if there isn't a session id for the user yet
-			//	$sql = $db->prepare("INSERT INTO s_person (fname, lname, prefix, gender, email, psswd)
-			//	VALUES ('$fname', '$lname','$prefix', $gender, '$cEmail', '$hashed')");
-				$sql = $db->prepare("INSERT INTO s_person (fname, lname, prefix, email, psswd)
-				VALUES ('$fname', '$lname','$prefix', '$cEmail', '$cPassword')");
+				$sql = $db->prepare("INSERT INTO s_person (fname, lname, prefix, gender, email, psswd)
+				VALUES ('$fname', '$lname','$prefix', $gender, '$cEmail', '$hashed')");
 
 				$sql->execute();
 				$_SESSION['email'] = $cEmail;
