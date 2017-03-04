@@ -79,7 +79,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 			//$sql = $db->prepare("UPDATE s_person SET fname='$fname', lname='$lname', prefix='$prefix' gender=$gender,
 			//	email='$cEmail', psswd='$hashed' WHERE id='$personID'");
 
-			$sql = $db->prepare("UPDATE s_person SET fname='$fname', lname='$lname', prefix='$prefix' gender=$gender,
+			$sql = $db->prepare("UPDATE s_person SET fname='$fname', lname='$lname', prefix='$prefix',
 			email='$cEmail', psswd='$cPassword' WHERE id='$personID'");
 
 			$sql->execute();
@@ -92,8 +92,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 				// if there isn't a session id for the user yet
 			//	$sql = $db->prepare("INSERT INTO s_person (fname, lname, prefix, gender, email, psswd)
 			//	VALUES ('$fname', '$lname','$prefix', $gender, '$cEmail', '$hashed')");
-				$sql = $db->prepare("INSERT INTO s_person (fname, lname, prefix, gender, email, psswd)
-				VALUES ('$fname', '$lname','$prefix', $gender, '$cEmail', '$cPassword')");
+				$sql = $db->prepare("INSERT INTO s_person (fname, lname, prefix, email, psswd)
+				VALUES ('$fname', '$lname','$prefix', '$cEmail', '$cPassword')");
 
 				$sql->execute();
 				$_SESSION['email'] = $cEmail;
