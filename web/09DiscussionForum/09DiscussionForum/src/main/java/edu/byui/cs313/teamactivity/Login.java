@@ -33,26 +33,35 @@ public class Login extends HttpServlet {
         }
 
         BufferedReader reader = new BufferedReader(new FileReader(file));
-
-        String line;
-        while ((line = reader.readLine()) != null) {
-            String newString[] = line.split(",");
-            String checkUser = newString[0].trim();
-            String checkPass = newString[1].trim();
-            
-            if (username == checkUser && password == checkPass) {
-                response.sendRedirect("newPost.jsp");
-                
-            }
+// test test test
+//        String line;
+//        while ((line = reader.readLine()) != null) {
+//            String newString[] = line.split(",");
+//            String checkUser = newString[0];
+//            String checkPass = newString[1];
+//            
+//            if (username.equals(checkUser)) {
+//                if(password.equals(checkPass)) {
+//                    response.sendRedirect("newPost.jsp");
+//                }
+//            } else {
+//                // Something was incorrect
+//                    request.setAttribute("error", "* Incorrect username/password.");
+//                // Redirect back to login.jsp
+//                    request.getRequestDispatcher("invalidLogin.jsp").forward(request, response);
+//            }
+//        } 
+//    }
+    
+        if (username.equals("Lyon") && password.equals("cs313")) {
+            request.getSession().setAttribute("username", username);
+            response.sendRedirect("newPost.jsp");
+        } else {
+            // Something was incorrect
+            request.setAttribute("error", "* Incorrect username/password.");
+            // Redirect back to login.jsp
+            request.getRequestDispatcher("invalidLogin.jsp").forward(request, response);
         }
     }
-//         request.getSession().setAttribute("username", username);
-//                    response.sendRedirect("newPost.jsp");
-//                } else {
-//                    // Something was incorrect
-//                    request.setAttribute("error", "* Incorrect username/password.");
-//                    // Redirect back to login.jsp
-//                    request.getRequestDispatcher("invalidLogin.jsp").forward(request, response);
-//                }
 
 }
