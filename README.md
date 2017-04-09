@@ -1,6 +1,7 @@
 # CS 313 PHP
 
-This contains assignments and projects from my CS 313 Web Engineering II class. This repository focuses on PHP and database interaction.
+This contains assignments and projects from my CS 313 Web Engineering II class with a focus on PHP, database interaction, and
+Java Servlets.
 
 # Individual Assignments
 
